@@ -10,7 +10,7 @@ class Data:
         self.connections = os.path.join(data_path, "connections.csv")
         self.data = os.path.join(data_path, "data_as_csv.csv")
         self.embeddings = os.path.join(data_path, "pca_embeddings.csv")
-        esg_path = os.path.join(data_path, "ESG")
+        esg_path = os.path.join(data_path, "esg_scores")
         self.avg_esg = os.path.join(esg_path, "average_esg_scores.csv")
         self.daily_esg = os.path.join(esg_path, "overall_daily_esg_scores.csv")
         self.e_score = os.path.join(esg_path, "daily_E_score.csv")
@@ -20,12 +20,12 @@ class Data:
 
 
     def read(self, start_day="jan6", end_day="jan12"):
-        dir_name = f"{start_day}_to_{end_day}"
+        dir_name = f"{start_day}__to__{end_day}"
 
-        if dir_name not in os.listdir("Data"):
+        if dir_name not in os.listdir("./financial_report_data/GDELT_data_Russell_top_300"):
             raise NameError(f"There isn't data for {dir_name}")
 
-        data_path = os.path.join(".", "Data", dir_name)
+        data_path = os.path.join("./financial_report_data/GDELT_data_Russell_top_300", dir_name)
         self.paths(data_path)
         data = {"conn": pd.read_csv(self.connections),
                 "data": pd.read_csv(self.data, parse_dates=["DATE"],
