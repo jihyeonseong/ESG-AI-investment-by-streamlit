@@ -227,10 +227,10 @@ def main(start_data, end_data):
                 tooltip=["DATE", alt.Tooltip(line_metric, format=".3f")]
                 )
         metric_chart = metric_chart.properties(
-            height=330,
+            height=340,
             width=100
         ).interactive()
-        col2.altair_chart(metric_chart, use_container_width=True)
+        col2.altair_chart(metric_chart)#, use_container_width=True
 
 
         ###### CHART: ESG RADAR ######
@@ -356,7 +356,7 @@ def main(start_data, end_data):
             tooltip=["Neighbor", alt.Tooltip("Confidence", format=".3f")],
             color=alt.Color("Confidence:Q", scale=alt.Scale(), legend=None)
         ).properties(
-            height=25 * num_neighbors + 110
+            height=25 * num_neighbors + 90
         ).configure_axis(grid=False)
         st.altair_chart(conf_plot, use_container_width=True)
 
