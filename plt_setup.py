@@ -20,7 +20,7 @@ def finastra_theme():
 
     ###### TEXT ######
     title_font = "Futura"
-    title_font_size = 40
+    title_font_size = 22
     tick_font = "Roboto"
     tick_font_size = 12
     text_font = "Roboto"
