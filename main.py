@@ -282,8 +282,7 @@ def main(start_data, end_data):
                 ).properties(
                     height=325,
                 ).configure_title(
-                    dy=-20,
-                    fontsize=30
+                    dy=-20
                 ).interactive()
         col2.markdown("### <br>", unsafe_allow_html=True)
         col2.altair_chart(dist_chart,use_container_width=True)
