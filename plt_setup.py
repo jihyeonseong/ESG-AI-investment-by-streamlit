@@ -83,7 +83,7 @@ def finastra_theme():
 
         "legend": {
             "labelFontSize": 12,
-            "padding": 5,
+            "padding": 2,
             "titleFont": text_font,
             "titleFontSize": text_font_size,
             "labelFont": tick_font,
