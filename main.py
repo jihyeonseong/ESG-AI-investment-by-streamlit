@@ -176,7 +176,7 @@ def main(start_data, end_data):
         metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                           "ActivityDensity", "WordCount", "Overall Score",
                           "ESG Scores"]
-        line_metric = col1.radio("# 평가 지표 선택", options=metric_options)
+        line_metric = col1.radio("평가 지표 선택", options=metric_options)
 
         if line_metric == "ESG Scores":
             # Get ESG Scores
