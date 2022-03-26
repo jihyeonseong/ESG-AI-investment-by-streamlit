@@ -190,14 +190,14 @@ def main(start_data, end_data):
 
             metric_chart = alt.Chart(esg_plot_df, title=f"{line_metric} 시계열 분석 그래프", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
                                        ).mark_line().encode(
-                x=alt.X("yearmonthdate(DATE):O", title="DATE"),
+                x=alt.X("yearmonthdate(DATE):O"), #title="DATE"
                 y=alt.Y("Score:Q"),
                 color=alt.Color("ESG", sort=None, legend=alt.Legend(
                     title=None, orient="top")),
                 strokeDash=alt.StrokeDash("WHO", sort=None, legend=alt.Legend(
                     title=None, symbolType="stroke", symbolFillColor="gray",
                     symbolStrokeWidth=4, orient="top")),
-                tooltip=["DATE", "ESG", alt.Tooltip("Score", format=".5f")]
+                tooltip=["DATE", "ESG", alt.Tooltip("ESG 점수", format=".5f")]
                 )
 
         else:
