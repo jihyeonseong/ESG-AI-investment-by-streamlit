@@ -283,7 +283,7 @@ def main(start_data, end_data):
                     height=325,
                 ).configure_title(
                     dy=-20
-                ).interactive().configure_axis(titleFontsize=30)
+                ).configure_axis(titleFontsize=30).interactive()
         col2.markdown("### <br>", unsafe_allow_html=True)
         col2.altair_chart(dist_chart,use_container_width=True)
 
