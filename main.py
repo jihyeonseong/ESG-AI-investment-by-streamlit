@@ -171,7 +171,7 @@ def main(start_data, end_data):
 
         ###### CHART: METRIC OVER TIME ######
         st.markdown("---")
-        col1, col2 = st.columns((1, 4))
+        col1, col2 = st.columns((1, 3))
 
         metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                           "ActivityDensity", "WordCount", "Overall Score",
@@ -188,7 +188,7 @@ def main(start_data, end_data):
             esg_plot_df.replace({"E_score": "Environment", "S_score": "Social",
                                  "G_score": "Governance"}, inplace=True)
 
-            metric_chart = alt.Chart(esg_plot_df, title="ESG 시계열 분석 그래프", padding={"left": 10, "top": 10, "right": 10, "bottom": 10}
+            metric_chart = alt.Chart(esg_plot_df, title="ESG 시계열 분석 그래프", padding={"left": 20, "top": 1, "right": 10, "bottom": 1}
                                        ).mark_line().encode(
                 x=alt.X("yearmonthdate(DATE):O", title="DATE"),
                 y=alt.Y("Score:Q"),
