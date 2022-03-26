@@ -365,7 +365,7 @@ def main(start_data, end_data):
 if __name__ == "__main__":
     args = sys.argv
     if len(args) != 3:
-        start_data = "2022-03-01"
+        start_data = "2021-12-01"
         end_data = "2022-03-25"
     else:
         start_data = args[1]
