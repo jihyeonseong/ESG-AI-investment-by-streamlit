@@ -113,7 +113,7 @@ def main(start_data, end_data):
 
 
     ###### RUN COMPUTATIONS WHEN A COMPANY IS SELECTED ######
-    company = st.selectbox("Select a Company to Analyze", companies)
+    company = st.selectbox("분석 기업 선택", companies)
     if company and company != "Select a Company":
         ###### FILTER ######
         df_company = df_data[df_data.Organization == company]
@@ -153,15 +153,14 @@ def main(start_data, end_data):
 
 
         ###### DISPLAY DATA ######
-        URL_Expander = st.expander(f"View {company.title()} Data:", True)
-        URL_Expander.write(f"### {len(df_company):,d} Matching Articles for " +
-                           company.title())
+        URL_Expander = st.expander(f"선택된 {company.title()} 데이터입니다:", True)
+        URL_Expander.write(f"### 선택된 {len(df_company):,d} "+company.title()+" 언론사 ESG 점수입니다")
         display_cols = ["DATE", "SourceCommonName", "Tone", "Polarity",
                         "NegativeTone", "PositiveTone"]  #  "WordCount"
         URL_Expander.write(df_company[display_cols])
 
         ####
-        URL_Expander.write(f"#### Sample Articles")
+        URL_Expander.write(f"#### 선택된 기사 정보입니다")
         link_df = df_company[["DATE", "URL"]].head(3).copy()
         # link_df["URL"] = link_df["URL"].apply(lambda R: f"[{R}]({R})")
         link_df["ARTICLE"] = link_df.URL.apply(get_clickable_name)
@@ -177,10 +176,10 @@ def main(start_data, end_data):
         metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                           "ActivityDensity", "WordCount", "Overall Score",
                           "ESG Scores"]
-        line_metric = col1.radio("Choose Metric", options=metric_options)
+        line_metric = col1.radio("평가 지표 선택", options=metric_options)
 
         if line_metric == "ESG Scores":
-            # Get ESG scores
+            # Get ESG Scores
             esg_df["WHO"] = company.title()
             ind_esg_df["WHO"] = "Industry Average"
             esg_plot_df = pd.concat([esg_df, ind_esg_df]
@@ -188,7 +187,7 @@ def main(start_data, end_data):
             esg_plot_df.replace({"E_score": "Environment", "S_score": "Social",
                                  "G_score": "Governance"}, inplace=True)
 
-            metric_chart = alt.Chart(esg_plot_df, title="Trends Over Time"
+            metric_chart = alt.Chart(esg_plot_df, title="ESG 시계열 분석 그래프"
                                        ).mark_line().encode(
                 x=alt.X("yearmonthdate(DATE):O", title="DATE"),
                 y=alt.Y("Score:Q"),
@@ -258,7 +257,7 @@ def main(start_data, end_data):
                                    },
                             legend={"title": None, "yanchor": "middle",
                                     "orientation": "h"},
-                            title={"text": "<b>ESG Scores</b>",
+                            title={"text": "<b>ESG 점수</b>",
                                    "x": 0.5, "y": 0.8875,
                                    "xanchor": "center",
                                    "yanchor": "top",
@@ -271,8 +270,8 @@ def main(start_data, end_data):
 
         ###### CHART: DOCUMENT TONE DISTRIBUTION #####
         # add overall average
-        dist_chart = alt.Chart(df_company, title="Document Tone "
-                               "Distribution").transform_density(
+        dist_chart = alt.Chart(df_company, title="Tone에 따른 ESG 시계열 세부 분석"
+                               ).transform_density(
                 density='Tone',
                 as_=["Tone", "density"]
             ).mark_area(opacity=0.5,color="purple").encode(
@@ -291,7 +290,7 @@ def main(start_data, end_data):
 
         ###### CHART: SCATTER OF ARTICLES OVER TIME #####
         # st.markdown("---")
-        scatter = alt.Chart(df_company, title="Article Tone").mark_circle().encode(
+        scatter = alt.Chart(df_company, title="선택된 기사 Tone 분석").mark_circle().encode(
             x="NegativeTone:Q",
             y="PositiveTone:Q",
             size="WordCount:Q",
@@ -331,7 +330,7 @@ def main(start_data, end_data):
         fig_3d.update_layout(legend={"orientation": "h",
                                      "yanchor": "bottom",
                                      "title": None},
-                             title={"text": "<b>Company Connections</b>",
+                             title={"text": "<b>유사 기업 분포 분석</b>",
                                     "x": 0.5, "y": 0.9,
                                     "xanchor": "center",
                                     "yanchor": "top",
@@ -350,7 +349,7 @@ def main(start_data, end_data):
             "Neighbor": neighbors,
             "Confidence": company_df[[f"n{i}_conf" for i in
                                       range(num_neighbors)]].values[0]})
-        conf_plot = alt.Chart(neighbor_conf, title="Connected Companies"
+        conf_plot = alt.Chart(neighbor_conf, title="유사 기업"
                               ).mark_bar().encode(
             x="Confidence:Q",
             y=alt.Y("Neighbor:N", sort="-x"),
