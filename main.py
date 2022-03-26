@@ -263,7 +263,7 @@ def main(start_data, end_data):
                                    "xanchor": "center",
                                    "yanchor": "top",
                                    "font": {"family": "Futura", "size": 23}},
-                            margin={"l": 5, "r": 5, "t": 0, "b": 0},
+                            margin={"l": 5, "r": 5, "t": 10, "b": 0},
                             )
         radar.update_layout(showlegend=False)
         col1.plotly_chart(radar, use_container_width=True)
