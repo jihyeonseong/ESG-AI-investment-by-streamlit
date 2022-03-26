@@ -197,7 +197,7 @@ def main(start_data, end_data):
                 strokeDash=alt.StrokeDash("WHO", sort=None, legend=alt.Legend(
                     title=None, symbolType="stroke", symbolFillColor="gray",
                     symbolStrokeWidth=4, orient="top")),
-                tooltip=["DATE", "ESG", alt.Tooltip("ESG 점수", format=".5f")]
+                tooltip=["DATE", "ESG", alt.Tooltip("Score", format=".5f")]
                 )
 
         else:
