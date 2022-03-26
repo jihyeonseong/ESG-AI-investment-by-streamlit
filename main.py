@@ -213,7 +213,7 @@ def main(start_data, end_data):
                 df1["WHO"] = company.title()
                 df2["WHO"] = "Industry Average"
                 plot_df = pd.concat([df1, df2]).reset_index(drop=True)
-            metric_chart = alt.Chart(plot_df, title="ESG 시계열 분석 그래프", fontSize=30
+            metric_chart = alt.Chart(plot_df, title="ESG 시계열 분석 그래프"
                                      ).mark_line().encode(
                 x=alt.X("yearmonthdate(DATE):O", title="DATE"),
                 y=alt.Y(f"{line_metric}:Q", scale=alt.Scale(type="linear")),
@@ -282,7 +282,8 @@ def main(start_data, end_data):
                 ).properties(
                     height=325,
                 ).configure_title(
-                    dy=-20
+                    dy=-20,
+                    fontsize=30
                 ).interactive()
         col2.markdown("### <br>", unsafe_allow_html=True)
         col2.altair_chart(dist_chart,use_container_width=True)
