@@ -65,8 +65,8 @@ def finastra_theme():
             "tooltip": True},
 
         "axis": {
-            "domainWidth": 0.5,
-            "grid": True,
+            "domainWidth": 0.3,
+            "grid": False,
             "labelPadding": 2,
             "tickSize": 5,
             "tickWidth": 0.5,
@@ -78,7 +78,7 @@ def finastra_theme():
         },
 
         "axisBand": {
-            "grid": True,
+            "grid": False,
         },
 
         "legend": {
