@@ -357,7 +357,8 @@ def main(start_data, end_data):
             color=alt.Color("Confidence:Q", scale=alt.Scale(), legend=None)
         ).properties(
             height=25 * num_neighbors + 100
-        ).configure_title(fontsize=20).configure_axis(grid=False)
+        ).configure_axis(grid=False)
+        conf_plot = conf_plot.configure_title(fontsize=20)
         st.altair_chart(conf_plot, use_container_width=True)
 
 
