@@ -171,7 +171,7 @@ def main(start_data, end_data):
 
         ###### CHART: METRIC OVER TIME ######
         st.markdown("---")
-        col1, col2 = st.columns((1, 3))
+        col1, col2 = st.columns((1, 2))
 
         metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                           "ActivityDensity", "WordCount", "Overall Score",
