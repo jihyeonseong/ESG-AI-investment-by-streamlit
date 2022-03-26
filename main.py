@@ -177,7 +177,7 @@ def main(start_data, end_data):
                           "ActivityDensity", "WordCount", "Overall Score",
                           "ESG Scores"]
         line_metric = col1.radio("평가 지표 선택", options=metric_options)
-        col1.altair_chart(line_metric, use_container_width=True)
+  
 
         if line_metric == "ESG Scores":
             # Get ESG Scores
