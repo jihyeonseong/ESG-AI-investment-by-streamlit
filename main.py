@@ -187,7 +187,7 @@ def main(start_data, end_data):
             esg_plot_df.replace({"E_score": "Environment", "S_score": "Social",
                                  "G_score": "Governance"}, inplace=True)
 
-            metric_chart = alt.Chart(esg_plot_df, title="ESG 시계열 분석 그래프"
+            metric_chart = alt.Chart(esg_plot_df, title="<b>ESG 시계열 분석 그래프</b>"
                                        ).mark_line().encode(
                 x=alt.X("yearmonthdate(DATE):O", title="DATE"),
                 y=alt.Y("Score:Q"),
@@ -213,7 +213,7 @@ def main(start_data, end_data):
                 df1["WHO"] = company.title()
                 df2["WHO"] = "Industry Average"
                 plot_df = pd.concat([df1, df2]).reset_index(drop=True)
-            metric_chart = alt.Chart(plot_df, title="ESG 시계열 분석 그래프"
+            metric_chart = alt.Chart(plot_df, title="<b>ESG 시계열 분석 그래프</b>"
                                      ).mark_line().encode(
                 x=alt.X("yearmonthdate(DATE):O", title="DATE"),
                 y=alt.Y(f"{line_metric}:Q", scale=alt.Scale(type="linear")),
@@ -270,7 +270,7 @@ def main(start_data, end_data):
 
         ###### CHART: DOCUMENT TONE DISTRIBUTION #####
         # add overall average
-        dist_chart = alt.Chart(df_company, title="Tone에 따른 ESG 시계열 세부 분석"
+        dist_chart = alt.Chart(df_company, title="<b>Tone에 따른 ESG 시계열 세부 분석</b>"
                                ).transform_density(
                 density='Tone',
                 as_=["Tone", "density"]
@@ -290,7 +290,7 @@ def main(start_data, end_data):
 
         ###### CHART: SCATTER OF ARTICLES OVER TIME #####
         # st.markdown("---")
-        scatter = alt.Chart(df_company, title="선택된 기사 Tone 분석").mark_circle().encode(
+        scatter = alt.Chart(df_company, title= "<b>선택된 기사 Tone 분석</b>").mark_circle().encode(
             x="NegativeTone:Q",
             y="PositiveTone:Q",
             size="WordCount:Q",
