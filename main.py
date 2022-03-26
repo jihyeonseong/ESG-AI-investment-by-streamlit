@@ -230,8 +230,8 @@ def main(start_data, end_data):
             height=340,
             width=200
         ).interactive()
-        col2.altair_chart(metric_chart)#, use_container_width=True
-
+        col2.altair_chart(metric_chart, use_container_width=True)
+        
 
         ###### CHART: ESG RADAR ######
         col1, col2 = st.columns((1, 2))
