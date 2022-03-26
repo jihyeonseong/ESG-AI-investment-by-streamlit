@@ -157,8 +157,6 @@ def main(start_data, end_data):
         URL_Expander.write(f"### 선택된 {company.title()}의 {len(df_company):,d}개 언론사의 ESG에 대한 어조를 점수화한 표입니다")
         display_cols = ["DATE", "SourceCommonName", "Tone", "Polarity",
                         "NegativeTone", "PositiveTone"]  #  "WordCount"
-        display_cols = ["날짜", "언론사", "어조", "양극성 점수", "부정적 어조", "긍정적 어조"]
-        df_company.columns = display_cols
         URL_Expander.write(df_company[display_cols])
 
         ####
