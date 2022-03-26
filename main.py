@@ -283,14 +283,14 @@ def main(start_data, end_data):
                     height=325,
                 ).configure_title(
                     dy=-20
-                ).interactive()
+                ).interactive().configure_axis(titleFontsize=30)
         col2.markdown("### <br>", unsafe_allow_html=True)
         col2.altair_chart(dist_chart,use_container_width=True)
 
 
         ###### CHART: SCATTER OF ARTICLES OVER TIME #####
         # st.markdown("---")
-        scatter = alt.Chart(df_company, title= <b>"선택된 기사 Tone 분석"</b>).mark_circle().encode(
+        scatter = alt.Chart(df_company, title= "선택된 기사 Tone 분석").mark_circle().encode(
             x="NegativeTone:Q",
             y="PositiveTone:Q",
             size="WordCount:Q",
