@@ -171,7 +171,7 @@ def main(start_data, end_data):
 
         ###### CHART: METRIC OVER TIME ######
         st.markdown("---")
-        col1, col2 = st.columns((1, 3))
+        col1, col2 = st.columns((1, 4))
 
         metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                           "ActivityDensity", "WordCount", "Overall Score",
@@ -188,7 +188,7 @@ def main(start_data, end_data):
             esg_plot_df.replace({"E_score": "Environment", "S_score": "Social",
                                  "G_score": "Governance"}, inplace=True)
 
-            metric_chart = alt.Chart(esg_plot_df, title="ESG 시계열 분석 그래프", padding={"left": 20, "top": 1, "right": 10, "bottom": 1}
+            metric_chart = alt.Chart(esg_plot_df, title="ESG 시계열 분석 그래프", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
                                        ).mark_line().encode(
                 x=alt.X("yearmonthdate(DATE):O", title="DATE"),
                 y=alt.Y("Score:Q"),
@@ -271,7 +271,7 @@ def main(start_data, end_data):
 
         ###### CHART: DOCUMENT TONE DISTRIBUTION #####
         # add overall average
-        dist_chart = alt.Chart(df_company, title="Tone에 따른 ESG 시계열 세부 분석"
+        dist_chart = alt.Chart(df_company, title="Tone에 따른 ESG 시계열 세부 분석", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
                                ).transform_density(
                 density='Tone',
                 as_=["Tone", "density"]
@@ -291,7 +291,7 @@ def main(start_data, end_data):
 
         ###### CHART: SCATTER OF ARTICLES OVER TIME #####
         # st.markdown("---")
-        scatter = alt.Chart(df_company, title= "선택된 기사 Tone 분석").mark_circle().encode(
+        scatter = alt.Chart(df_company, title= "선택된 기사 Tone 분석", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}).mark_circle().encode(
             x="NegativeTone:Q",
             y="PositiveTone:Q",
             size="WordCount:Q",
@@ -350,7 +350,7 @@ def main(start_data, end_data):
             "Neighbor": neighbors,
             "Confidence": company_df[[f"n{i}_conf" for i in
                                       range(num_neighbors)]].values[0]})
-        conf_plot = alt.Chart(neighbor_conf, title="유사 기업"
+        conf_plot = alt.Chart(neighbor_conf, title="유사 기업", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
                               ).mark_bar().encode(
             x="Confidence:Q",
             y=alt.Y("Neighbor:N", sort="-x"),
