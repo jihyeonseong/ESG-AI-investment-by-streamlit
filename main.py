@@ -228,7 +228,7 @@ def main(start_data, end_data):
                 )
         metric_chart = metric_chart.properties(
             height=350,
-            width=200
+            width=250
         ).interactive()
         col2.altair_chart(metric_chart, use_container_width=True)
 
