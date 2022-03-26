@@ -214,7 +214,7 @@ def main(start_data, end_data):
                 df1["WHO"] = company.title()
                 df2["WHO"] = "Industry Average"
                 plot_df = pd.concat([df1, df2]).reset_index(drop=True)
-            metric_chart = alt.Chart(plot_df, title=f"{line_metric} 시계열 분석 그래프", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
+            metric_chart = alt.Chart(plot_df, title=f"{line_metric} 시계열 분석 그래프", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
                                      ).mark_line().encode(
                 x=alt.X("yearmonthdate(DATE):O", title="DATE"),
                 y=alt.Y(f"{line_metric}:Q", scale=alt.Scale(type="linear")),
@@ -271,7 +271,7 @@ def main(start_data, end_data):
 
         ###### CHART: DOCUMENT TONE DISTRIBUTION #####
         # add overall average
-        dist_chart = alt.Chart(df_company, title="전체 언론사 ESG 어조에 대한 확률 및도 분석표", padding={"left": 1, "top": 10, "right": 5, "bottom": 1}
+        dist_chart = alt.Chart(df_company, title="전체 언론사 ESG 어조에 대한 확률 밀도 분석표", padding={"left": 10, "top": 10, "right": 10, "bottom": 1}
                                ).transform_density(
                 density='Tone',
                 as_=["Tone", "density"]
