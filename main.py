@@ -291,7 +291,7 @@ def main(start_data, end_data):
 
         ###### CHART: SCATTER OF ARTICLES OVER TIME #####
         # st.markdown("---")
-        scatter = alt.Chart(df_company, title= "선택된 기사의 ESG 점수 양극성  분석", padding={"left": 10, "top": 10, "right": 1, "bottom": 1}).mark_circle().encode(
+        scatter = alt.Chart(df_company, title= "선택된 기사의 ESG 점수 양극성 정도 분석", padding={"left": 10, "top": 10, "right": 1, "bottom": 1}).mark_circle().encode(
             x="NegativeTone:Q",
             y="PositiveTone:Q",
             size="WordCount:Q",
