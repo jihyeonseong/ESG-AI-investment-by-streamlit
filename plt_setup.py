@@ -65,7 +65,7 @@ def finastra_theme():
             "tooltip": True},
 
         "axis": {
-            "domainWidth": 0.3,
+            "domainWidth": 0.5,
             "grid": False,
             "labelPadding": 2,
             "tickSize": 5,
@@ -83,7 +83,7 @@ def finastra_theme():
 
         "legend": {
             "labelFontSize": 12,
-            "padding": 2,
+            "padding": 1,
             "titleFont": text_font,
             "titleFontSize": text_font_size,
             "labelFont": tick_font,
