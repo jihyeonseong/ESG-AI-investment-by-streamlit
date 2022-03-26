@@ -101,12 +101,12 @@ def main(start_data, end_data):
 
 
     ####### CREATE SIDEBAR CATEGORY FILTER######
-    st.sidebar.title("Filter Options")
+    st.sidebar.title("옵션을 선택해 주세요")
     date_place = st.sidebar.empty()
-    esg_categories = st.sidebar.multiselect("Select News Categories",
+    esg_categories = st.sidebar.multiselect("ESG 카테고리 선택",
                                             ["E", "S", "G"], ["E", "S", "G"])
     pub = st.sidebar.empty()
-    num_neighbors = st.sidebar.slider("Number of Connections", 1, 20, value=8)
+    num_neighbors = st.sidebar.slider("유사 기업 범위 선택", 1, 20, value=8)
 
 
 
@@ -129,7 +129,7 @@ def main(start_data, end_data):
         ###### DATE WIDGET ######
         start = df_company.DATE.min()
         end = df_company.DATE.max()
-        selected_dates = date_place.date_input("Select a Date Range",
+        selected_dates = date_place.date_input("날짜 선택",
             value=[start, end], min_value=start, max_value=end, key=None)
         time.sleep(0.8)  #Allow user some time to select the two dates -- hacky :D
         start, end = selected_dates
@@ -148,7 +148,7 @@ def main(start_data, end_data):
         ###### PUBLISHER SELECT BOX ######
         publishers = df_company.SourceCommonName.sort_values().unique().tolist()
         publishers.insert(0, "all")
-        publisher = pub.selectbox("Select Publisher", publishers)
+        publisher = pub.selectbox("언론사 선택하기", publishers)
         df_company = filter_publisher(df_company, publisher)
 
 
