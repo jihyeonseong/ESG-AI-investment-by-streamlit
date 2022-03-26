@@ -1,4 +1,4 @@
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 
 import streamlit as st 
 import pandas as pd
