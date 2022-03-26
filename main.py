@@ -259,7 +259,7 @@ def main(start_data, end_data):
                             legend={"title": None, "yanchor": "middle",
                                     "orientation": "h"},
                             title={"text": "<b>ESG 점수</b>",
-                                   "x": 0.5, "y": 0.7,
+                                   "x": 0.5, "y": 0.8,
                                    "xanchor": "center",
                                    "yanchor": "top",
                                    "font": {"family": "Futura", "size": 23}},
