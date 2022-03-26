@@ -20,7 +20,7 @@ def finastra_theme():
 
     ###### TEXT ######
     title_font = "Futura"
-    title_font_size = 18
+    title_font_size = 22
     tick_font = "Roboto"
     tick_font_size = 12
     text_font = "Roboto"
@@ -83,7 +83,7 @@ def finastra_theme():
 
         "legend": {
             "labelFontSize": 12,
-            "padding": 1,
+            "padding": 5,
             "titleFont": text_font,
             "titleFontSize": text_font_size,
             "labelFont": tick_font,
