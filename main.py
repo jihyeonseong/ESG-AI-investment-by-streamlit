@@ -153,14 +153,14 @@ def main(start_data, end_data):
 
 
         ###### DISPLAY DATA ######
-        URL_Expander = st.expander(f"선택된 {company.title()} 데이터입니다:", True)
-        URL_Expander.write(f"### 선택된 {len(df_company):,d}개의 "+company.title()+" 언론사 ESG 점수입니다")
+        URL_Expander = st.expander(f"선택된 {company.title()}의 데이터입니다:", True)
+        URL_Expander.write(f"### 선택된 {company.title()}의 {len(df_company):,d}개 언론사의 ESG에 대한 어조를 점수화한 표입니다")
         display_cols = ["DATE", "SourceCommonName", "Tone", "Polarity",
                         "NegativeTone", "PositiveTone"]  #  "WordCount"
         URL_Expander.write(df_company[display_cols])
 
         ####
-        URL_Expander.write(f"#### 선택된 기사 정보입니다")
+        URL_Expander.write(f"#### 샘플 기사 정보입니다")
         link_df = df_company[["DATE", "URL"]].head(3).copy()
         # link_df["URL"] = link_df["URL"].apply(lambda R: f"[{R}]({R})")
         link_df["ARTICLE"] = link_df.URL.apply(get_clickable_name)
@@ -188,7 +188,7 @@ def main(start_data, end_data):
             esg_plot_df.replace({"E_score": "Environment", "S_score": "Social",
                                  "G_score": "Governance"}, inplace=True)
 
-            metric_chart = alt.Chart(esg_plot_df, title="ESG 시계열 분석 그래프", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
+            metric_chart = alt.Chart(esg_plot_df, title=f"{line_metric} 시계열 분석 그래프", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
                                        ).mark_line().encode(
                 x=alt.X("yearmonthdate(DATE):O", title="DATE"),
                 y=alt.Y("Score:Q"),
@@ -214,7 +214,7 @@ def main(start_data, end_data):
                 df1["WHO"] = company.title()
                 df2["WHO"] = "Industry Average"
                 plot_df = pd.concat([df1, df2]).reset_index(drop=True)
-            metric_chart = alt.Chart(plot_df, title="ESG 시계열 분석 그래프"
+            metric_chart = alt.Chart(plot_df, title=f"{line_metric} 시계열 분석 그래프"
                                      ).mark_line().encode(
                 x=alt.X("yearmonthdate(DATE):O", title="DATE"),
                 y=alt.Y(f"{line_metric}:Q", scale=alt.Scale(type="linear")),
@@ -258,7 +258,7 @@ def main(start_data, end_data):
                                    },
                             legend={"title": None, "yanchor": "middle",
                                     "orientation": "h"},
-                            title={"text": "<b>ESG 점수</b>",
+                            title={"text": "<b>ESG 점수 레이더</b>",
                                    "x": 0.5, "y": 0.83,
                                    "xanchor": "center",
                                    "yanchor": "top",
@@ -271,7 +271,7 @@ def main(start_data, end_data):
 
         ###### CHART: DOCUMENT TONE DISTRIBUTION #####
         # add overall average
-        dist_chart = alt.Chart(df_company, title="Tone에 따른 ESG 시계열 세부 분석", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
+        dist_chart = alt.Chart(df_company, title="언론사 ESG 어조에 대한 확률 및도 분석표", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
                                ).transform_density(
                 density='Tone',
                 as_=["Tone", "density"]
@@ -291,7 +291,7 @@ def main(start_data, end_data):
 
         ###### CHART: SCATTER OF ARTICLES OVER TIME #####
         # st.markdown("---")
-        scatter = alt.Chart(df_company, title= "선택된 기사 Tone 분석", padding={"left": 5, "top": 10, "right": 1, "bottom": 1}).mark_circle().encode(
+        scatter = alt.Chart(df_company, title= "선택된 기사의 ESG 분석", padding={"left": 5, "top": 10, "right": 1, "bottom": 1}).mark_circle().encode(
             x="NegativeTone:Q",
             y="PositiveTone:Q",
             size="WordCount:Q",
@@ -350,7 +350,7 @@ def main(start_data, end_data):
             "Neighbor": neighbors,
             "Confidence": company_df[[f"n{i}_conf" for i in
                                       range(num_neighbors)]].values[0]})
-        conf_plot = alt.Chart(neighbor_conf, title="유사 기업", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
+        conf_plot = alt.Chart(neighbor_conf, title="유사 기업 ESG 점수 차트", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
                               ).mark_bar().encode(
             x="Confidence:Q",
             y=alt.Y("Neighbor:N", sort="-x"),
