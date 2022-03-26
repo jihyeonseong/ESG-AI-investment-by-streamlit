@@ -171,7 +171,7 @@ def main(start_data, end_data):
 
         ###### CHART: METRIC OVER TIME ######
         st.markdown("---")
-        col1, col2 = st.columns((1, 2))
+        col1, col2 = st.columns((1, 4))
 
         metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                           "ActivityDensity", "WordCount", "Overall Score",
@@ -228,7 +228,7 @@ def main(start_data, end_data):
                 )
         metric_chart = metric_chart.properties(
             height=340,
-            width=300
+            width=200
         ).interactive()
         col2.altair_chart(metric_chart, use_container_width=True)
         
