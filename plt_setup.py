@@ -65,7 +65,7 @@ def finastra_theme():
             "tooltip": True},
 
         "axis": {
-            "domainWidth": 0.5,
+            "domainWidth": 0.8,
             "grid": False,
             "labelPadding": 2,
             "tickSize": 5,
