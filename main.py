@@ -1,5 +1,3 @@
-import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
-
 import streamlit as st 
 import pandas as pd
 import numpy as np
@@ -76,6 +74,7 @@ def get_clickable_name(url):
 
 
 def main(start_data, end_data):
+    @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
     ###### CUSTOMIZE COLOR THEME ######
     alt.themes.register("finastra", finastra_theme)
     alt.themes.enable("finastra")
