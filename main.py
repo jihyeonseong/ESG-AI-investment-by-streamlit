@@ -227,7 +227,7 @@ def main(start_data, end_data):
                 tooltip=["DATE", alt.Tooltip(line_metric, format=".3f")]
                 )
         metric_chart = metric_chart.properties(
-            height=340,
+            height=350,
             width=200
         ).interactive()
         col2.altair_chart(metric_chart, use_container_width=True)
@@ -280,7 +280,7 @@ def main(start_data, end_data):
                     tooltip=[alt.Tooltip("Tone", format=".3f"),
                              alt.Tooltip("density:Q", format=".4f")]
                 ).properties(
-                    height=325,
+                    height=335,
                 ).configure_title(
                     dy=-20
                 ).interactive()
@@ -302,7 +302,7 @@ def main(start_data, end_data):
                      alt.Tooltip("WordCount", format=",d"),
                      alt.Tooltip("SourceCommonName", title="Site")]
             ).properties(
-                height=450
+                height=460
             ).interactive()
         st.altair_chart(scatter, use_container_width=True)
 
@@ -356,7 +356,7 @@ def main(start_data, end_data):
             tooltip=["Neighbor", alt.Tooltip("Confidence", format=".3f")],
             color=alt.Color("Confidence:Q", scale=alt.Scale(), legend=None)
         ).properties(
-            height=25 * num_neighbors + 100
+            height=25 * num_neighbors + 110
         ).configure_axis(grid=False)
         st.altair_chart(conf_plot, use_container_width=True)
 
