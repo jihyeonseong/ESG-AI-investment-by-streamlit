@@ -154,7 +154,7 @@ def main(start_data, end_data):
 
         ###### DISPLAY DATA ######
         URL_Expander = st.expander(f"선택된 {company.title()} 데이터입니다:", True)
-        URL_Expander.write(f"### 선택된 {len(df_company):,d} "+company.title()+" 언론사 ESG 점수입니다")
+        URL_Expander.write(f"### 선택된 {len(df_company):,d}개의 "+company.title()+" 언론사 ESG 점수입니다")
         display_cols = ["DATE", "SourceCommonName", "Tone", "Polarity",
                         "NegativeTone", "PositiveTone"]  #  "WordCount"
         URL_Expander.write(df_company[display_cols])
