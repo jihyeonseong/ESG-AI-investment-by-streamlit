@@ -259,12 +259,12 @@ def main(start_data, end_data):
                             legend={"title": None, "yanchor": "middle",
                                     "orientation": "h"},
                             title={"text": "<b>ESG 점수</b>",
-                                   "x": 0.5, "y": 0.8875,
+                                   "x": 0.5, "y": 0.7,
                                    "xanchor": "center",
                                    "yanchor": "top",
                                    "font": {"family": "Futura", "size": 23}},
-                            margin={"l": 5, "r": 5, "t": 10, "b": 0},
-                            )
+                            margin={"l": 5, "r": 5, "t": 0, "b": 0},
+                            )#0.8875
         radar.update_layout(showlegend=False)
         col1.plotly_chart(radar, use_container_width=True)
 
