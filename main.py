@@ -271,7 +271,7 @@ def main(start_data, end_data):
 
         ###### CHART: DOCUMENT TONE DISTRIBUTION #####
         # add overall average
-        dist_chart = alt.Chart(df_company, title="전체 언론사 ESG 어조에 대한 밀도 분석", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
+        dist_chart = alt.Chart(df_company, title="전체 언론사 ESG 어조에 대한 밀도 분석", padding={"left": 1, "top": 10, "right": 5, "bottom": 1}
                                ).transform_density(
                 density='Tone',
                 as_=["Tone", "density"]
