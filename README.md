@@ -99,5 +99,7 @@ Let's move to streamlit!
    - This means, you can get rough information like company's trending degree from number of article
 2. Then you can get enough detailed information from below graph
    - Several metrics such as Tone, ESG score and graphs such as chart, rader are provided for detailed evaluation!
+<br></br>
 
-
+## Note
+I'm sorry for foreigners, the web is in korean. If you want to convert language as English, fork my code and modify the file main.py
