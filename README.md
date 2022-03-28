@@ -89,10 +89,10 @@ Let's move to streamlit!
    - So you can get superior quality and quantity of article.
 
 2. This project's flow is,
- i) s&p500's 90% of enterprises reveal sustainability report every year.
- ii) But we do not have standard evaluation format to get score of ESG.
- iii) So crawlling the article from gdelt, and analyze tone of article about ESG and then scoring with the word that used in article 
- iv) At scoring, crawlling and node2vec method for NLP is used. 
+ - s&p500's 90% of enterprises reveal sustainability report every year.
+ - But we do not have standard evaluation format to get score of ESG.
+ - So crawlling the article from gdelt, and analyze tone of article about ESG and then scoring with the word that used in article 
+ - At scoring, crawlling and node2vec method for NLP is used. 
 
 ### What we can get from this web?
 1. The number of article that crawled means the power or influence of company to society (ex. 551 press make article about MSFT)
