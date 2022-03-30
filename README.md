@@ -3,7 +3,7 @@
 which is [Hack to the Future 2020](https://devpost.com/software/esg-ai) 
 Winner: Best Environmental Impact & Best User Experience***
 <br></br>
-**Demonstrating the power of Streamlit.** [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/seong-jihyeon/esg-investment/main.py)  
+**Demonstrating the power of Streamlit.** [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/monouns/esg-ai-investment/main.py)  
 
 ![Example of web](I will upload gif soon!)
 
