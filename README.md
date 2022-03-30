@@ -101,5 +101,15 @@ Let's move to streamlit!
    - Several metrics such as Tone, ESG score and graphs such as chart, rader are provided for detailed evaluation!
 <br></br>
 
+## Detail information for technical stack
+1. What we use for data?
+   - gdelt
+   - The GDELT Project, or Global Database of Events, Language, and Tone, created by Kalev Leetaru of Yahoo! and Georgetown University, along with Philip Schrodt and others, describes itself as "an initiative to construct a catalog of human societal-scale behavior and beliefs across all countries of the world, connecting every person, organization, location, count, theme, news source, and event across the planet into a single massive network that captures what's happening around the world, what its context is and who's involved, and how the world is feeling about it, every single day." Early explorations leading up to the creation of GDELT were described by co-creator Philip Schrodt in a conference paper in January 2011. The dataset is available on Google Cloud Platform. [wikipedia](https://en.wikipedia.org/wiki/GDELT_Project)
+  ![gdelt](https://user-images.githubusercontent.com/56622667/160764162-16a8f570-9030-405d-8b01-dd98ce356980.png)
+
+2. How we can reach data and create web demo?
+   ![technical_stack](https://user-images.githubusercontent.com/56622667/160764457-eeee6284-7d24-41c3-9b6f-b235bbdb6d12.png)
+<br></br>
+
 ## Note
-I'm sorry for foreigners, the web is in korean. If you want to convert language as English, fork my code and modify the file main.py
+I'm sorry for foreigners, the web is in Korean (and the logo is KB bank which is Korea bank). If you want to convert language as English, fork my code and modify the file main.py
