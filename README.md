@@ -105,11 +105,14 @@ Let's move to streamlit!
 1. What we use for data?
    - gdelt
    - The GDELT Project, or Global Database of Events, Language, and Tone, created by Kalev Leetaru of Yahoo! and Georgetown University, along with Philip Schrodt and others, describes itself as "an initiative to construct a catalog of human societal-scale behavior and beliefs across all countries of the world, connecting every person, organization, location, count, theme, news source, and event across the planet into a single massive network that captures what's happening around the world, what its context is and who's involved, and how the world is feeling about it, every single day." Early explorations leading up to the creation of GDELT were described by co-creator Philip Schrodt in a conference paper in January 2011. The dataset is available on Google Cloud Platform. [wikipedia](https://en.wikipedia.org/wiki/GDELT_Project)
-  ![gdelt](https://user-images.githubusercontent.com/56622667/160764162-16a8f570-9030-405d-8b01-dd98ce356980.png)
 
 2. How we can reach data and create web demo?
-   ![technical_stack](https://user-images.githubusercontent.com/56622667/160764457-eeee6284-7d24-41c3-9b6f-b235bbdb6d12.png)
+   ![technical_stack](https://user-images.githubusercontent.com/56622667/162120751-d62c3a62-bbce-4098-acc7-bbad93d6fd0c.png)
+   
+   ![technical_stack2](https://user-images.githubusercontent.com/56622667/162120810-ec823d9e-745c-43c0-98e3-5890eeb5c60f.png)
+   
+   ![technical_stack_detail](https://user-images.githubusercontent.com/56622667/162120824-b49f86a4-7d10-4917-9f4f-f55616095815.png) 
 <br></br>
 
 ## Note
-I'm sorry for foreigners, the web is in Korean (and the logo is KB bank which is Korea bank). If you want to convert language as English, fork my code and modify the file main.py
+I'm sorry for foreigners, the web demo is in Korean (and the logo is KB bank which is Korea bank). If you want to convert language as English, fork my code and modify the file main.py
