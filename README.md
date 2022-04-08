@@ -115,4 +115,4 @@ Let's move to streamlit!
 <br></br>
 
 ## Note
-I'm sorry for foreigners, the web demo is in Korean (and the logo is KB bank which is Korea bank). If you want to convert language as English, fork my code and modify the file main.py
+I'm sorry for foreigners, the technical stack explanation slide is in Korean. But you can understand via images and icons!! :)
