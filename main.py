@@ -350,7 +350,7 @@ def main(start_data, end_data):
             "Neighbor": neighbors,
             "Confidence": company_df[[f"n{i}_conf" for i in
                                       range(num_neighbors)]].values[0]})
-        conf_plot = alt.Chart(neighbor_conf, title="Similar Company's ESG Score", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
+        conf_plot = alt.Chart(neighbor_conf, title=f"Top {num_neighbors} Company's Similarity Score", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
                               ).mark_bar().encode(
             x=alt.X("Confidence:Q", title="Confidence"),
             y=alt.Y("Neighbor:N", sort="-x", title="Similar Company"),
