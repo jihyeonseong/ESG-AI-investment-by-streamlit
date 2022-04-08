@@ -101,19 +101,19 @@ def main(start_data, end_data):
 
 
     ####### CREATE SIDEBAR CATEGORY FILTER######
-    st.sidebar.title("옵션을 선택해 주세요")
+    st.sidebar.title("Please Choose Options!")
     date_place = st.sidebar.empty()
-    esg_categories = st.sidebar.multiselect("ESG 카테고리 선택",
+    esg_categories = st.sidebar.multiselect("Choose ESG Categories",
                                             ["E", "S", "G"], ["E", "S", "G"])
     pub = st.sidebar.empty()
-    num_neighbors = st.sidebar.slider("유사 기업 범위 선택", 1, 20, value=8)
+    num_neighbors = st.sidebar.slider("Select Similar Company Number", 1, 20, value=8)
 
 
 
 
 
     ###### RUN COMPUTATIONS WHEN A COMPANY IS SELECTED ######
-    company = st.selectbox("분석 기업 선택", companies)
+    company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
     if company and company != "Select a Company":
         ###### FILTER ######
         df_company = df_data[df_data.Organization == company]
@@ -129,7 +129,7 @@ def main(start_data, end_data):
         ###### DATE WIDGET ######
         start = df_company.DATE.min()
         end = df_company.DATE.max()
-        selected_dates = date_place.date_input("날짜 선택",
+        selected_dates = date_place.date_input("Select Date",
             value=[start, end], min_value=start, max_value=end, key=None)
         time.sleep(0.8)  #Allow user some time to select the two dates -- hacky :D
         start, end = selected_dates
@@ -148,19 +148,19 @@ def main(start_data, end_data):
         ###### PUBLISHER SELECT BOX ######
         publishers = df_company.SourceCommonName.sort_values().unique().tolist()
         publishers.insert(0, "all")
-        publisher = pub.selectbox("언론사 선택하기", publishers)
+        publisher = pub.selectbox("Publisher", publishers)
         df_company = filter_publisher(df_company, publisher)
 
 
         ###### DISPLAY DATA ######
-        URL_Expander = st.expander(f"선택된 {company.title()}의 데이터입니다:", True)
-        URL_Expander.write(f"### 선택된 {company.title()}의 {len(df_company):,d}개 언론사의 ESG에 대한 어조를 점수화한 표입니다")
+        URL_Expander = st.expander(f"{company.title()}'s Data" True)
+        URL_Expander.write(f"### Chosen {company.title()}'s {len(df_company):,d} Article ESG Tone Table")
         display_cols = ["DATE", "SourceCommonName", "Tone", "Polarity",
                         "NegativeTone", "PositiveTone"]  #  "WordCount"
         URL_Expander.write(df_company[display_cols])
 
         ####
-        URL_Expander.write(f"#### 샘플 기사 정보입니다")
+        URL_Expander.write(f"#### Sample Article Information")
         link_df = df_company[["DATE", "URL"]].head(3).copy()
         # link_df["URL"] = link_df["URL"].apply(lambda R: f"[{R}]({R})")
         link_df["ARTICLE"] = link_df.URL.apply(get_clickable_name)
@@ -176,7 +176,7 @@ def main(start_data, end_data):
         metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                           "ActivityDensity", "WordCount", "Overall Score",
                           "ESG Scores"]
-        line_metric = col1.radio("평가 지표 선택", options=metric_options)
+        line_metric = col1.radio("Please Select Evaluation Metric", options=metric_options)
   
 
         if line_metric == "ESG Scores":
@@ -188,10 +188,10 @@ def main(start_data, end_data):
             esg_plot_df.replace({"E_score": "Environment", "S_score": "Social",
                                  "G_score": "Governance"}, inplace=True)
 
-            metric_chart = alt.Chart(esg_plot_df, title=f"{line_metric} 시계열 분석 그래프", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
+            metric_chart = alt.Chart(esg_plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
                                        ).mark_line().encode(
                 x=alt.X("yearmonthdate(DATE):O", title=""), #title="DATE"
-                y=alt.Y("Score:Q", title="ESG 점수"),
+                y=alt.Y("Score:Q", title="ESG Score"),
                 color=alt.Color("ESG", sort=None, legend=alt.Legend(
                     title=None, orient="top")),
                 strokeDash=alt.StrokeDash("WHO", sort=None, legend=alt.Legend(
@@ -214,7 +214,7 @@ def main(start_data, end_data):
                 df1["WHO"] = company.title()
                 df2["WHO"] = "Industry Average"
                 plot_df = pd.concat([df1, df2]).reset_index(drop=True)
-            metric_chart = alt.Chart(plot_df, title=f"{line_metric} 시계열 분석 그래프", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
+            metric_chart = alt.Chart(plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
                                      ).mark_line().encode(
                 x=alt.X("yearmonthdate(DATE):O", title=""),
                 y=alt.Y(f"{line_metric}:Q", scale=alt.Scale(type="linear")),
@@ -258,7 +258,7 @@ def main(start_data, end_data):
                                    },
                             legend={"title": None, "yanchor": "middle",
                                     "orientation": "h"},
-                            title={"text": "<b>ESG 점수 레이더</b>",
+                            title={"text": "<b>ESG Rader Chart</b>",
                                    "x": 0.5, "y": 0.83,
                                    "xanchor": "center",
                                    "yanchor": "top",
@@ -271,13 +271,13 @@ def main(start_data, end_data):
 
         ###### CHART: DOCUMENT TONE DISTRIBUTION #####
         # add overall average
-        dist_chart = alt.Chart(df_company, title="전체 언론사 ESG 어조에 대한 밀도 분석", padding={"left": 1, "top": 10, "right": 25, "bottom": 1}
+        dist_chart = alt.Chart(df_company, title="All Publishers' ESG Tone Density Chart", padding={"left": 1, "top": 10, "right": 25, "bottom": 1}
                                ).transform_density(
                 density='Tone',
                 as_=["Tone", "density"]
             ).mark_area(opacity=0.5,color="purple").encode(
-                    x=alt.X('Tone:Q', scale=alt.Scale(domain=(-10, 10)), title="어조"),
-                    y=alt.Y('density:Q', title="밀도"),
+                    x=alt.X('Tone:Q', scale=alt.Scale(domain=(-10, 10)), title="Tone"),
+                    y=alt.Y('density:Q', title="Density"),
                     tooltip=[alt.Tooltip("Tone", format=".3f"),
                              alt.Tooltip("density:Q", format=".4f")]
                 ).properties(
@@ -291,9 +291,9 @@ def main(start_data, end_data):
 
         ###### CHART: SCATTER OF ARTICLES OVER TIME #####
         # st.markdown("---")
-        scatter = alt.Chart(df_company, title= "선택된 기사의 ESG 점수 양극성 정도 분석", padding={"left": 10, "top": 10, "right": 1, "bottom": 1}).mark_circle().encode(
-            x=alt.X("NegativeTone:Q", title="부정적 어조"),
-            y=alt.Y("PositiveTone:Q", title="긍정적 어조"),
+        scatter = alt.Chart(df_company, title= "ESG Polarity Chart", padding={"left": 10, "top": 10, "right": 1, "bottom": 1}).mark_circle().encode(
+            x=alt.X("NegativeTone:Q", title="Negative Tone"),
+            y=alt.Y("PositiveTone:Q", title="Positive Tone"),
             size="WordCount:Q",
             color=alt.Color("Polarity:Q", scale=alt.Scale()),
             tooltip=[alt.Tooltip("Polarity", format=".3f"),
@@ -331,7 +331,7 @@ def main(start_data, end_data):
         fig_3d.update_layout(legend={"orientation": "h",
                                      "yanchor": "bottom",
                                      "title": None},
-                             title={"text": "<b>유사 기업 분포 분석</b>",
+                             title={"text": "<b>Similar Company Distribution Chart</b>",
                                     "x": 0.5, "y": 0.9,
                                     "xanchor": "center",
                                     "yanchor": "top",
@@ -350,10 +350,10 @@ def main(start_data, end_data):
             "Neighbor": neighbors,
             "Confidence": company_df[[f"n{i}_conf" for i in
                                       range(num_neighbors)]].values[0]})
-        conf_plot = alt.Chart(neighbor_conf, title="유사 기업 ESG 점수 차트", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
+        conf_plot = alt.Chart(neighbor_conf, title="Similar Company's ESG Score", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
                               ).mark_bar().encode(
-            x=alt.X("Confidence:Q", title="긍정성"),
-            y=alt.Y("Neighbor:N", sort="-x", title="유사 기업"),
+            x=alt.X("Confidence:Q", title="Confidence"),
+            y=alt.Y("Neighbor:N", sort="-x", title="Similar Company"),
             tooltip=["Neighbor", alt.Tooltip("Confidence", format=".3f")],
             color=alt.Color("Confidence:Q", scale=alt.Scale(), legend=None)
         ).properties(
