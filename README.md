@@ -5,7 +5,8 @@ Winner: Best Environmental Impact & Best User Experience***
 <br></br>
 **Demonstrating the power of Streamlit.** [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/monouns/esg-ai-investment/main.py)  
 
-![Example of web](I will upload gif soon!)
+![visual_demo](https://user-images.githubusercontent.com/56622667/163711185-8fea43e6-0a1b-4145-95a4-b755cf915dbe.png)
+
 
 ## Data Crawling & Creation with Databricks 
 Firstly, You have to sign up or sign in Databricks. You can use free trial for 14 days.
