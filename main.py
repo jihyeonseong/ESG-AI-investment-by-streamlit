@@ -93,14 +93,16 @@ def main(start_data, end_data):
 
 
     ###### LOAD DATA ######
-    SP500, KOSPI = st.columns(2)
+    but1, but2 = st.columns([1]*6+[1.18])
     #flag = None
     #data, companies = None, None
-    with SP500.button('SP500'):
+    with but1:
+        button = but1.button('SP500'):
         flag = 'SP500'
         with st.spinner(text="Fetching Data..."):
             data, companies = load_data(start_data, end_data)
-    with KOSPI.button('KOSPI'):
+    with but2:
+        button = but2.button('KOSPI'):
         flag = 'KOSPI'
         with st.spinner(text="Fetching Data..."):
             data, companies = load_data(start_data, end_data)
