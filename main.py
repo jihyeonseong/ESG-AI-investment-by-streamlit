@@ -367,7 +367,7 @@ def main(start_data, end_data):
 
 
         ###### CHART: NEIGHBOR SIMILIARITY ######
-        elif graph_metric == 'Similarity Score'
+        elif graph_metric == 'Similarity Score':
             neighbor_conf = pd.DataFrame({
                 "Neighbor": neighbors,
                 "Confidence": company_df[[f"n{i}_conf" for i in
