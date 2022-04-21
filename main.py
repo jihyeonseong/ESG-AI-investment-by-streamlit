@@ -286,7 +286,7 @@ def main(start_data, end_data):
                                 legend={"title": None, "yanchor": "middle",
                                         "orientation": "h"},
                                 title={"text": "<b>ESG Rader Chart</b>",
-                                       "x": 0.5, "y": 0.53,
+                                       "x": 0.1, "y": 0.93,
                                        "xanchor": "center",
                                        "yanchor": "top",
                                        "font": {"family": "Futura", "size": 23}},
