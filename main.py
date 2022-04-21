@@ -128,8 +128,7 @@ def main(start_data, end_data):
 
         company = st.selectbox(INFO, companies)
         if len(state)>1:
-            state = []
-            st.empty()
+            company='microsoft'
             
     
     with page3:        
