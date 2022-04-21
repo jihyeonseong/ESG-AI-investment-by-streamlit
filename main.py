@@ -102,7 +102,7 @@ def main(start_data, end_data):
 
 
     ###### LOAD DATA ######
-    but1, but2, _ = st.columns([1,1,9])
+    but1, but2 = st.columns([1*100,1*100])
     flag = 'SP500'
     if but1.button('SP500'):
         flag = 'SP500'
@@ -181,7 +181,7 @@ def main(start_data, end_data):
 
 
         ###### CHART: METRIC OVER TIME ######
-    col1, col2 = st.columns([1, 4])
+    col1, col2 = page2.columns([1, 4])
     with page2:
         metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                           "ActivityDensity", "WordCount", "Overall Score",
