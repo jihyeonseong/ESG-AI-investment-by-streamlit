@@ -129,14 +129,7 @@ def main(start_data, end_data):
         company = st.selectbox(INFO, companies)
         if len(state)>1:
             state = []
-            with st.spinner(text="Fetching Data..."):
-                data, companies = load_data(start_data, end_data, line_metric)
-
-                df_conn = data["conn"]
-                df_data = data["data"]
-                embeddings = data["embed"]  
-
-            company = st.selectbox(INFO, companies)
+            st.empty()
             
     
     with page3:        
