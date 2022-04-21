@@ -93,8 +93,13 @@ def main(start_data, end_data):
 
 
     ###### LOAD DATA ######
-    with st.spinner(text="Fetching Data..."):
-        data, companies = load_data(start_data, end_data)
+    SP500, KOSPI = st.beta_columns(2)
+    if SP500.button('SP500'):
+        with st.spinner(text="Fetching Data..."):
+            data, companies = load_data(start_data, end_data)
+    else:
+        with st.spinner(text="Fetching Data..."):
+            data, companies = load_data(start_data, end_data)
     df_conn = data["conn"]
     df_data = data["data"]
     embeddings = data["embed"]
