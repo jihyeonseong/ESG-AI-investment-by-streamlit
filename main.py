@@ -193,7 +193,7 @@ def main(start_data, end_data):
         choose_graph = ["Evaluation Graph", "Rader and Tone density", "Polarity", "Company distribution", "Similarity Score"]
         graph_metric = st.radio("Please Select Evaluation Metric", options=metric_options)
         
-        if graph_metric == "Evaluation Graph"               
+        if graph_metric == "Evaluation Graph":               
             metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                               "ActivityDensity", "WordCount", "Overall Score",
                               "ESG Scores"]
