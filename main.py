@@ -103,17 +103,16 @@ def main(start_data, end_data):
 
 
     ###### LayOut ######           
-    but1, but2, box = st.columns([1,1,2])
+    box1, empty, box2 = st.columns([2,0.3,8])
     page3, page4 = st.columns(2)
     col1, col2 = st.columns([1,4])
     
     ###default setting###
     
     
-    ###### LOAD DATA ######    
-    ###button click: return T/F###
-    sp = but1.button('SP500')
-    kos = but2.button('KOSPI')
+    ###### LOAD DATA ######  
+    with but1:
+        market = st.selectbox("Choose your Market", ['Select Market', 'SP500', 'KOSPI'])
     
     with box:
         ###default setting###
