@@ -131,25 +131,25 @@ def main(start_data, end_data):
             INFO = 'Choose Your Company! (EX. microsoft)'
             flag = 'SP500'
             with st.spinner(text="Fetching Data..."):
-                data, companies = load_data(start_data, end_data, flag)
+                global data, companies = load_data(start_data, end_data, flag)
 
-                df_conn = data["conn"]
-                df_data = data["data"]
-                embeddings = data["embed"]  
+                global df_conn = data["conn"]
+                global df_data = data["data"]
+                global embeddings = data["embed"]  
 
-            company = st.selectbox(INFO, companies)
+            global company = st.selectbox(INFO, companies)
         if kos:
             sp = False
             INFO = 'Choose Your Company! (EX. KB)'
             flag = 'KOSPI'
             with st.spinner(text="Fetching Data..."):
-                data, companies = load_data(start_data, end_data, flag)
+                global data, companies = load_data(start_data, end_data, flag)
 
-                df_conn = data["conn"]
-                df_data = data["data"]
-                embeddings = data["embed"]  
+                global df_conn = data["conn"]
+                global df_data = data["data"]
+                global embeddings = data["embed"]  
             
-            company = st.selectbox(INFO, companies)
+            global company = st.selectbox(INFO, companies)
         """
         with st.spinner(text="Fetching Data..."):
             data, companies = load_data(start_data, end_data, flag)
