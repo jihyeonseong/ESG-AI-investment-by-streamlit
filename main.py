@@ -72,6 +72,61 @@ def get_clickable_name(url):
     except:
         return f"[{url}]({url})"
     
+def display_data_table(company):
+    if company and company != "Select a Company":
+        ###### FILTER ######
+        df_company = df_data[df_data.Organization == company]
+        diff_col = f"{company.replace(' ', '_')}_diff"
+        esg_keys = ["E_score", "S_score", "G_score"]
+        esg_df = get_melted_frame(data, esg_keys, keepcol=diff_col)
+        ind_esg_df = get_melted_frame(data, esg_keys, dropcol="industry_tone")
+        tone_df = get_melted_frame(data, ["overall_score"], keepcol=diff_col)
+        ind_tone_df = get_melted_frame(data, ["overall_score"],
+                                       dropcol="industry_tone")
+
+
+        ###### DATE WIDGET ######
+        start = df_company.DATE.min()
+        end = df_company.DATE.max()
+        selected_dates = date_place.date_input("Select Date",
+            value=[start, end], min_value=start, max_value=end, key=None)
+        time.sleep(0.8)  #Allow user some time to select the two dates -- hacky :D
+        start, end = selected_dates
+
+
+        ###### FILTER DATA ######
+        df_company = filter_company_data(df_company, esg_categories,
+                                         start, end)
+        esg_df = filter_on_date(esg_df, start, end)
+        ind_esg_df = filter_on_date(ind_esg_df, start, end)
+        tone_df = filter_on_date(tone_df, start, end)
+        ind_tone_df = filter_on_date(ind_tone_df, start, end)
+        date_filtered = filter_on_date(df_data, start, end)
+
+
+        ###### PUBLISHER SELECT BOX ######
+        publishers = df_company.SourceCommonName.sort_values().unique().tolist()
+        publishers.insert(0, "all")
+        publisher = pub.selectbox("Publisher", publishers)
+        df_company = filter_publisher(df_company, publisher)
+
+
+        ###### DISPLAY DATA ######
+        URL_Expander = st.expander(f"{company.title()}'s Data: ", True)
+        URL_Expander.write(f"### Chosen {company.title()}'s {len(df_company):,d} Article ESG Tone Table")
+        display_cols = ["DATE", "SourceCommonName", "Tone", "Polarity",
+                        "NegativeTone", "PositiveTone"]  #  "WordCount"
+        URL_Expander.write(df_company[display_cols])
+
+        ####
+        URL_Expander.write(f"#### Sample Article Information")
+        link_df = df_company[["DATE", "URL"]].head(3).copy()
+        # link_df["URL"] = link_df["URL"].apply(lambda R: f"[{R}]({R})")
+        link_df["ARTICLE"] = link_df.URL.apply(get_clickable_name)
+        link_df = link_df[["DATE", "ARTICLE"]].to_markdown(index=False)
+        URL_Expander.markdown(link_df)
+        ####
+
 def display_data(flag):
     with st.spinner(text="Fetching Data..."):
         data, companies = load_data(start_data, end_data, flag)
@@ -82,8 +137,11 @@ def display_data(flag):
         
     if flag == 'SP500':
         company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
+        display_data_table(company)
     elif flag=='KOSPI':
-        company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
+        company = st.selectbox("Choose Your Company! (EX. KB)", companies)
+        display_data_table(company)
+    
 
 
 
@@ -127,68 +185,11 @@ def main(start_data, end_data):
             display_data(flag)
         if but2.button('KOSPI'):
             flag = 'KOSPI'
-            display_data(flag)
-    
-    page3, page4 = st.columns(2)
-    col1, col2 = st.columns([1,4])
-    with page3:            
-        if company and company != "Select a Company":
-            ###### FILTER ######
-            df_company = df_data[df_data.Organization == company]
-            diff_col = f"{company.replace(' ', '_')}_diff"
-            esg_keys = ["E_score", "S_score", "G_score"]
-            esg_df = get_melted_frame(data, esg_keys, keepcol=diff_col)
-            ind_esg_df = get_melted_frame(data, esg_keys, dropcol="industry_tone")
-            tone_df = get_melted_frame(data, ["overall_score"], keepcol=diff_col)
-            ind_tone_df = get_melted_frame(data, ["overall_score"],
-                                           dropcol="industry_tone")
-
-
-            ###### DATE WIDGET ######
-            start = df_company.DATE.min()
-            end = df_company.DATE.max()
-            selected_dates = date_place.date_input("Select Date",
-                value=[start, end], min_value=start, max_value=end, key=None)
-            time.sleep(0.8)  #Allow user some time to select the two dates -- hacky :D
-            start, end = selected_dates
-
-
-            ###### FILTER DATA ######
-            df_company = filter_company_data(df_company, esg_categories,
-                                             start, end)
-            esg_df = filter_on_date(esg_df, start, end)
-            ind_esg_df = filter_on_date(ind_esg_df, start, end)
-            tone_df = filter_on_date(tone_df, start, end)
-            ind_tone_df = filter_on_date(ind_tone_df, start, end)
-            date_filtered = filter_on_date(df_data, start, end)
-
-
-            ###### PUBLISHER SELECT BOX ######
-            publishers = df_company.SourceCommonName.sort_values().unique().tolist()
-            publishers.insert(0, "all")
-            publisher = pub.selectbox("Publisher", publishers)
-            df_company = filter_publisher(df_company, publisher)
-
-
-            ###### DISPLAY DATA ######
-            URL_Expander = st.expander(f"{company.title()}'s Data: ", True)
-            URL_Expander.write(f"### Chosen {company.title()}'s {len(df_company):,d} Article ESG Tone Table")
-            display_cols = ["DATE", "SourceCommonName", "Tone", "Polarity",
-                            "NegativeTone", "PositiveTone"]  #  "WordCount"
-            URL_Expander.write(df_company[display_cols])
-
-            ####
-            URL_Expander.write(f"#### Sample Article Information")
-            link_df = df_company[["DATE", "URL"]].head(3).copy()
-            # link_df["URL"] = link_df["URL"].apply(lambda R: f"[{R}]({R})")
-            link_df["ARTICLE"] = link_df.URL.apply(get_clickable_name)
-            link_df = link_df[["DATE", "ARTICLE"]].to_markdown(index=False)
-            URL_Expander.markdown(link_df)
-            ####
+            display_data(flag)          
 
 
     ###### CHART: METRIC OVER TIME ######
-    with page4:
+    with page2:
         metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                           "ActivityDensity", "WordCount", "Overall Score",
                           "ESG Scores"]
