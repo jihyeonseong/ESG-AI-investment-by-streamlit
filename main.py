@@ -109,20 +109,18 @@ def main(start_data, end_data):
         df_conn = data["conn"]
         df_data = data["data"]
         embeddings = data["embed"]
-        
-    but1, but2 = st.columns([1,1*10])
-    if but1.button('SP500'):
-        flag = 'SP500'
-        company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
-    if but2.button('KOSPI'):
-        flag = 'KOSPI'
-        company = st.selectbox("Choose Your Company! (EX. KB)", companies)
-        
+    
     page1, page2 = st.columns(2)
-    #col1, col2 = st.columns([1, 4]) 
-
-    ###### RUN COMPUTATIONS WHEN A COMPANY IS SELECTED ######
+    but1, but2, _ = st.columns([1,1,10])
     with page1:
+        if but1.button('SP500'):
+            flag = 'SP500'
+            company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
+        if but2.button('KOSPI'):
+            flag = 'KOSPI'
+            company = st.selectbox("Choose Your Company! (EX. KB)", companies) 
+
+        ###### RUN COMPUTATIONS WHEN A COMPANY IS SELECTED ######
         if flag=='SP500':
             company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
         if flag=='KOSPI':
