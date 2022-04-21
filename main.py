@@ -255,133 +255,133 @@ def main(start_data, end_data):
             st.altair_chart(metric_chart, use_container_width=True)
         
 
-    ###### CHART: ESG RADAR ######
-    elif graph_metric == 'Rader and Tone density':
-        #col1, col2 = st.columns((1, 2))
-        avg_esg = data["ESG"]
-        avg_esg.rename(columns={"Unnamed: 0": "Type"}, inplace=True)
-        avg_esg.replace({"T": "Overall", "E": "Environment",
-                         "S": "Social", "G": "Governance"}, inplace=True)
-        avg_esg["Industry Average"] = avg_esg.mean(axis=1)
+        ###### CHART: ESG RADAR ######
+        elif graph_metric == 'Rader and Tone density':
+            #col1, col2 = st.columns((1, 2))
+            avg_esg = data["ESG"]
+            avg_esg.rename(columns={"Unnamed: 0": "Type"}, inplace=True)
+            avg_esg.replace({"T": "Overall", "E": "Environment",
+                             "S": "Social", "G": "Governance"}, inplace=True)
+            avg_esg["Industry Average"] = avg_esg.mean(axis=1)
 
-        radar_df = avg_esg[["Type", company, "Industry Average"]].melt("Type",
-            value_name="score", var_name="entity")
+            radar_df = avg_esg[["Type", company, "Industry Average"]].melt("Type",
+                value_name="score", var_name="entity")
 
-        radar = px.line_polar(radar_df, r="score", theta="Type",
-            color="entity", line_close=True, hover_name="Type",
-            hover_data={"Type": True, "entity": True, "score": ":.2f"},
-            color_discrete_map={"Industry Average": fuchsia, company: violet})
-        radar.update_layout(template=None,
-                            polar={
-                                   "radialaxis": {"showticklabels": False,
-                                                  "ticks": ""},
-                                   "angularaxis": {"showticklabels": False,
-                                                   "ticks": ""},
-                                   },
-                            legend={"title": None, "yanchor": "middle",
-                                    "orientation": "h"},
-                            title={"text": "<b>ESG Rader Chart</b>",
-                                   "x": 0.5, "y": 0.83,
-                                   "xanchor": "center",
-                                   "yanchor": "top",
-                                   "font": {"family": "Futura", "size": 23}},
-                            margin={"l": 5, "r": 5, "t": 0, "b": 0},
-                            )#0.8875
-        radar.update_layout(showlegend=False)
-        st.plotly_chart(radar, use_container_width=True)
+            radar = px.line_polar(radar_df, r="score", theta="Type",
+                color="entity", line_close=True, hover_name="Type",
+                hover_data={"Type": True, "entity": True, "score": ":.2f"},
+                color_discrete_map={"Industry Average": fuchsia, company: violet})
+            radar.update_layout(template=None,
+                                polar={
+                                       "radialaxis": {"showticklabels": False,
+                                                      "ticks": ""},
+                                       "angularaxis": {"showticklabels": False,
+                                                       "ticks": ""},
+                                       },
+                                legend={"title": None, "yanchor": "middle",
+                                        "orientation": "h"},
+                                title={"text": "<b>ESG Rader Chart</b>",
+                                       "x": 0.5, "y": 0.83,
+                                       "xanchor": "center",
+                                       "yanchor": "top",
+                                       "font": {"family": "Futura", "size": 23}},
+                                margin={"l": 5, "r": 5, "t": 0, "b": 0},
+                                )#0.8875
+            radar.update_layout(showlegend=False)
+            st.plotly_chart(radar, use_container_width=True)
 
 
-        ###### CHART: DOCUMENT TONE DISTRIBUTION #####
-        # add overall average
-        dist_chart = alt.Chart(df_company, title="All Publishers' ESG Tone Density Chart", padding={"left": 1, "top": 10, "right": 25, "bottom": 1}
-                               ).transform_density(
-                density='Tone',
-                as_=["Tone", "density"]
-            ).mark_area(opacity=0.5,color="purple").encode(
-                    x=alt.X('Tone:Q', scale=alt.Scale(domain=(-10, 10)), title="Tone"),
-                    y=alt.Y('density:Q', title="Density"),
-                    tooltip=[alt.Tooltip("Tone", format=".3f"),
-                             alt.Tooltip("density:Q", format=".4f")]
+            ###### CHART: DOCUMENT TONE DISTRIBUTION #####
+            # add overall average
+            dist_chart = alt.Chart(df_company, title="All Publishers' ESG Tone Density Chart", padding={"left": 1, "top": 10, "right": 25, "bottom": 1}
+                                   ).transform_density(
+                    density='Tone',
+                    as_=["Tone", "density"]
+                ).mark_area(opacity=0.5,color="purple").encode(
+                        x=alt.X('Tone:Q', scale=alt.Scale(domain=(-10, 10)), title="Tone"),
+                        y=alt.Y('density:Q', title="Density"),
+                        tooltip=[alt.Tooltip("Tone", format=".3f"),
+                                 alt.Tooltip("density:Q", format=".4f")]
+                    ).properties(
+                        height=325,
+                    ).configure_title(
+                        dy=-10
+                    ).interactive()
+            st.markdown("### <br>", unsafe_allow_html=True)
+            st.altair_chart(dist_chart,use_container_width=True)
+
+
+        ###### CHART: SCATTER OF ARTICLES OVER TIME #####
+        elif graph_metric == 'Polarity':
+            scatter = alt.Chart(df_company, title= "ESG Polarity Chart", padding={"left": 10, "top": 10, "right": 1, "bottom": 1}).mark_circle().encode(
+                x=alt.X("NegativeTone:Q", title="Negative Tone"),
+                y=alt.Y("PositiveTone:Q", title="Positive Tone"),
+                size="WordCount:Q",
+                color=alt.Color("Polarity:Q", scale=alt.Scale()),
+                tooltip=[alt.Tooltip("Polarity", format=".3f"),
+                         alt.Tooltip("NegativeTone", format=".3f"),
+                         alt.Tooltip("PositiveTone", format=".3f"),
+                         alt.Tooltip("DATE"),
+                         alt.Tooltip("WordCount", format=",d"),
+                         alt.Tooltip("SourceCommonName", title="Site")]
                 ).properties(
-                    height=325,
-                ).configure_title(
-                    dy=-10
+                    height=440
                 ).interactive()
-        st.markdown("### <br>", unsafe_allow_html=True)
-        st.altair_chart(dist_chart,use_container_width=True)
+            st.altair_chart(scatter, use_container_width=True)
 
 
-    ###### CHART: SCATTER OF ARTICLES OVER TIME #####
-    elif graph_metric == 'Polarity':
-        scatter = alt.Chart(df_company, title= "ESG Polarity Chart", padding={"left": 10, "top": 10, "right": 1, "bottom": 1}).mark_circle().encode(
-            x=alt.X("NegativeTone:Q", title="Negative Tone"),
-            y=alt.Y("PositiveTone:Q", title="Positive Tone"),
-            size="WordCount:Q",
-            color=alt.Color("Polarity:Q", scale=alt.Scale()),
-            tooltip=[alt.Tooltip("Polarity", format=".3f"),
-                     alt.Tooltip("NegativeTone", format=".3f"),
-                     alt.Tooltip("PositiveTone", format=".3f"),
-                     alt.Tooltip("DATE"),
-                     alt.Tooltip("WordCount", format=",d"),
-                     alt.Tooltip("SourceCommonName", title="Site")]
+        ###### NUMBER OF NEIGHBORS TO FIND #####
+        elif graph_metric == 'Company distribution'
+            neighbor_cols = [f"n{i}_rec" for i in range(num_neighbors)]
+            company_df = df_conn[df_conn.company == company]
+            neighbors = company_df[neighbor_cols].iloc[0]
+
+
+            ###### CHART: 3D EMBEDDING WITH NEIGHBORS ######
+            color_f = lambda f: f"Company: {company.title()}" if f == company else (
+                "Connected Company" if f in neighbors.values else "Other Company")
+            embeddings["colorCode"] = embeddings.company.apply(color_f)
+            point_colors = {company: violet, "Connected Company": fuchsia,
+                            "Other Company": "lightgrey"}
+            fig_3d = px.scatter_3d(embeddings, x="0", y="1", z="2",
+                                   color='colorCode',
+                                   color_discrete_map=point_colors,
+                                   opacity=0.4,
+                                   hover_name="company",
+                                   hover_data={c: False for c in embeddings.columns},
+                                   )
+            fig_3d.update_layout(legend={"orientation": "h",
+                                         "yanchor": "bottom",
+                                         "title": None},
+                                 title={"text": "<b>Similar Company Distribution Chart</b>",
+                                        "x": 0.5, "y": 0.9,
+                                        "xanchor": "center",
+                                        "yanchor": "top",
+                                        "font": {"family": "Futura", "size": 23}},
+                                 scene={"xaxis": {"visible": False},
+                                        "yaxis": {"visible": False},
+                                        "zaxis": {"visible": False}},
+                                 margin={"l": 0, "r": 0, "t": 0, "b": 0},
+                                 )
+            st.plotly_chart(fig_3d, use_container_width=True)
+
+
+        ###### CHART: NEIGHBOR SIMILIARITY ######
+        elif graph_metric == 'Similarity Score'
+            neighbor_conf = pd.DataFrame({
+                "Neighbor": neighbors,
+                "Confidence": company_df[[f"n{i}_conf" for i in
+                                          range(num_neighbors)]].values[0]})
+            conf_plot = alt.Chart(neighbor_conf, title=f"Top {num_neighbors} Company's Similarity Score", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
+                                  ).mark_bar().encode(
+                x=alt.X("Confidence:Q", title="Confidence"),
+                y=alt.Y("Neighbor:N", sort="-x", title="Similar Company"),
+                tooltip=["Neighbor", alt.Tooltip("Confidence", format=".3f")],
+                color=alt.Color("Confidence:Q", scale=alt.Scale(), legend=None)
             ).properties(
-                height=440
-            ).interactive()
-        st.altair_chart(scatter, use_container_width=True)
-
-
-    ###### NUMBER OF NEIGHBORS TO FIND #####
-    elif graph_metric == 'Company distribution'
-        neighbor_cols = [f"n{i}_rec" for i in range(num_neighbors)]
-        company_df = df_conn[df_conn.company == company]
-        neighbors = company_df[neighbor_cols].iloc[0]
-
-
-        ###### CHART: 3D EMBEDDING WITH NEIGHBORS ######
-        color_f = lambda f: f"Company: {company.title()}" if f == company else (
-            "Connected Company" if f in neighbors.values else "Other Company")
-        embeddings["colorCode"] = embeddings.company.apply(color_f)
-        point_colors = {company: violet, "Connected Company": fuchsia,
-                        "Other Company": "lightgrey"}
-        fig_3d = px.scatter_3d(embeddings, x="0", y="1", z="2",
-                               color='colorCode',
-                               color_discrete_map=point_colors,
-                               opacity=0.4,
-                               hover_name="company",
-                               hover_data={c: False for c in embeddings.columns},
-                               )
-        fig_3d.update_layout(legend={"orientation": "h",
-                                     "yanchor": "bottom",
-                                     "title": None},
-                             title={"text": "<b>Similar Company Distribution Chart</b>",
-                                    "x": 0.5, "y": 0.9,
-                                    "xanchor": "center",
-                                    "yanchor": "top",
-                                    "font": {"family": "Futura", "size": 23}},
-                             scene={"xaxis": {"visible": False},
-                                    "yaxis": {"visible": False},
-                                    "zaxis": {"visible": False}},
-                             margin={"l": 0, "r": 0, "t": 0, "b": 0},
-                             )
-        st.plotly_chart(fig_3d, use_container_width=True)
-
-
-    ###### CHART: NEIGHBOR SIMILIARITY ######
-    elif graph_metric == 'Similarity Score'
-        neighbor_conf = pd.DataFrame({
-            "Neighbor": neighbors,
-            "Confidence": company_df[[f"n{i}_conf" for i in
-                                      range(num_neighbors)]].values[0]})
-        conf_plot = alt.Chart(neighbor_conf, title=f"Top {num_neighbors} Company's Similarity Score", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
-                              ).mark_bar().encode(
-            x=alt.X("Confidence:Q", title="Confidence"),
-            y=alt.Y("Neighbor:N", sort="-x", title="Similar Company"),
-            tooltip=["Neighbor", alt.Tooltip("Confidence", format=".3f")],
-            color=alt.Color("Confidence:Q", scale=alt.Scale(), legend=None)
-        ).properties(
-            height=25 * num_neighbors + 90
-        ).configure_axis(grid=False)
-        st.altair_chart(conf_plot, use_container_width=True)
+                height=25 * num_neighbors + 90
+            ).configure_axis(grid=False)
+            st.altair_chart(conf_plot, use_container_width=True)
 
 
 if __name__ == "__main__":
