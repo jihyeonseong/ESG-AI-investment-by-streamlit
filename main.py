@@ -100,7 +100,7 @@ def main(start_data, end_data):
         flag = 'SP500'
         if but1.button('SP500'):
             flag = 'SP500'
-        elif but2.button('KOSPI'):
+        if but2.button('KOSPI'):
             flag = 'KOSPI'
     
     with st.spinner(text="Fetching Data..."):
@@ -186,68 +186,68 @@ def main(start_data, end_data):
 
 
         ###### CHART: METRIC OVER TIME ######
-        st.markdown("---")
-        col1, col2 = st.columns((1, 4))
+        with page2:
+            col1, col2 = st.columns((1, 4))
 
-        metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
-                          "ActivityDensity", "WordCount", "Overall Score",
-                          "ESG Scores"]
-        line_metric = col1.radio("Please Select Evaluation Metric", options=metric_options)
-  
+            metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
+                              "ActivityDensity", "WordCount", "Overall Score",
+                              "ESG Scores"]
+            line_metric = col1.radio("Please Select Evaluation Metric", options=metric_options)
 
-        if line_metric == "ESG Scores":
-            # Get ESG Scores
-            esg_df["WHO"] = company.title()
-            ind_esg_df["WHO"] = "Industry Average"
-            esg_plot_df = pd.concat([esg_df, ind_esg_df]
-                                    ).reset_index(drop=True)
-            esg_plot_df.replace({"E_score": "Environment", "S_score": "Social",
-                                 "G_score": "Governance"}, inplace=True)
 
-            metric_chart = alt.Chart(esg_plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
-                                       ).mark_line().encode(
-                x=alt.X("yearmonthdate(DATE):O", title=""), #title="DATE"
-                y=alt.Y("Score:Q", title="ESG Score"),
-                color=alt.Color("ESG", sort=None, legend=alt.Legend(
-                    title=None, orient="top")),
-                strokeDash=alt.StrokeDash("WHO", sort=None, legend=alt.Legend(
-                    title=None, symbolType="stroke", symbolFillColor="gray",
-                    symbolStrokeWidth=4, orient="top")),
-                tooltip=["DATE", "ESG", alt.Tooltip("Score", format=".5f")]
-                )
+            if line_metric == "ESG Scores":
+                # Get ESG Scores
+                esg_df["WHO"] = company.title()
+                ind_esg_df["WHO"] = "Industry Average"
+                esg_plot_df = pd.concat([esg_df, ind_esg_df]
+                                        ).reset_index(drop=True)
+                esg_plot_df.replace({"E_score": "Environment", "S_score": "Social",
+                                     "G_score": "Governance"}, inplace=True)
 
-        else:
-            if line_metric == "Overall Score":
-                line_metric = "Score"
-                tone_df["WHO"] = company.title()
-                ind_tone_df["WHO"] = "Industry Average"
-                plot_df = pd.concat([tone_df, ind_tone_df]).reset_index(drop=True)
-            else:
-                df1 = df_company.groupby("DATE")[line_metric].mean(
-                    ).reset_index()
-                df2 = filter_on_date(df_data.groupby("DATE")[line_metric].mean(
-                    ).reset_index(), start, end)
-                df1["WHO"] = company.title()
-                df2["WHO"] = "Industry Average"
-                plot_df = pd.concat([df1, df2]).reset_index(drop=True)
-            metric_chart = alt.Chart(plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
-                                     ).mark_line().encode(
-                x=alt.X("yearmonthdate(DATE):O", title=""),
-                y=alt.Y(f"{line_metric}:Q", scale=alt.Scale(type="linear")),
-                color=alt.Color("WHO", legend=None),
-                strokeDash=alt.StrokeDash("WHO", sort=None,
-                    legend=alt.Legend(
+                metric_chart = alt.Chart(esg_plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
+                                           ).mark_line().encode(
+                    x=alt.X("yearmonthdate(DATE):O", title=""), #title="DATE"
+                    y=alt.Y("Score:Q", title="ESG Score"),
+                    color=alt.Color("ESG", sort=None, legend=alt.Legend(
+                        title=None, orient="top")),
+                    strokeDash=alt.StrokeDash("WHO", sort=None, legend=alt.Legend(
                         title=None, symbolType="stroke", symbolFillColor="gray",
-                        symbolStrokeWidth=4, orient="top",
+                        symbolStrokeWidth=4, orient="top")),
+                    tooltip=["DATE", "ESG", alt.Tooltip("Score", format=".5f")]
+                    )
+
+            else:
+                if line_metric == "Overall Score":
+                    line_metric = "Score"
+                    tone_df["WHO"] = company.title()
+                    ind_tone_df["WHO"] = "Industry Average"
+                    plot_df = pd.concat([tone_df, ind_tone_df]).reset_index(drop=True)
+                else:
+                    df1 = df_company.groupby("DATE")[line_metric].mean(
+                        ).reset_index()
+                    df2 = filter_on_date(df_data.groupby("DATE")[line_metric].mean(
+                        ).reset_index(), start, end)
+                    df1["WHO"] = company.title()
+                    df2["WHO"] = "Industry Average"
+                    plot_df = pd.concat([df1, df2]).reset_index(drop=True)
+                metric_chart = alt.Chart(plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
+                                         ).mark_line().encode(
+                    x=alt.X("yearmonthdate(DATE):O", title=""),
+                    y=alt.Y(f"{line_metric}:Q", scale=alt.Scale(type="linear")),
+                    color=alt.Color("WHO", legend=None),
+                    strokeDash=alt.StrokeDash("WHO", sort=None,
+                        legend=alt.Legend(
+                            title=None, symbolType="stroke", symbolFillColor="gray",
+                            symbolStrokeWidth=4, orient="top",
+                            ),
                         ),
-                    ),
-                tooltip=["DATE", alt.Tooltip(line_metric, format=".3f")]
-                )
-        metric_chart = metric_chart.properties(
-            height=340,
-            width=200
-        ).interactive()
-        col2.altair_chart(metric_chart, use_container_width=True)
+                    tooltip=["DATE", alt.Tooltip(line_metric, format=".3f")]
+                    )
+            metric_chart = metric_chart.properties(
+                height=340,
+                width=200
+            ).interactive()
+            col2.altair_chart(metric_chart, use_container_width=True)
         
 
         ###### CHART: ESG RADAR ######
