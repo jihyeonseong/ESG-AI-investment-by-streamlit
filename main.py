@@ -102,6 +102,7 @@ def main(start_data, end_data):
 
 
     ###### LOAD DATA ######
+    flag = 'SP500'
     with st.spinner(text="Fetching Data..."):
         data, companies = load_data(start_data, end_data, flag)
        
@@ -110,7 +111,6 @@ def main(start_data, end_data):
         embeddings = data["embed"]
         
     but1, but2 = st.columns([1,1*10])
-    flag = 'SP500'
     if but1.button('SP500'):
         flag = 'SP500'
         company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
