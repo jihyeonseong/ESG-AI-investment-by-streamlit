@@ -71,6 +71,18 @@ def get_clickable_name(url):
         return f"[{title}]({url})"
     except:
         return f"[{url}]({url})"
+    
+def display_data(flag):
+    with st.spinner(text="Fetching Data..."):
+        data, companies = load_data(start_data, end_data, flag)
+
+        df_conn = data["conn"]
+        df_data = data["data"]
+         embeddings = data["embed"]
+     if flag == 'SP500':
+        company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
+     elif flag=='KOSPI':
+        company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
 
 
 def main(start_data, end_data):
@@ -110,22 +122,10 @@ def main(start_data, end_data):
         ###### RUN COMPUTATIONS WHEN A COMPANY IS SELECTED ######
         if but1.button('SP500'):
             flag = 'SP500'
-            with st.spinner(text="Fetching Data..."):
-                data, companies = load_data(start_data, end_data, flag)
-
-                df_conn = data["conn"]
-                df_data = data["data"]
-                embeddings = data["embed"]
-            company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
+            display_data(flag)
         if but2.button('KOSPI'):
             flag = 'KOSPI'
-            with st.spinner(text="Fetching Data..."):
-                data, companies = load_data(start_data, end_data, flag)
-
-                df_conn = data["conn"]
-                df_data = data["data"]
-                embeddings = data["embed"]
-            company = st.selectbox("Choose Your Company! (EX. KB)", companies) 
+            display_data(flag)
     
     page3, page4 = st.columns(2)
     col1, col2 = st.columns([1,4])
