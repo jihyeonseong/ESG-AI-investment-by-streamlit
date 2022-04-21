@@ -105,19 +105,20 @@ def main(start_data, end_data):
     ###### LayOut ######           
     box1, empty, box2 = st.columns([2,0.3,8])
     page3, page4 = st.columns(2)
-    col1, col2 = st.columns([1,4])    
+    empty, col1, col2 = st.columns([5,1,4])    
     
     ###### LOAD DATA ######  
     ###default setting### 
     market = 'SP500'
     INFO = 'Choose your Stock'
     with box1:
-        market = st.selectbox("Choose your Market", ['Select a Market', 'SP500', 'KOSPI'])
+        metric_options = ["SP500", "KOSPI"]
+        line_metric = st.radio("Please Select Evaluation Metric", options=metric_options)
     with empty:
         st.empty()
     with box2:
         with st.spinner(text="Fetching Data..."):
-            data, companies = load_data(start_data, end_data, market)
+            data, companies = load_data(start_data, end_data, line_metric)
 
             df_conn = data["conn"]
             df_data = data["data"]
