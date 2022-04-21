@@ -104,7 +104,7 @@ def main(start_data, end_data):
 
     ###### LayOut ######           
     page1, page2 = st.columns(2)
-    but1, but2, _ = st.columns([1,1,10])
+    but1, but2, _ = st.columns(2)
     page3, page4 = st.columns(2)
     col1, col2 = st.columns([1,4])
     
