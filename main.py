@@ -106,40 +106,22 @@ def main(start_data, end_data):
     page1, page2 = st.columns(2)
     but1, but2, _ = st.columns([1,1,10])
     
-    with page1:
-        ###default setting###
-        sp = True
-        kos = False
-        INFO = 'Choose Your Company! (EX. microsoft)'
-        flag = 'SP500'
-        
+    ###default setting###
+    sp = True
+    kos = False
+    INFO = 'Choose Your Company! (EX. microsoft)'
+    flag = 'SP500'
+    with page1:        
         ###button click: return T/F###
         sp = but1.button('SP500')
         kos = but2.button('KOSPI')
-        
-        if sp:
-            kos = False
-            INFO = 'Choose Your Company! (EX. microsoft)'
-            flag = 'SP500'
-        if kos:
-            sp = False
-            INFO = 'Choose Your Company! (EX. KB)'
-            flag = 'KOSPI'
-            
-        with st.spinner(text="Fetching Data..."):
-            data, companies = load_data(start_data, end_data, flag)
-
-            df_conn = data["conn"]
-            df_data = data["data"]
-            embeddings = data["embed"]  
-            
-        company = st.selectbox(INFO, companies)
     
     with page2:
         pass
     
     page3, page4 = st.columns(2)
-    with page3:
+    
+    with page3:        
         if sp:
             kos = False
             INFO = 'Choose Your Company! (EX. microsoft)'
