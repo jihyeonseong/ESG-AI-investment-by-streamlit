@@ -14,6 +14,8 @@ import sys
 
 import metadata_parser
 
+global data, companies, df_conn, df_data, embeddings
+
 ####### CACHED FUNCTIONS ######
 @st.cache(show_spinner=False, suppress_st_warning=True)
 def filter_company_data(df_company, esg_categories, start, end):
@@ -119,15 +121,6 @@ def main(start_data, end_data):
         ###button click: return T/F###
         sp = but1.button('SP500')
         kos = but2.button('KOSPI')
-        
-        if sp:
-            kos = False
-            INFO = 'Choose Your Company! (EX. microsoft)'
-            flag = 'SP500'
-        if kos:
-            sp = False
-            INFO = 'Choose Your Company! (EX. KB)'
-            flag = 'KOSPI' 
     
     with page2:
         pass
@@ -144,7 +137,7 @@ def main(start_data, end_data):
                 df_data = data["data"]
                 embeddings = data["embed"]  
 
-            company = st.selectbox(INFO, companies[0])
+            company = st.selectbox(INFO, companies)
         if kos:
             sp = False
             INFO = 'Choose Your Company! (EX. KB)'
@@ -156,8 +149,8 @@ def main(start_data, end_data):
                 df_data = data["data"]
                 embeddings = data["embed"]  
             
-            company = st.selectbox(INFO, companies[0])
-            
+            company = st.selectbox(INFO, companies)
+        """
         with st.spinner(text="Fetching Data..."):
             data, companies = load_data(start_data, end_data, flag)
 
@@ -166,7 +159,7 @@ def main(start_data, end_data):
             embeddings = data["embed"]  
             
         company = st.selectbox(INFO, companies)
-        
+        """
         if company and company != "Select a Company":
             ###### FILTER ######
             df_company = df_data[df_data.Organization == company]
