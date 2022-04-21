@@ -131,7 +131,7 @@ def main(start_data, end_data):
             INFO = 'Choose Your Company! (EX. microsoft)'
             flag = 'SP500'
             with st.spinner(text="Fetching Data..."):
-                global data, global companies = load_data(start_data, end_data, flag)
+                data, companies = load_data(start_data, end_data, flag)
 
                 global df_conn = data["conn"]
                 global df_data = data["data"]
@@ -143,7 +143,7 @@ def main(start_data, end_data):
             INFO = 'Choose Your Company! (EX. KB)'
             flag = 'KOSPI'
             with st.spinner(text="Fetching Data..."):
-                global data, global companies = load_data(start_data, end_data, flag)
+                data, companies = load_data(start_data, end_data, flag)
 
                 global df_conn = data["conn"]
                 global df_data = data["data"]
