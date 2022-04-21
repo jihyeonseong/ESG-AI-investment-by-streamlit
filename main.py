@@ -127,7 +127,7 @@ def main(start_data, end_data):
         company = st.selectbox(INFO, companies)
     
     with page3:        
-        if company and company != "Select a Company":
+        if line_metric:
             ###### FILTER ######
             df_company = df_data[df_data.Organization == company]
             diff_col = f"{company.replace(' ', '_')}_diff"
