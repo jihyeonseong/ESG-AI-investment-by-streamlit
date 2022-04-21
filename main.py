@@ -14,8 +14,6 @@ import sys
 
 import metadata_parser
 
-global data, companies, df_conn, df_data, embeddings
-
 ####### CACHED FUNCTIONS ######
 @st.cache(show_spinner=False, suppress_st_warning=True)
 def filter_company_data(df_company, esg_categories, start, end):
@@ -115,6 +113,14 @@ def main(start_data, end_data):
     kos = False
     INFO = 'Choose Your Company! (EX. microsoft)'
     flag = 'SP500'
+    with st.spinner(text="Fetching Data..."):
+        data, companies = load_data(start_data, end_data, flag)
+
+        df_conn = data["conn"]
+        df_data = data["data"]
+        embeddings = data["embed"]  
+
+    company = st.selectbox(INFO, companies)
     
     ###### LOAD DATA ######
     with page1:        
@@ -133,11 +139,11 @@ def main(start_data, end_data):
             with st.spinner(text="Fetching Data..."):
                 data, companies = load_data(start_data, end_data, flag)
 
-                global df_conn = data["conn"]
-                global df_data = data["data"]
-                global embeddings = data["embed"]  
+                df_conn = data["conn"]
+                df_data = data["data"]
+                embeddings = data["embed"]  
 
-            global company = st.selectbox(INFO, companies)
+            company = st.selectbox(INFO, companies)
         if kos:
             sp = False
             INFO = 'Choose Your Company! (EX. KB)'
@@ -145,11 +151,11 @@ def main(start_data, end_data):
             with st.spinner(text="Fetching Data..."):
                 data, companies = load_data(start_data, end_data, flag)
 
-                global df_conn = data["conn"]
-                global df_data = data["data"]
-                global embeddings = data["embed"]  
+                df_conn = data["conn"]
+                df_data = data["data"]
+                embeddings = data["embed"]  
             
-            global company = st.selectbox(INFO, companies)
+            company = st.selectbox(INFO, companies)
         """
         with st.spinner(text="Fetching Data..."):
             data, companies = load_data(start_data, end_data, flag)
