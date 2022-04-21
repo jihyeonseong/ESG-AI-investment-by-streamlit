@@ -190,7 +190,7 @@ def main(start_data, end_data):
     ###### CHART: METRIC OVER TIME ######
     with page4:
         st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
-        choose_graph = ["Evaluation Graph", "Rader and Tone density", "Polarity", "Company distribution", "Similarity Score"]
+        choose_graph = ["Evaluation Graph", "Rader", "Tone density", "Polarity", "Company distribution", "Similarity Score"]
         graph_metric = st.radio("Please Select your Graph", options=choose_graph)
         
         if graph_metric == "Evaluation Graph":               
@@ -256,8 +256,7 @@ def main(start_data, end_data):
         
 
         ###### CHART: ESG RADAR ######
-        elif graph_metric == 'Rader and Tone density':
-            #col1, col2 = st.columns((1, 2))
+        elif graph_metric == 'Rader":
             avg_esg = data["ESG"]
             avg_esg.rename(columns={"Unnamed: 0": "Type"}, inplace=True)
             avg_esg.replace({"T": "Overall", "E": "Environment",
@@ -290,7 +289,7 @@ def main(start_data, end_data):
             radar.update_layout(showlegend=False)
             st.plotly_chart(radar, use_container_width=True)
 
-
+        elif graph_metric == 'Tone density':
             ###### CHART: DOCUMENT TONE DISTRIBUTION #####
             # add overall average
             dist_chart = alt.Chart(df_company, title="All Publishers' ESG Tone Density Chart", padding={"left": 1, "top": 10, "right": 25, "bottom": 1}
@@ -331,13 +330,12 @@ def main(start_data, end_data):
 
 
         ###### NUMBER OF NEIGHBORS TO FIND #####
+        neighbor_cols = [f"n{i}_rec" for i in range(num_neighbors)]
+        company_df = df_conn[df_conn.company == company]
+        neighbors = company_df[neighbor_cols].iloc[0]
+            
+        ###### CHART: 3D EMBEDDING WITH NEIGHBORS ######
         elif graph_metric == 'Company distribution':
-            neighbor_cols = [f"n{i}_rec" for i in range(num_neighbors)]
-            company_df = df_conn[df_conn.company == company]
-            neighbors = company_df[neighbor_cols].iloc[0]
-
-
-            ###### CHART: 3D EMBEDDING WITH NEIGHBORS ######
             color_f = lambda f: f"Company: {company.title()}" if f == company else (
                 "Connected Company" if f in neighbors.values else "Other Company")
             embeddings["colorCode"] = embeddings.company.apply(color_f)
