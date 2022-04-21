@@ -94,7 +94,7 @@ def main(start_data, end_data):
 
     ###### LOAD DATA ######
     page1, page2 = st.columns(2)
-    but1, but2, _ = st.columns([1,1,5])
+    but1, but2, _ = st.columns([1,1,7])
     with page1:
         global flag
         flag = 'SP500'
@@ -186,9 +186,8 @@ def main(start_data, end_data):
 
 
         ###### CHART: METRIC OVER TIME ######
+        col1, col2 = st.columns((1, 4))
         with page2:
-            col1, col2 = st.columns((1, 4))
-
             metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                               "ActivityDensity", "WordCount", "Overall Score",
                               "ESG Scores"]
