@@ -111,9 +111,11 @@ def main(start_data, end_data):
     ###default setting### 
     market = 'SP500'
     INFO = 'Please Choose your Stock'
+    state = []
     with box1:
         metric_options = ["SP500", "KOSPI"]
         line_metric = st.radio("Please Select your Market", options=metric_options)
+        state.append(line_metric)
     with empty:
         st.empty()
     with box2:
@@ -125,9 +127,20 @@ def main(start_data, end_data):
             embeddings = data["embed"]  
 
         company = st.selectbox(INFO, companies)
+        if len(state)>1:
+            state = []
+            with st.spinner(text="Fetching Data..."):
+                data, companies = load_data(start_data, end_data, line_metric)
+
+                df_conn = data["conn"]
+                df_data = data["data"]
+                embeddings = data["embed"]  
+
+            company = st.selectbox(INFO, companies)
+            
     
     with page3:        
-        if line_metric:
+        if company:
             ###### FILTER ######
             df_company = df_data[df_data.Organization == company]
             diff_col = f"{company.replace(' ', '_')}_diff"
