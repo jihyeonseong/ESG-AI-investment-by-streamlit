@@ -106,6 +106,7 @@ def main(start_data, end_data):
     but1, but2, _ = st.columns([1,1,10])
     
     with page1:
+        global flag
         if but1.button('SP500'):
             flag = 'SP500'
             with st.spinner(text="Fetching Data..."):
