@@ -97,12 +97,12 @@ def main(start_data, end_data):
     #flag = None
     #data, companies = None, None
     with but1:
-        button = but1.button('SP500'):
+        button = but1.button('SP500')
         flag = 'SP500'
         with st.spinner(text="Fetching Data..."):
             data, companies = load_data(start_data, end_data)
     with but2:
-        button = but2.button('KOSPI'):
+        button = but2.button('KOSPI')
         flag = 'KOSPI'
         with st.spinner(text="Fetching Data..."):
             data, companies = load_data(start_data, end_data)
