@@ -110,13 +110,12 @@ def main(start_data, end_data):
     ###default setting###
     
     
-    ###### LOAD DATA ######
-    with page1:        
-        ###button click: return T/F###
-        sp = but1.button('SP500')
-        kos = but2.button('KOSPI')
+    ###### LOAD DATA ######    
+    ###button click: return T/F###
+    sp = but1.button('SP500')
+    kos = but2.button('KOSPI')
     
-    with page2:
+    with box:
         ###default setting###
         sp = True
         kos = False
