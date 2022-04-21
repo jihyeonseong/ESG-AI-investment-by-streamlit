@@ -331,7 +331,7 @@ def main(start_data, end_data):
 
 
         ###### NUMBER OF NEIGHBORS TO FIND #####
-        elif graph_metric == 'Company distribution'
+        elif graph_metric == 'Company distribution':
             neighbor_cols = [f"n{i}_rec" for i in range(num_neighbors)]
             company_df = df_conn[df_conn.company == company]
             neighbors = company_df[neighbor_cols].iloc[0]
