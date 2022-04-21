@@ -192,9 +192,8 @@ def main(start_data, end_data):
         metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                           "ActivityDensity", "WordCount", "Overall Score",
                           "ESG Scores"]
-        #line_metric = st.radio("Please Select Evaluation Metric", options=metric_options)
-        line_metric=st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
-
+        st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+        line_metric = st.radio("Please Select Evaluation Metric", options=metric_options)
 
         if line_metric == "ESG Scores":
             # Get ESG Scores
