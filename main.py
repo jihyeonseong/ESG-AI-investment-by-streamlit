@@ -189,9 +189,10 @@ def main(start_data, end_data):
 
     ###### CHART: METRIC OVER TIME ######
     with page4:
-        st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
-        choose_graph = ["Evaluation Graph", "ESG Rader", "Tone Density", "Polarity Graph", "Company Distribution", "Similarity Company & Score"]
-        graph_metric = st.radio("Please Select your Graph", options=choose_graph)
+        with st.container():
+            st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+            choose_graph = ["Evaluation Graph", "ESG Rader", "Tone Density", "Polarity Graph", "Company Distribution", "Similarity Company & Score"]
+            graph_metric = st.radio("Please Select your Graph", options=choose_graph)
         
         ###### NUMBER OF NEIGHBORS TO FIND #####
         neighbor_cols = [f"n{i}_rec" for i in range(num_neighbors)]
