@@ -133,7 +133,7 @@ def main(start_data, end_data):
             df_data = data["data"]
             embeddings = data["embed"]  
             
-        company = st.selectbox(INFO, companies)
+        #company = st.selectbox(INFO, companies)
     
     with page2:
         pass
