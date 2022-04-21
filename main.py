@@ -34,7 +34,8 @@ def filter_company_data(df_company, esg_categories, start, end):
 def load_data(start_data, end_data, flag):
     data = Data().read(start_data, end_data)
     companies = data["data"].Organization.sort_values().unique().tolist()
-    companies.insert(0,"Select a Company")
+    companies.pop('microsoft')
+    companies.insert(0,"microsoft")
     return data, companies
 
 
@@ -104,16 +105,15 @@ def main(start_data, end_data):
 
     ###### LayOut ######           
     box1, empty, box2 = st.columns([2,0.3,8])
-    page3, page4 = st.columns(2)
-    empty, col1, col2 = st.columns([5,1,4])    
+    page3, page4 = st.columns(2)    
     
     ###### LOAD DATA ######  
     ###default setting### 
     market = 'SP500'
-    INFO = 'Choose your Stock'
+    INFO = 'Please Choose your Stock'
     with box1:
         metric_options = ["SP500", "KOSPI"]
-        line_metric = st.radio("Please Select Evaluation Metric", options=metric_options)
+        line_metric = st.radio("Please Select your Market", options=metric_options)
     with empty:
         st.empty()
     with box2:
