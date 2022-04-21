@@ -105,9 +105,15 @@ def main(start_data, end_data):
     ###### LOAD DATA ######           
     page1, page2 = st.columns(2)
     but1, but2, _ = st.columns([1,1,10])
-    sp = True
-    kos = False
+    
     with page1:
+        ###default setting###
+        sp = True
+        kos = False
+        INFO = 'Choose Your Company! (EX. microsoft)'
+        flag = 'SP500'
+        
+        ###button click: return T/F###
         sp = but1.button('SP500')
         kos = but2.button('KOSPI')
         
