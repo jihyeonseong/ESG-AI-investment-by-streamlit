@@ -31,7 +31,7 @@ def filter_company_data(df_company, esg_categories, start, end):
 
 @st.cache(show_spinner=False, suppress_st_warning=True,
           allow_output_mutation=True)
-def load_data(start_data, end_data):
+def load_data(start_data, end_data, flag):
     data = Data().read(start_data, end_data)
     companies = data["data"].Organization.sort_values().unique().tolist()
     companies.insert(0,"Select a Company")
@@ -96,16 +96,15 @@ def main(start_data, end_data):
     page1, page2 = st.columns(2)
     but1, but2, _ = st.columns([1,1,5])
     with page1:
-        global data
-        global companies
+        global flag
         if but1.button('SP500'):
             flag = 'SP500'
-            with st.spinner(text="Fetching Data..."):
-                data, companies = load_data(start_data, end_data)
         elif but2.button('KOSPI'):
             flag = 'KOSPI'
-            with st.spinner(text="Fetching Data..."):
-                data, companies = load_data(start_data, end_data)
+    
+    with st.spinner(text="Fetching Data..."):
+        data, companies = load_data(start_data, end_data, flag)
+       
     df_conn = data["conn"]
     df_data = data["data"]
     embeddings = data["embed"]
