@@ -193,6 +193,11 @@ def main(start_data, end_data):
         choose_graph = ["Evaluation Graph", "Rader", "Tone density", "Polarity", "Company distribution", "Similarity Score"]
         graph_metric = st.radio("Please Select your Graph", options=choose_graph)
         
+        ###### NUMBER OF NEIGHBORS TO FIND #####
+        neighbor_cols = [f"n{i}_rec" for i in range(num_neighbors)]
+        company_df = df_conn[df_conn.company == company]
+        neighbors = company_df[neighbor_cols].iloc[0]
+        
         if graph_metric == "Evaluation Graph":               
             metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                               "ActivityDensity", "WordCount", "Overall Score",
@@ -327,12 +332,6 @@ def main(start_data, end_data):
                     height=440
                 ).interactive()
             st.altair_chart(scatter, use_container_width=True)
-
-
-        ###### NUMBER OF NEIGHBORS TO FIND #####
-        neighbor_cols = [f"n{i}_rec" for i in range(num_neighbors)]
-        company_df = df_conn[df_conn.company == company]
-        neighbors = company_df[neighbor_cols].iloc[0]
             
         ###### CHART: 3D EMBEDDING WITH NEIGHBORS ######
         elif graph_metric == 'Company distribution':
