@@ -132,8 +132,6 @@ def main(start_data, end_data):
             df_conn = data["conn"]
             df_data = data["data"]
             embeddings = data["embed"]  
-            
-        #company = st.selectbox(INFO, companies)
     
     with page2:
         pass
@@ -142,11 +140,11 @@ def main(start_data, end_data):
     page3, page4 = st.columns(2)
     
     with page3:        
-        if sp:
+        with sp:
             kos = False
             INFO = 'Choose Your Company! (EX. microsoft)'
             flag = 'SP500'
-        if kos:
+        with kos:
             sp = False
             INFO = 'Choose Your Company! (EX. KB)'
             flag = 'KOSPI'
