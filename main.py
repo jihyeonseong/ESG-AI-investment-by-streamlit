@@ -97,9 +97,9 @@ def main(start_data, end_data):
     but1, but2, _ = st.columns([2,5])
     with page1:
         if but1.button('SP500'):
-        flag = 'SP500'
-        with st.spinner(text="Fetching Data..."):
-            data, companies = load_data(start_data, end_data)
+            flag = 'SP500'
+            with st.spinner(text="Fetching Data..."):
+                data, companies = load_data(start_data, end_data)
         elif page1.but2.button('KOSPI'):
             flag = 'KOSPI'
             with st.spinner(text="Fetching Data..."):
