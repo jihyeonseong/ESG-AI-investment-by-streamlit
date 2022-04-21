@@ -186,7 +186,7 @@ def main(start_data, end_data):
 
 
         ###### CHART: METRIC OVER TIME ######
-        col1, col2 = st.columns((1, 4))
+        col1, col2 = st.columns([1, 4])
         with page2:
             metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                               "ActivityDensity", "WordCount", "Overall Score",
