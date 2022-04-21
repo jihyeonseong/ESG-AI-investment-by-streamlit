@@ -102,7 +102,7 @@ def main(start_data, end_data):
 
 
     ###### LOAD DATA ######
-    but1, but2 = st.columns([1,1*100])
+    but1, but2 = st.columns([1,1*90])
     flag = 'SP500'
     if but1.button('SP500'):
         flag = 'SP500'
@@ -110,6 +110,7 @@ def main(start_data, end_data):
         flag = 'KOSPI'
         
     page1, page2 = st.columns(2)
+    col1, col2 = st.columns([1, 4])
     with page1:    
         with st.spinner(text="Fetching Data..."):
             data, companies = load_data(start_data, end_data, flag)
@@ -121,9 +122,9 @@ def main(start_data, end_data):
 
     ###### RUN COMPUTATIONS WHEN A COMPANY IS SELECTED ######
         if flag == 'SP500':
-            company = page1.selectbox("Choose Your Company! (EX. microsoft)", companies)
+            company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
         elif flag == 'KOSPI':
-            company = page1.selectbox("Choose Your Company! (EX. KB)", companies)
+            company = st.selectbox("Choose Your Company! (EX. KB)", companies)
 
         if company and company != "Select a Company":
             ###### FILTER ######
@@ -164,7 +165,7 @@ def main(start_data, end_data):
 
 
             ###### DISPLAY DATA ######
-            URL_Expander = page1.expander(f"{company.title()}'s Data: ", True)
+            URL_Expander = st.expander(f"{company.title()}'s Data: ", True)
             URL_Expander.write(f"### Chosen {company.title()}'s {len(df_company):,d} Article ESG Tone Table")
             display_cols = ["DATE", "SourceCommonName", "Tone", "Polarity",
                             "NegativeTone", "PositiveTone"]  #  "WordCount"
@@ -181,7 +182,6 @@ def main(start_data, end_data):
 
 
         ###### CHART: METRIC OVER TIME ######
-    col1, col2 = page2.columns([1, 4])
     with page2:
         metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                           "ActivityDensity", "WordCount", "Overall Score",
