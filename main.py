@@ -90,27 +90,8 @@ def main(start_data, end_data):
              "font-size: 400%")
     title = f"<h1 style='{style}'>ESG<sup>AI</sup></h1><br><br>"
     st.write(title, unsafe_allow_html=True)
-
-
-    ###### LOAD DATA ######
-    page1, page2 = st.columns(2)
-    but1, but2, _ = st.columns([1,1,7])
-    with page1:
-        global flag
-        flag = 'SP500'
-        if but1.button('SP500'):
-            flag = 'SP500'
-        if but2.button('KOSPI'):
-            flag = 'KOSPI'
     
-    with st.spinner(text="Fetching Data..."):
-        data, companies = load_data(start_data, end_data, flag)
-       
-    df_conn = data["conn"]
-    df_data = data["data"]
-    embeddings = data["embed"]
-
-
+    
     ####### CREATE SIDEBAR CATEGORY FILTER######
     st.sidebar.title("Please Choose Options!")
     date_place = st.sidebar.empty()
@@ -120,11 +101,26 @@ def main(start_data, end_data):
     num_neighbors = st.sidebar.slider("Select Similar Company Number", 1, 20, value=8)
 
 
-
-
+    ###### LOAD DATA ######
+    page1, page2 = st.columns(2)
+    but1, but2, _ = st.columns([1,1,9])
+    with page1:
+        global flag
+        flag = 'SP500'
+        if but1.button('SP500'):
+            flag = 'SP500'
+        if but2.button('KOSPI'):
+            flag = 'KOSPI'
+    
+        with st.spinner(text="Fetching Data..."):
+            data, companies = load_data(start_data, end_data, flag)
+       
+        df_conn = data["conn"]
+        df_data = data["data"]
+        embeddings = data["embed"]
+        
 
     ###### RUN COMPUTATIONS WHEN A COMPANY IS SELECTED ######
-    with page1:
         if flag == 'SP500':
             company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
         elif flag == 'KOSPI':
