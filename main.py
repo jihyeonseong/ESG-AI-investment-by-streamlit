@@ -103,7 +103,7 @@ def main(start_data, end_data):
 
     ###### LOAD DATA ######
     page1, page2 = st.columns(2)
-    but1, but2, _ = page1.columns([1,1,9])
+    but1, but2, _ = st.columns([1,1,9])
     with page1:
         global flag
         flag = 'SP500'
@@ -122,9 +122,9 @@ def main(start_data, end_data):
 
     ###### RUN COMPUTATIONS WHEN A COMPANY IS SELECTED ######
         if flag == 'SP500':
-            company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
+            company = page1.selectbox("Choose Your Company! (EX. microsoft)", companies)
         elif flag == 'KOSPI':
-            company = st.selectbox("Choose Your Company! (EX. KB)", companies)
+            company = page1.selectbox("Choose Your Company! (EX. KB)", companies)
 
         if company and company != "Select a Company":
             ###### FILTER ######
@@ -165,7 +165,7 @@ def main(start_data, end_data):
 
 
             ###### DISPLAY DATA ######
-            URL_Expander = st.expander(f"{company.title()}'s Data: ", True)
+            URL_Expander = page1.expander(f"{company.title()}'s Data: ", True)
             URL_Expander.write(f"### Chosen {company.title()}'s {len(df_company):,d} Article ESG Tone Table")
             display_cols = ["DATE", "SourceCommonName", "Tone", "Polarity",
                             "NegativeTone", "PositiveTone"]  #  "WordCount"
