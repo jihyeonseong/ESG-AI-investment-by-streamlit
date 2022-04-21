@@ -93,7 +93,7 @@ def main(start_data, end_data):
 
 
     ###### LOAD DATA ######
-    but1, but2 = st.columns([1]*6+[1.18])
+    but1, but2, _, _, _, _, _ = st.columns([1]*6+[1.18])
     #flag = None
     #data, companies = None, None
     with but1:
