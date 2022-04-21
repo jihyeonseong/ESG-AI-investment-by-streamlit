@@ -111,11 +111,11 @@ def main(start_data, end_data):
     
     
     ###### LOAD DATA ######  
-    with box2:
+    with box1:
         market = st.selectbox("Choose your Market", ['Select Market', 'SP500', 'KOSPI'])
     with empty:
         st.empty()
-    with box:
+    with box2:
         ###default setting###
         sp = True
         kos = False
