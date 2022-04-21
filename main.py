@@ -144,7 +144,7 @@ def main(start_data, end_data):
                 df_data = data["data"]
                 embeddings = data["embed"]  
 
-            company = st.selectbox(INFO, companies)
+            company = st.selectbox(INFO, companies[0])
         if kos:
             sp = False
             INFO = 'Choose Your Company! (EX. KB)'
@@ -156,7 +156,7 @@ def main(start_data, end_data):
                 df_data = data["data"]
                 embeddings = data["embed"]  
             
-            company = st.selectbox(INFO, companies)
+            company = st.selectbox(INFO, companies[0])
             
         with st.spinner(text="Fetching Data..."):
             data, companies = load_data(start_data, end_data, flag)
