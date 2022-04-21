@@ -95,7 +95,7 @@ def main(start_data, end_data):
     ###### LOAD DATA ######
     page1, page2 = st.columns(2)
     with page1:
-        but1, but2, _, _, _, _, _, _, _ = st.columns(8)
+        but1, but2 = st.columns(2)
         if but1.button('SP500'):
             flag = 'SP500'
             with st.spinner(text="Fetching Data..."):
