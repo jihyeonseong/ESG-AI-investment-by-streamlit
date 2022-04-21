@@ -116,6 +116,7 @@ def main(start_data, end_data):
         metric_options = ["SP500", "KOSPI"]
         line_metric = st.radio("Please Select your Market", options=metric_options)
         state.append(line_metric)
+        print(state)
     with empty:
         st.empty()
     with box2:
