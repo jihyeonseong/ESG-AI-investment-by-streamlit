@@ -190,7 +190,7 @@ def main(start_data, end_data):
     ###### CHART: METRIC OVER TIME ######
     with page4:
         st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
-        choose_graph = ["Evaluation Graph", "Rader", "Tone density", "Polarity", "Company distribution", "Similarity Score"]
+        choose_graph = ["Evaluation Graph", "ESG Rader", "Tone Density", "Polarity Graph", "Company Distribution", "Similarity Company & Score"]
         graph_metric = st.radio("Please Select your Graph", options=choose_graph)
         
         ###### NUMBER OF NEIGHBORS TO FIND #####
@@ -261,7 +261,7 @@ def main(start_data, end_data):
         
 
         ###### CHART: ESG RADAR ######
-        elif graph_metric == 'Rader':
+        elif graph_metric == 'ESG Rader':
             avg_esg = data["ESG"]
             avg_esg.rename(columns={"Unnamed: 0": "Type"}, inplace=True)
             avg_esg.replace({"T": "Overall", "E": "Environment",
@@ -294,7 +294,7 @@ def main(start_data, end_data):
             radar.update_layout(showlegend=False)
             st.plotly_chart(radar, use_container_width=True)
 
-        elif graph_metric == 'Tone density':
+        elif graph_metric == 'Tone Density':
             ###### CHART: DOCUMENT TONE DISTRIBUTION #####
             # add overall average
             dist_chart = alt.Chart(df_company, title="All Publishers' ESG Tone Density Chart", padding={"left": 1, "top": 10, "right": 25, "bottom": 1}
@@ -316,7 +316,7 @@ def main(start_data, end_data):
 
 
         ###### CHART: SCATTER OF ARTICLES OVER TIME #####
-        elif graph_metric == 'Polarity':
+        elif graph_metric == 'Polarity Graph':
             scatter = alt.Chart(df_company, title= "ESG Polarity Chart", padding={"left": 10, "top": 10, "right": 1, "bottom": 1}).mark_circle().encode(
                 x=alt.X("NegativeTone:Q", title="Negative Tone"),
                 y=alt.Y("PositiveTone:Q", title="Positive Tone"),
@@ -334,7 +334,7 @@ def main(start_data, end_data):
             st.altair_chart(scatter, use_container_width=True)
             
         ###### CHART: 3D EMBEDDING WITH NEIGHBORS ######
-        elif graph_metric == 'Company distribution':
+        elif graph_metric == 'Company Distribution':
             color_f = lambda f: f"Company: {company.title()}" if f == company else (
                 "Connected Company" if f in neighbors.values else "Other Company")
             embeddings["colorCode"] = embeddings.company.apply(color_f)
@@ -364,7 +364,7 @@ def main(start_data, end_data):
 
 
         ###### CHART: NEIGHBOR SIMILIARITY ######
-        elif graph_metric == 'Similarity Score':
+        elif graph_metric == 'Similarity Company & Score':
             neighbor_conf = pd.DataFrame({
                 "Neighbor": neighbors,
                 "Confidence": company_df[[f"n{i}_conf" for i in
