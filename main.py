@@ -93,11 +93,14 @@ def main(start_data, end_data):
 
 
     ###### LOAD DATA ######
-    SP500, KOSPI = st.beta_columns(2)
+    SP500, KOSPI = st.columns(2)
+    flag = None
     if SP500.button('SP500'):
+        flag = 'SP500'
         with st.spinner(text="Fetching Data..."):
             data, companies = load_data(start_data, end_data)
-    else:
+    elif KOSPI.button('KOSPI'):
+        flag = 'KOSPI'
         with st.spinner(text="Fetching Data..."):
             data, companies = load_data(start_data, end_data)
     df_conn = data["conn"]
@@ -118,7 +121,11 @@ def main(start_data, end_data):
 
 
     ###### RUN COMPUTATIONS WHEN A COMPANY IS SELECTED ######
-    company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
+    if flag == 'SP500':
+        company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
+    elif flag == 'KOSPI':
+        company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
+        
     if company and company != "Select a Company":
         ###### FILTER ######
         df_company = df_data[df_data.Organization == company]
