@@ -193,7 +193,7 @@ def main(start_data, end_data):
         metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                           "ActivityDensity", "WordCount", "Overall Score",
                           "ESG Scores"]
-        line_metric = col1.radio("Please Select Evaluation Metric", options=metric_options)
+        line_metric = st.radio("Please Select Evaluation Metric", options=metric_options)
 
 
         if line_metric == "ESG Scores":
@@ -248,7 +248,7 @@ def main(start_data, end_data):
             height=340,
             width=200
         ).interactive()
-        col2.altair_chart(metric_chart, use_container_width=True)
+        st.altair_chart(metric_chart, use_container_width=True)
         
 
     ###### CHART: ESG RADAR ######
