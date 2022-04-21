@@ -34,8 +34,12 @@ def filter_company_data(df_company, esg_categories, start, end):
 def load_data(start_data, end_data, flag):
     data = Data().read(start_data, end_data)
     companies = data["data"].Organization.sort_values().unique().tolist()
-    companies.remove('microsoft')
-    companies.insert(0,"microsoft")
+    if flag == 'SP500':
+        companies.remove('microsoft')
+        companies.insert(0,"microsoft")
+    elif flag == 'KOSPI':
+        companies.remove('adobe')
+        companies.insert(0,'adobe')
     return data, companies
 
 
@@ -115,8 +119,6 @@ def main(start_data, end_data):
     with box1:
         metric_options = ["SP500", "KOSPI"]
         line_metric = st.radio("Please Select your Market", options=metric_options)
-        state.append(line_metric)
-        print(state)
     with empty:
         st.empty()
     with box2:
@@ -128,9 +130,7 @@ def main(start_data, end_data):
             embeddings = data["embed"]  
 
         company = st.selectbox(INFO, companies)
-        if len(state)>1:
-            company='microsoft'
-            
+        line_metric_old = line_metric            
     
     with page3:        
         if company:
