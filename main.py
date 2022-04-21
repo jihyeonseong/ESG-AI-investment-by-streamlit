@@ -102,7 +102,7 @@ def main(start_data, end_data):
     num_neighbors = st.sidebar.slider("Select Similar Company Number", 1, 20, value=8)
 
 
-    ###### LOAD DATA ######           
+    ###### LayOut ######           
     page1, page2 = st.columns(2)
     but1, but2, _ = st.columns([1,1,10])
     page3, page4 = st.columns(2)
@@ -114,6 +114,7 @@ def main(start_data, end_data):
     INFO = 'Choose Your Company! (EX. microsoft)'
     flag = 'SP500'
     
+    ###### LOAD DATA ######
     with page1:        
         ###button click: return T/F###
         sp = but1.button('SP500')
@@ -136,10 +137,26 @@ def main(start_data, end_data):
             kos = False
             INFO = 'Choose Your Company! (EX. microsoft)'
             flag = 'SP500'
+            with st.spinner(text="Fetching Data..."):
+                data, companies = load_data(start_data, end_data, flag)
+
+                df_conn = data["conn"]
+                df_data = data["data"]
+                embeddings = data["embed"]  
+
+            company = st.selectbox(INFO, companies)
         if kos:
             sp = False
             INFO = 'Choose Your Company! (EX. KB)'
             flag = 'KOSPI'
+            with st.spinner(text="Fetching Data..."):
+                data, companies = load_data(start_data, end_data, flag)
+
+                df_conn = data["conn"]
+                df_data = data["data"]
+                embeddings = data["embed"]  
+            
+            company = st.selectbox(INFO, companies)
             
         with st.spinner(text="Fetching Data..."):
             data, companies = load_data(start_data, end_data, flag)
