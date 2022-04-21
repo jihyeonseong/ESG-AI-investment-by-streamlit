@@ -111,9 +111,10 @@ def main(start_data, end_data):
     
     
     ###### LOAD DATA ######  
-    with but1:
+    with box2:
         market = st.selectbox("Choose your Market", ['Select Market', 'SP500', 'KOSPI'])
-    
+    with empty:
+        st.empty()
     with box:
         ###default setting###
         sp = True
