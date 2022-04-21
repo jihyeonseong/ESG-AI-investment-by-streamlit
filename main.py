@@ -109,18 +109,7 @@ def main(start_data, end_data):
     col1, col2 = st.columns([1,4])
     
     ###default setting###
-    sp = True
-    kos = False
-    INFO = 'Choose Your Company! (EX. microsoft)'
-    flag = 'SP500'
-    with st.spinner(text="Fetching Data..."):
-        data, companies = load_data(start_data, end_data, flag)
-
-        df_conn = data["conn"]
-        df_data = data["data"]
-        embeddings = data["embed"]  
-
-    company = st.selectbox(INFO, companies)
+    
     
     ###### LOAD DATA ######
     with page1:        
@@ -129,7 +118,19 @@ def main(start_data, end_data):
         kos = but2.button('KOSPI')
     
     with page2:
-        pass
+        ###default setting###
+        sp = True
+        kos = False
+        INFO = 'Choose Your Company! (EX. microsoft)'
+        flag = 'SP500'
+        with st.spinner(text="Fetching Data..."):
+            data, companies = load_data(start_data, end_data, flag)
+
+            df_conn = data["conn"]
+            df_data = data["data"]
+            embeddings = data["embed"]  
+
+        company = st.selectbox(INFO, companies)
     
     with page3:        
         if sp:
