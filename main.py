@@ -102,7 +102,14 @@ def main(start_data, end_data):
 
 
     ###### LOAD DATA ######
-    but1, but2 = st.columns([1,1*90])
+    with st.spinner(text="Fetching Data..."):
+        data, companies = load_data(start_data, end_data, flag)
+       
+        df_conn = data["conn"]
+        df_data = data["data"]
+        embeddings = data["embed"]
+        
+    but1, but2 = st.columns([1,1*10])
     flag = 'SP500'
     if but1.button('SP500'):
         flag = 'SP500'
@@ -112,17 +119,10 @@ def main(start_data, end_data):
         company = st.selectbox("Choose Your Company! (EX. KB)", companies)
         
     page1, page2 = st.columns(2)
-    #col1, col2 = st.columns([1, 4])
-    with page1:    
-        with st.spinner(text="Fetching Data..."):
-            data, companies = load_data(start_data, end_data, flag)
-       
-        df_conn = data["conn"]
-        df_data = data["data"]
-        embeddings = data["embed"]
-        
+    #col1, col2 = st.columns([1, 4]) 
 
     ###### RUN COMPUTATIONS WHEN A COMPANY IS SELECTED ######
+    with page1:
         if flag=='SP500':
             company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
         if flag=='KOSPI':
