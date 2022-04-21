@@ -101,18 +101,33 @@ def main(start_data, end_data):
     num_neighbors = st.sidebar.slider("Select Similar Company Number", 1, 20, value=8)
 
 
-    ###### LOAD DATA ######
-    flag = 'SP500'
-    with st.spinner(text="Fetching Data..."):
-        data, companies = load_data(start_data, end_data, flag)
-       
-        df_conn = data["conn"]
-        df_data = data["data"]
-        embeddings = data["embed"]
-    
+    ###### LOAD DATA ######           
     page1, page2 = st.columns(2)
     but1, but2, _ = st.columns([1,1,10])
+    
     with page1:
+        if but1.button('SP500'):
+            flag = 'SP500'
+            with st.spinner(text="Fetching Data..."):
+                data, companies = load_data(start_data, end_data, flag)
+
+                df_conn = data["conn"]
+                df_data = data["data"]
+                embeddings = data["embed"]
+            company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
+        if but2.button('KOSPI'):
+            flag = 'KOSPI'
+            with st.spinner(text="Fetching Data..."):
+                data, companies = load_data(start_data, end_data, flag)
+
+                df_conn = data["conn"]
+                df_data = data["data"]
+                embeddings = data["embed"]
+            company = st.selectbox("Choose Your Company! (EX. KB)", companies) 
+    
+    page3, page4 = st.columns(2)
+    col1, col2 = st.columns([1,4])
+    with page3:
         if but1.button('SP500'):
             flag = 'SP500'
             company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
@@ -181,8 +196,8 @@ def main(start_data, end_data):
             ####
 
 
-        ###### CHART: METRIC OVER TIME ######
-    with page2:
+    ###### CHART: METRIC OVER TIME ######
+    with page4:
         metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                           "ActivityDensity", "WordCount", "Overall Score",
                           "ESG Scores"]
