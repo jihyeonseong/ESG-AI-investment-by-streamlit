@@ -87,7 +87,7 @@ def main(start_data, end_data):
 
 
     ###### SET UP PAGE ######
-    icon_path = os.path.join("./img", "icon.png")
+    icon_path = os.path.join("./img", "KBlogo.png")
     st.set_page_config(page_title="ESG AI", page_icon=icon_path,
                        layout='wide', initial_sidebar_state="collapsed")
     _, logo, _ = st.columns(3)
