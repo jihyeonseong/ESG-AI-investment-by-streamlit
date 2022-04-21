@@ -191,7 +191,7 @@ def main(start_data, end_data):
     with page4:
         st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
         choose_graph = ["Evaluation Graph", "Rader and Tone density", "Polarity", "Company distribution", "Similarity Score"]
-        graph_metric = st.radio("Please Select Evaluation Metric", options=metric_options)
+        graph_metric = st.radio("Please Select your Graph", options=choose_graph)
         
         if graph_metric == "Evaluation Graph":               
             metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
