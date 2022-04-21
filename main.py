@@ -123,6 +123,11 @@ def main(start_data, end_data):
         
 
     ###### RUN COMPUTATIONS WHEN A COMPANY IS SELECTED ######
+        if flag=='SP500':
+            company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
+        if flag=='KOSPI':
+            company = st.selectbox("Choose Your Company! (EX. KB)", companies)
+            
         if company and company != "Select a Company":
             ###### FILTER ######
             df_company = df_data[df_data.Organization == company]
