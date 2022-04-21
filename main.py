@@ -256,7 +256,7 @@ def main(start_data, end_data):
         
 
     ###### CHART: ESG RADAR ######
-    elif graph_metric == 'Rader and Tone density'
+    elif graph_metric == 'Rader and Tone density':
         #col1, col2 = st.columns((1, 2))
         avg_esg = data["ESG"]
         avg_esg.rename(columns={"Unnamed: 0": "Type"}, inplace=True)
