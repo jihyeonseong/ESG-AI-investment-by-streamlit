@@ -81,6 +81,7 @@ def main(start_data, end_data):
 
 
     ###### SET UP PAGE ######
+    st.set_page_config(layout="wide")
     icon_path = os.path.join("./img", "icon.png")
     st.set_page_config(page_title="ESG AI", page_icon=icon_path,
                        layout='centered', initial_sidebar_state="collapsed")
@@ -95,6 +96,7 @@ def main(start_data, end_data):
     ###### LOAD DATA ######
     SP500, KOSPI = st.columns(2)
     flag = None
+    data, companies = None, None
     if SP500.button('SP500'):
         flag = 'SP500'
         with st.spinner(text="Fetching Data..."):
@@ -124,7 +126,7 @@ def main(start_data, end_data):
     if flag == 'SP500':
         company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
     elif flag == 'KOSPI':
-        company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
+        company = st.selectbox("Choose Your Company! (EX. KB)", companies)
         
     if company and company != "Select a Company":
         ###### FILTER ######
