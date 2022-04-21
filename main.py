@@ -102,7 +102,7 @@ def main(start_data, end_data):
 
 
     ###### LOAD DATA ######
-    but1, but2 = st.columns([1*100,1*100])
+    but1, but2 = st.columns([1,1*100])
     flag = 'SP500'
     if but1.button('SP500'):
         flag = 'SP500'
