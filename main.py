@@ -34,7 +34,7 @@ def filter_company_data(df_company, esg_categories, start, end):
 def load_data(start_data, end_data, flag):
     data = Data().read(start_data, end_data)
     companies = data["data"].Organization.sort_values().unique().tolist()
-    companies.pop('microsoft')
+    delete = companies.pop('microsoft')
     companies.insert(0,"microsoft")
     return data, companies
 
