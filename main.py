@@ -256,7 +256,7 @@ def main(start_data, end_data):
         
 
         ###### CHART: ESG RADAR ######
-        elif graph_metric == 'Rader":
+        elif graph_metric == 'Rader':
             avg_esg = data["ESG"]
             avg_esg.rename(columns={"Unnamed: 0": "Type"}, inplace=True)
             avg_esg.replace({"T": "Overall", "E": "Environment",
