@@ -179,6 +179,7 @@ def main(start_data, end_data):
     global flag
     
     with page1:
+        display_data('SP500')
         ###### RUN COMPUTATIONS WHEN A COMPANY IS SELECTED ######
         if but1.button('SP500'):
             flag = 'SP500'
