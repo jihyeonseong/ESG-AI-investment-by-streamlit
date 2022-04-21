@@ -105,6 +105,7 @@ def main(start_data, end_data):
     ###### LOAD DATA ######           
     page1, page2 = st.columns(2)
     but1, but2, _ = st.columns([1,1,10])
+    page3, page4 = st.columns(2)
     col1, col2 = st.columns([1,4])
     
     ###default setting###
@@ -129,9 +130,6 @@ def main(start_data, end_data):
     
     with page2:
         pass
-    
-    
-    page3, page4 = st.columns(2)
     
     with page3:        
         if sp:
