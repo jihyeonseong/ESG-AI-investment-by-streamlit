@@ -128,13 +128,6 @@ def main(start_data, end_data):
     page3, page4 = st.columns(2)
     col1, col2 = st.columns([1,4])
     with page3:
-        if but1.button('SP500'):
-            flag = 'SP500'
-            company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
-        if but2.button('KOSPI'):
-            flag = 'KOSPI'
-            company = st.selectbox("Choose Your Company! (EX. KB)", companies) 
-
         ###### RUN COMPUTATIONS WHEN A COMPANY IS SELECTED ######
         if flag=='SP500':
             company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
