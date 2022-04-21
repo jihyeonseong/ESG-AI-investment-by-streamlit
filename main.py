@@ -105,24 +105,18 @@ def main(start_data, end_data):
     ###### LayOut ######           
     box1, empty, box2 = st.columns([2,0.3,8])
     page3, page4 = st.columns(2)
-    col1, col2 = st.columns([1,4])
-    
-    ###default setting###
-    
+    col1, col2 = st.columns([1,4])    
     
     ###### LOAD DATA ######  
+    ###default setting### 
+    market = 'SP500'
     with box1:
-        market = st.selectbox("Choose your Market", ['Select Market', 'SP500', 'KOSPI'])
+        market = st.selectbox("Choose your Market", ['Select a Market', 'SP500', 'KOSPI'])
     with empty:
         st.empty()
     with box2:
-        ###default setting###
-        sp = True
-        kos = False
-        INFO = 'Choose Your Company! (EX. microsoft)'
-        flag = 'SP500'
         with st.spinner(text="Fetching Data..."):
-            data, companies = load_data(start_data, end_data, flag)
+            data, companies = load_data(start_data, end_data, market)
 
             df_conn = data["conn"]
             df_data = data["data"]
@@ -131,40 +125,6 @@ def main(start_data, end_data):
         company = st.selectbox(INFO, companies)
     
     with page3:        
-        if sp:
-            kos = False
-            INFO = 'Choose Your Company! (EX. microsoft)'
-            flag = 'SP500'
-            with st.spinner(text="Fetching Data..."):
-                data, companies = load_data(start_data, end_data, flag)
-
-                df_conn = data["conn"]
-                df_data = data["data"]
-                embeddings = data["embed"]  
-
-            company = st.selectbox(INFO, companies)
-        if kos:
-            sp = False
-            INFO = 'Choose Your Company! (EX. KB)'
-            flag = 'KOSPI'
-            with st.spinner(text="Fetching Data..."):
-                data, companies = load_data(start_data, end_data, flag)
-
-                df_conn = data["conn"]
-                df_data = data["data"]
-                embeddings = data["embed"]  
-            
-            company = st.selectbox(INFO, companies)
-        """
-        with st.spinner(text="Fetching Data..."):
-            data, companies = load_data(start_data, end_data, flag)
-
-            df_conn = data["conn"]
-            df_data = data["data"]
-            embeddings = data["embed"]  
-            
-        company = st.selectbox(INFO, companies)
-        """
         if company and company != "Select a Company":
             ###### FILTER ######
             df_company = df_data[df_data.Organization == company]
