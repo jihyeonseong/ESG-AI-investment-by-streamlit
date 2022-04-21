@@ -80,9 +80,9 @@ def display_data(flag):
         df_data = data["data"]
         embeddings = data["embed"]
         
-     if flag == 'SP500':
+    if flag == 'SP500':
         company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
-     elif flag=='KOSPI':
+    elif flag=='KOSPI':
         company = st.selectbox("Choose Your Company! (EX. microsoft)", companies)
 
 
