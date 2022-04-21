@@ -100,7 +100,7 @@ def main(start_data, end_data):
             flag = 'SP500'
             with st.spinner(text="Fetching Data..."):
                 data, companies = load_data(start_data, end_data)
-        elif but2.button('KOSPI')
+        elif but2.button('KOSPI'):
             flag = 'KOSPI'
             with st.spinner(text="Fetching Data..."):
                 data, companies = load_data(start_data, end_data)
