@@ -35,6 +35,12 @@ You can download DBFS data files that you created at your local computer!
    ```bash
    python -m pip install databricks-cli
    ```
+ - You have to define your host and token
+   ```bash
+   databricks configure --token
+   ```
+   - You have to copy workspace url
+   - You can generate token at your databricks workspace "user setting"
  - To check databricks-cli is well installed, type this command
    ```bash
    databricks fs -h
