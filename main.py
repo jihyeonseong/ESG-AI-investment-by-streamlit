@@ -198,12 +198,13 @@ def main(start_data, end_data):
     company_df = df_conn[df_conn.company == company]
     neighbors = company_df[neighbor_cols].iloc[0]
 
-    if graph_metric == "Evaluation Graph":               
+    if graph_metric == "Evaluation Graph":   
+        col1, col2 = st.columns((1, 4))
         metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                           "ActivityDensity", "WordCount", "Overall Score",
                           "ESG Scores"]
-        st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
-        line_metric = st.radio("Please Select Evaluation Metric", options=metric_options)
+        #st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+        line_metric = col1.radio("Please Select Evaluation Metric", options=metric_options)
 
         if line_metric == "ESG Scores":
             # Get ESG Scores
@@ -257,7 +258,7 @@ def main(start_data, end_data):
             height=340,
             width=200
         ).interactive()
-        st.altair_chart(metric_chart, use_container_width=True)
+        col2.altair_chart(metric_chart, use_container_width=True)
 
 
     ###### CHART: ESG RADAR ######
