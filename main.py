@@ -108,7 +108,7 @@ def main(start_data, end_data):
 
 
     ###### LayOut ######           
-    box1, empty, box2 = st.columns([2,0.1,10])
+    box1, box2 = st.columns([1, 10])
     page3, page4 = st.columns(2)    
     
     ###### LOAD DATA ######  
@@ -119,8 +119,6 @@ def main(start_data, end_data):
     with box1:
         metric_options = ["SP500", "KOSPI"]
         line_metric = st.radio("Please Select your Market", options=metric_options)
-    with empty:
-        st.empty()
     with box2:
         with st.spinner(text="Fetching Data..."):
             data, companies = load_data(start_data, end_data, line_metric)
