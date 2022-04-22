@@ -18,7 +18,7 @@ In Databricks, you can use pyspark very easily which can makes data crawling rea
  - Go to Data and Select DFBS folder. You can see Data is created as csv!
 <br></br>
 
-There are some magic code for using Databricks with no conflict for python packages :)
+Here are some magic codes for using Databricks for no conflict with python packages :)
 1. If you get error with pip install gdelt
    ```bash
    python -m pip install gdelt --use-deprecated=backtrack-on-build-failures
@@ -28,7 +28,7 @@ There are some magic code for using Databricks with no conflict for python packa
    pip install [pkg==ver] --force-reinstall
    ```
 
-You can download DBFS data files that you created at your local computer!
+Also, You can download DBFS data files that you created at your local computer!
  - Go to User Settings - Access Tokens, then Generate New Token
  - In your local computer, install [Anaconda](https://www.anaconda.com/)
  - Open Anaconda prompt and install [databricks-cli](https://docs.databricks.com/dev-tools/cli/index.html)
@@ -67,7 +67,7 @@ you can see more detailed explanation at [here](https://snap.stanford.edu/node2v
 <br></br>
 
 ## Streamlit for Web demo
-Let's move to streamlit!
+### Let's move to streamlit!
 
 1. In your local computer,
    - Firstly download Pycharm and connect with Anaconda! (Of course, you have to install streamlit and requirements.txt in your Anaconda)
@@ -78,7 +78,6 @@ Let's move to streamlit!
      streamlit run main.py
      ```
 
-
 2. Directly with your Github,
    - Firstly, you need requirements.txt and .py file to launch streamlit!
      - To make requirements.txt, use this command
@@ -88,7 +87,7 @@ Let's move to streamlit!
    - Sign in or Sign up to [streamlit.io](https://streamlit.io/)
    - Click "New app" and connect to your github repository.
    - Then you can make URL in few seconds!
-<br></br>
+
 
 ### How this web work?
 1. You must have to include December to January when crawling data!
@@ -100,6 +99,7 @@ Let's move to streamlit!
    - But we do not have standard evaluation format to get score of ESG.
    - So crawlling the article from gdelt, and analyze tone of article about ESG and then scoring with the word that used in article 
    - At scoring, crawlling and node2vec method for NLP is used. 
+
 
 ### What we can get from this web?
 1. The number of article that crawled means the power or influence of company to society (ex. 551 press make article about MSFT)
