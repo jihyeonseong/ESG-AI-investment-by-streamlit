@@ -7,6 +7,13 @@ Winner: Best Environmental Impact & Best User Experience***
 
 ![visual_demo](https://user-images.githubusercontent.com/56622667/163711185-8fea43e6-0a1b-4145-95a4-b755cf915dbe.png)
 
+## Project Flow
+### This project's flow is,
+- s&p500's 90% of enterprises reveal sustainability report every year.
+- But we do not have standard evaluation format to get score of ESG.
+- So crawlling the article from gdelt, and analyze tone of article about ESG and then scoring with the word that used in article 
+- At scoring, crawlling and node2vec method for NLP is used. 
+<br></br>
 
 ## Data Crawling & Creation with Databricks 
 Firstly, You have to sign up or sign in Databricks. You can use free trial for 14 days.
@@ -58,6 +65,14 @@ Databricks develops a web-based platform for working with Spark, that provides a
 [Wikipedia](https://en.wikipedia.org/wiki/Databricks)
 
 ***We can Create and Manage Data parallely with PySpark and this is really fast!***
+
+### Why we need data crawlling and important rule to follow!
+1. You must have to include December to January when crawling data!
+   - This is important point, because year end and start is the evaluation period of company.
+   - So you can get superior quality and quantity of article.
+
+2. The number of article that crawled means the power or influence of company to society (ex. 551 press make article about MSFT)
+   - This means, you can get rough information like company's trending degree from number of article
 <br></br>
 
 ### What method is used to Scoring ESG?
@@ -89,27 +104,13 @@ you can see more detailed explanation at [here](https://snap.stanford.edu/node2v
    - Then you can make URL in few seconds!
 
 
-### How this web work?
-1. You must have to include December to January when crawling data!
-   - This is important point, because year end and start is the evaluation period of company.
-   - So you can get superior quality and quantity of article.
-
-2. This project's flow is,
-   - s&p500's 90% of enterprises reveal sustainability report every year.
-   - But we do not have standard evaluation format to get score of ESG.
-   - So crawlling the article from gdelt, and analyze tone of article about ESG and then scoring with the word that used in article 
-   - At scoring, crawlling and node2vec method for NLP is used. 
-
-
 ### What we can get from this web?
-1. The number of article that crawled means the power or influence of company to society (ex. 551 press make article about MSFT)
-   - This means, you can get rough information like company's trending degree from number of article
-2. Then you can get enough detailed information from below graph
+- You can get enough detailed information from graph and chart in web
    - Several metrics such as Tone, ESG score and graphs such as chart, rader are provided for detailed evaluation!
 <br></br>
 
 ## Detail information for technical stack
-1. What we use for data?
+1. What we usel for data?
    - gdelt
    - The GDELT Project, or Global Database of Events, Language, and Tone, created by Kalev Leetaru of Yahoo! and Georgetown University, along with Philip Schrodt and others, describes itself as "an initiative to construct a catalog of human societal-scale behavior and beliefs across all countries of the world, connecting every person, organization, location, count, theme, news source, and event across the planet into a single massive network that captures what's happening around the world, what its context is and who's involved, and how the world is feeling about it, every single day." Early explorations leading up to the creation of GDELT were described by co-creator Philip Schrodt in a conference paper in January 2011. The dataset is available on Google Cloud Platform. [wikipedia](https://en.wikipedia.org/wiki/GDELT_Project)
 
