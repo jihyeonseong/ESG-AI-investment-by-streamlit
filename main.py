@@ -190,7 +190,6 @@ def main(start_data, end_data):
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
     choose_graph = ["Evaluation Graph", "ESG Rader", "Tone Density", "Polarity Graph", "Company Distribution", "Similarity Company & Score"]
     graph_metric = st.radio("Please Select your Graph", options=choose_graph)
-    st.markdown("---")
 
     
     ###### NUMBER OF NEIGHBORS TO FIND #####
@@ -203,7 +202,6 @@ def main(start_data, end_data):
         metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                           "ActivityDensity", "WordCount", "Overall Score",
                           "ESG Scores"]
-        #st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
         line_metric = col1.radio("Please Select Evaluation Metric", options=metric_options)
 
         if line_metric == "ESG Scores":
