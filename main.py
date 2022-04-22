@@ -186,10 +186,11 @@ def main(start_data, end_data):
 
 
     ###### CHART: METRIC OVER TIME ######
+    st.markdown("---")
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
     choose_graph = ["Evaluation Graph", "ESG Rader", "Tone Density", "Polarity Graph", "Company Distribution", "Similarity Company & Score"]
     graph_metric = st.radio("Please Select your Graph", options=choose_graph)
-    st.write(":heavy_minus_sign:" * 34) 
+    st.markdown("---")
 
     
     ###### NUMBER OF NEIGHBORS TO FIND #####
