@@ -108,7 +108,7 @@ def main(start_data, end_data):
 
 
     ###### LayOut ######           
-    box1, empty, box2 = st.columns([2,0.3,8])
+    box1, empty, box2 = st.columns([2,0.1,10])
     page3, page4 = st.columns(2)    
     
     ###### LOAD DATA ######  
