@@ -108,7 +108,7 @@ def main(start_data, end_data):
 
 
     ###### LayOut ######           
-    box1, box2 = st.columns([2.5, 10])    
+    box1, box2 = st.columns([3, 10])    
     
     ###### LOAD DATA ######  
     ###default setting### 
