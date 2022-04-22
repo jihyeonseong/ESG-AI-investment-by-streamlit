@@ -115,6 +115,7 @@ you can see more detailed explanation at [here](https://snap.stanford.edu/node2v
    - The GDELT Project, or Global Database of Events, Language, and Tone, created by Kalev Leetaru of Yahoo! and Georgetown University, along with Philip Schrodt and others, describes itself as "an initiative to construct a catalog of human societal-scale behavior and beliefs across all countries of the world, connecting every person, organization, location, count, theme, news source, and event across the planet into a single massive network that captures what's happening around the world, what its context is and who's involved, and how the world is feeling about it, every single day." Early explorations leading up to the creation of GDELT were described by co-creator Philip Schrodt in a conference paper in January 2011. The dataset is available on Google Cloud Platform. [wikipedia](https://en.wikipedia.org/wiki/GDELT_Project)
 
 2. How can we reach data and create web demo?
+
    ![technical_stack](https://user-images.githubusercontent.com/56622667/162120751-d62c3a62-bbce-4098-acc7-bbad93d6fd0c.png)
    
    ![technical_stack2](https://user-images.githubusercontent.com/56622667/162120810-ec823d9e-745c-43c0-98e3-5890eeb5c60f.png)
@@ -123,7 +124,7 @@ you can see more detailed explanation at [here](https://snap.stanford.edu/node2v
    
 3. We can get reasonable stock index from iShares!
    - [Russell 1000 etf](https://www.ishares.com/us/products/239707/ishares-russell-1000-etf)
-   - [MSCI South Korea etf](https://www.ishares.com/us/products/239681/ishares-msci-south-korea-capped-etf)
+   - [MSCI China etf](https://www.ishares.com/us/products/239619/ishares-msci-china-etf)
    - You can get stock index whatever you want in ishares.com and just change url in DataCreation/python_get_data_wrapper
 <br></br>
 
