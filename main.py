@@ -32,12 +32,12 @@ def filter_company_data(df_company, esg_categories, start, end):
 @st.cache(show_spinner=False, suppress_st_warning=True,
           allow_output_mutation=True)
 def load_data(start_data, end_data, flag):
-    data = Data().read(start_data, end_data)
+    data = Data().read(start_data, end_data, flag)
     companies = data["data"].Organization.sort_values().unique().tolist()
-    if flag == 'SP500':
+    if flag == 'USA':
         companies.remove('microsoft')
         companies.insert(0,"microsoft")
-    elif flag == 'KOSPI':
+    elif flag == 'UK':
         companies.remove('adobe')
         companies.insert(0,'adobe')
     return data, companies
@@ -116,7 +116,7 @@ def main(start_data, end_data):
     INFO = 'Please Choose your Stock'
     state = []
     with box1:
-        metric_options = ["SP500", "KOSPI"]
+        metric_options = ["USA", "UK", "CANADA", "AUSTRALIA"]
         line_metric = st.radio("Please Select your Market", options=metric_options)
     with box2:
         with st.spinner(text="Fetching Data..."):
