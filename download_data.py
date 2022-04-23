@@ -20,13 +20,13 @@ class Data:
 
 
     def read(self, start_day="jan6", end_day="jan12", flag='USA'):
-        dir_name = os.path.join(f"{start_day}__to__{end_day}", flag)
-        dir_name = f"{start_day}__to__{end_day}"
+        data_dir = os.path.join("./Data", f"{start_day}__to__{end_day}")
+        dir_name = flag
 
-        if dir_name not in os.listdir("./Data"):
+        if dir_name not in os.listdir(data_dir):
             raise NameError(f"There isn't data for {dir_name}")
 
-        data_path = os.path.join("./Data", dir_name)
+        data_path = os.path.join(data_dir, dir_name)
         self.paths(data_path)
         data = {"conn": pd.read_csv(self.connections),
                 "data": pd.read_csv(self.data, parse_dates=["DATE"],
