@@ -124,7 +124,9 @@ you can see more detailed explanation at [here](https://snap.stanford.edu/node2v
    
 3. We can get reasonable stock index from iShares!
    - [Russell 1000 etf](https://www.ishares.com/us/products/239707/ishares-russell-1000-etf)
-   - [MSCI China etf](https://www.ishares.com/us/products/239619/ishares-msci-china-etf)
+   - [MSCI UK etf](https://www.ishares.com/us/products/239690/ishares-msci-united-kingdom-etf)
+   - [MSCI Canada etf](https://www.ishares.com/us/products/239615/ishares-msci-canada-etf)
+   - [MSCI Australia etf](https://www.ishares.com/us/products/239607/ishares-msci-australia-etf)
    - You can get stock index whatever you want in ishares.com and just change url in DataCreation/python_get_data_wrapper
 <br></br>
 
