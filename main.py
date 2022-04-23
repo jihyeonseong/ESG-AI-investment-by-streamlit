@@ -258,10 +258,6 @@ def main(start_data, end_data):
     st.markdown("---")
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
     choose_graph = ["ESG Rader", "Tone Density", "Polarity Graph", "Company Distribution", "Similarity Company & Score"]
-    if neighbors == 0:
-        choose_graph = ["ESG Rader", "Tone Density", "Polarity Graph"]
-    else:
-        choose_graph = ["ESG Rader", "Tone Density", "Polarity Graph", "Company Distribution", "Similarity Company & Score"]
     graph_metric = st.radio("Please Select your Graph", options=choose_graph)
     
     ###### CHART: ESG RADAR ######
