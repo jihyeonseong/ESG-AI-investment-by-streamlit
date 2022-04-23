@@ -389,9 +389,9 @@ if __name__ == "__main__":
         start_data = args[1]
         end_data = args[2]
     print(start_data, end_data)
-    if f"{start_data}__to__{end_data}" not in os.listdir("./financial_report_data/GDELT_data_Russell_top_300"):
-        print(f"There isn't data for {os.listdir('./financial_report_data/GDELT_data_Russell_top_300')}")
-        raise NameError(f"Please pick from {os.listdir('./financial_report_data/GDELT_data_Russell_top_300')}")
+    if f"{start_data}__to__{end_data}" not in os.listdir("./Data"):
+        print(f"There isn't data for {os.listdir('./Data')}")
+        raise NameError(f"Please pick from {os.listdir('./Data')}")
         sys.exit()
         st.stop()
     else:
