@@ -189,7 +189,10 @@ def main(start_data, end_data):
     ###### NUMBER OF NEIGHBORS TO FIND #####
     neighbor_cols = [f"n{i}_rec" for i in range(num_neighbors)]
     company_df = df_conn[df_conn.company == company]
-    neighbors = company_df[neighbor_cols].iloc[0]
+    try:
+        neighbors = company_df[neighbor_cols].iloc[0]
+    else:
+        print("There is no similar company!")
   
     col1, col2 = st.columns((1, 4))
     metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
