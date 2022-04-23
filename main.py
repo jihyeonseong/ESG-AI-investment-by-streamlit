@@ -260,6 +260,8 @@ def main(start_data, end_data):
     choose_graph = ["ESG Rader", "Tone Density", "Polarity Graph", "Company Distribution", "Similarity Company & Score"]
     if neighbors == 0:
         choose_graph = ["ESG Rader", "Tone Density", "Polarity Graph"]
+    else:
+        choose_graph = ["ESG Rader", "Tone Density", "Polarity Graph", "Company Distribution", "Similarity Company & Score"]
     graph_metric = st.radio("Please Select your Graph", options=choose_graph)
     
     ###### CHART: ESG RADAR ######
