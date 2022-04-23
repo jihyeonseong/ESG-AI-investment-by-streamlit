@@ -37,9 +37,6 @@ def load_data(start_data, end_data, flag):
     if flag == 'USA':
         companies.remove('microsoft')
         companies.insert(0,"microsoft")
-    elif flag == 'UK':
-        companies.remove('burberry')
-        companies.insert(0,'burberry')
 
     return data, companies
 
