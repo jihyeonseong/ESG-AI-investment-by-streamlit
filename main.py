@@ -37,11 +37,10 @@ def load_data(start_data, end_data, flag):
     if flag == 'USA':
         companies.remove('microsoft')
         companies.insert(0,"microsoft")
-    """
     elif flag == 'UK':
-        companies.remove('adobe')
-        companies.insert(0,'adobe')
-    """
+        companies.remove('burberry')
+        companies.insert(0,'burberry')
+
     return data, companies
 
 
@@ -110,7 +109,7 @@ def main(start_data, end_data):
 
 
     ###### LayOut ######           
-    box1, box2 = st.columns([6, 10])    
+    box1, box2 = st.columns([1, 1])    
     
     ###### LOAD DATA ######  
     ###default setting### 
