@@ -192,7 +192,7 @@ def main(start_data, end_data):
     try:
         neighbors = company_df[neighbor_cols].iloc[0]
     except:
-        neighbors = 0
+        neighbors = []
         print("There is no similar company!")
   
     col1, col2 = st.columns((1, 4))
@@ -258,6 +258,8 @@ def main(start_data, end_data):
     st.markdown("---")
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
     choose_graph = ["ESG Rader", "Tone Density", "Polarity Graph", "Company Distribution", "Similarity Company & Score"]
+    if len(neighbors)==0:
+        choose_graph = ["ESG Rader", "Tone Density", "Polarity Graph"]
     graph_metric = st.radio("Please Select your Graph", options=choose_graph)
     
     ###### CHART: ESG RADAR ######
@@ -335,7 +337,7 @@ def main(start_data, end_data):
 
         
     ###### CHART: 3D EMBEDDING WITH NEIGHBORS ######
-    elif graph_metric == 'Company Distribution' and neighbors!=0:
+    elif graph_metric == 'Company Distribution' and len(neighbors)!=0:
         color_f = lambda f: f"Company: {company.title()}" if f == company else (
             "Connected Company" if f in neighbors.values else "Other Company")
         embeddings["colorCode"] = embeddings.company.apply(color_f)
@@ -365,7 +367,7 @@ def main(start_data, end_data):
 
 
     ###### CHART: NEIGHBOR SIMILIARITY ######
-    elif graph_metric == 'Similarity Company & Score' and neighbors!=0:
+    elif graph_metric == 'Similarity Company & Score' and len(neighbors)!=0:
         neighbor_conf = pd.DataFrame({
             "Neighbor": neighbors,
             "Confidence": company_df[[f"n{i}_conf" for i in
