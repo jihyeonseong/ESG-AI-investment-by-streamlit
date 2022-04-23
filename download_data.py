@@ -20,7 +20,8 @@ class Data:
 
 
     def read(self, start_day="jan6", end_day="jan12", flag='USA'):
-        dir_name = f"{start_day}__to__{end_day}"+f"/{flag}"
+        dir_name = os.path.join(f"{start_day}__to__{end_day}", flag)
+        dir_name = f"{start_day}__to__{end_day}"
 
         if dir_name not in os.listdir("./Data"):
             raise NameError(f"There isn't data for {dir_name}")
