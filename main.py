@@ -117,7 +117,7 @@ def main(start_data, end_data):
     INFO = 'Please Choose your Stock'
     state = []
     with box1:
-        metric_options = ["USA", "UK", "CANADA", "AUSTRALIA"]
+        metric_options = ["USA", "UK", "CANADA", "AUSTRAILIA"]
         line_metric = st.radio("Please Select your Market", options=metric_options)
     with box2:
         with st.spinner(text="Fetching Data..."):
