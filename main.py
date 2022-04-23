@@ -191,7 +191,7 @@ def main(start_data, end_data):
     company_df = df_conn[df_conn.company == company]
     try:
         neighbors = company_df[neighbor_cols].iloc[0]
-    else:
+    except:
         print("There is no similar company!")
   
     col1, col2 = st.columns((1, 4))
