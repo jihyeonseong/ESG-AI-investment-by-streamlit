@@ -1,0 +1,6 @@
+,company,n0_rec,n0_conf,n1_rec,n1_conf,n2_rec,n2_conf,n3_rec,n3_conf
+0,northern star resources ltd,woodside petroleum ltd,0.9991117119789124,santos ltd,0.9990240335464478,scentre,0.12167057394981384,suncorp group ltd,0.09577445685863495
+1,santos ltd,woodside petroleum ltd,0.9995284080505371,northern star resources ltd,0.9990240335464478,scentre,0.09444383531808853,suncorp group ltd,0.06859196722507477
+2,suncorp group ltd,scentre,0.9994127750396729,northern star resources ltd,0.09577446430921555,santos ltd,0.06859194487333298,woodside petroleum ltd,0.06744140386581421
+3,scentre,suncorp group ltd,0.9994128942489624,northern star resources ltd,0.12167061120271683,santos ltd,0.09444385021924973,woodside petroleum ltd,0.093593530356884
+4,woodside petroleum ltd,santos ltd,0.9995285272598267,northern star resources ltd,0.9991117715835571,scentre,0.09359350800514221,suncorp group ltd,0.0674414336681366
