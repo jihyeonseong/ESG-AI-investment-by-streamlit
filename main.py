@@ -41,7 +41,7 @@ def load_data(start_data, end_data, flag):
         companies.remove('astrazeneca')
         companies.insert(0,"astrazeneca")
     elif flag == 'CANADA':
-        comapnies.remove('enbridge')
+        companies.remove('enbridge')
         companies.insert(0, 'enbridge')
     elif flag == 'AUSTRALIA':
         companies.remove('national australia bank ltd')
