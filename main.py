@@ -40,6 +40,9 @@ def load_data(start_data, end_data, flag):
     elif flag == 'UK':
         companies.remove('astrazeneca')
         companies.insert(0,"astrazeneca")
+    elif flag == 'AUSTRALIA':
+        companies.remove('national australia bank ltd')
+        companies.insert(0, 'national australia bank ltd')
     return data, companies
 
 
@@ -116,7 +119,7 @@ def main(start_data, end_data):
     INFO = 'Please Choose your Stock'
     state = []
     with box1:
-        metric_options = ["USA", "UK", "CANADA", "AUSTRAILIA"]
+        metric_options = ["USA", "UK", "CANADA", "AUSTRALIA"]
         line_metric = st.radio("Please Select your Market", options=metric_options)
     with box2:
         with st.spinner(text="Fetching Data..."):
