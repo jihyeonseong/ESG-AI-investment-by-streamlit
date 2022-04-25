@@ -225,8 +225,7 @@ def main(start_data, end_data):
         ind_e_df["WHO"] = "Industry Average"
         esg_plot_df = pd.concat([e_df, ind_e_df]
                                 ).reset_index(drop=True)
-        #esg_plot_df.replace({"E_score": "Environment", "S_score": "Social",
-        #                     "G_score": "Governance"}, inplace=True)
+  
         esg_plot_df.replace({"E_score": "Environment"}, inplace=True)
 
         metric_chart = alt.Chart(esg_plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
@@ -246,8 +245,7 @@ def main(start_data, end_data):
         ind_s_df["WHO"] = "Industry Average"
         esg_plot_df = pd.concat([s_df, ind_s_df]
                                 ).reset_index(drop=True)
-        #esg_plot_df.replace({"E_score": "Environment", "S_score": "Social",
-        #                     "G_score": "Governance"}, inplace=True)
+        
         esg_plot_df.replace({"S_score": "Social"}, inplace=True)
 
         metric_chart = alt.Chart(esg_plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
@@ -267,8 +265,7 @@ def main(start_data, end_data):
         ind_g_df["WHO"] = "Industry Average"
         esg_plot_df = pd.concat([g_df, ind_g_df]
                                 ).reset_index(drop=True)
-        #esg_plot_df.replace({"E_score": "Environment", "S_score": "Social",
-        #                     "G_score": "Governance"}, inplace=True)
+        
         esg_plot_df.replace({"G_score": "Governance"}, inplace=True)
 
         metric_chart = alt.Chart(esg_plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
