@@ -15,7 +15,7 @@ class Data:
         self.daily_esg = os.path.join(esg_path, "overall_daily_esg_scores.csv")
         self.e_score = os.path.join(esg_path, "daily_E_score.csv")
         self.s_score = os.path.join(esg_path, "daily_S_score.csv")
-        self.g_score =os.path.join(esg_path, "daily_S_score.csv")
+        self.g_score =os.path.join(esg_path, "daily_G_score.csv")
 
 
 
