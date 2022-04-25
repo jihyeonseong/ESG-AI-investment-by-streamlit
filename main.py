@@ -215,7 +215,7 @@ def main(start_data, end_data):
   
     col1, col2 = st.columns((1, 4))
     metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
-                      "ActivityDensity", "WordCount", "Overall Score",
+                      "WordCount", "Overall Score",
                       "E Score", "S Score", "G Score"]
     line_metric = col1.radio("Please Select Evaluation Metric", options=metric_options)
 
