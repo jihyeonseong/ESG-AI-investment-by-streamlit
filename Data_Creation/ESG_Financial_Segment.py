@@ -79,7 +79,8 @@ def make_tables(start_date, end_date):
     # Directories
     org_types = f"Russell_top_{Fields.n_orgs}"
     base_dir = f"dbfs:/mnt/esg/financial_report_data/GDELT_data_{org_types}"
-    range_save_dir = os.path.join(base_dir, f"{start_date}__to__{end_date}")
+    market = '/AUSTRAILIA'
+    range_save_dir = os.path.join(base_dir, f"{start_date}__to__{end_date}"+market)
     esg_dir = os.path.join(range_save_dir, "esg_scores")
     dbutils.fs.mkdirs(esg_dir)
     
