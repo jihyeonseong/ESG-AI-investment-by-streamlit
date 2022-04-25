@@ -219,7 +219,7 @@ def main(start_data, end_data):
                       "E Score", "S Score", "G Score"]
     line_metric = col1.radio("Please Select Evaluation Metric", options=metric_options)
 
-    if line_metric == "E Score":
+    if line_metric == "E Score" or line_metric == "S Score" or line_metric == "G Score":
         # Get ESG Scores
         e_df["WHO"] = company.title()
         ind_e_df["WHO"] = "Industry Average"
@@ -233,12 +233,12 @@ def main(start_data, end_data):
                                    ).mark_line().encode(
             x=alt.X("yearmonthdate(DATE):O", title=""), #title="DATE"
             y=alt.Y("Score:Q", title="E Score"),
-            color=alt.Color("E", sort=None, legend=alt.Legend(
+            color=alt.Color("WHO", sort=None, legend=alt.Legend(
                 title=None, orient="top")),
             strokeDash=alt.StrokeDash("WHO", sort=None, legend=alt.Legend(
                 title=None, symbolType="stroke", symbolFillColor="gray",
                 symbolStrokeWidth=4, orient="top")),
-            tooltip=["DATE", "E", alt.Tooltip("Score", format=".5f")]
+            tooltip=["DATE", alt.Tooltip("Score", format=".5f")]
             )
 
     else:
