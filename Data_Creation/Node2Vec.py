@@ -100,7 +100,8 @@ def get_connections(g2v, organizations, topn=25):
 
 def make_embeddings_and_connections(start, end):
     base_dir = f"dbfs:/mnt/esg/financial_report_data/GDELT_data_Russell_top_300"
-    save_dir = os.path.join(base_dir, f"{start}__to__{end}")
+    market = '/AUSTRAILIA'
+    save_dir = os.path.join(base_dir, f"{start}__to__{end}"+market)
     csv_file = "data_as_csv.csv"
 
     # Load data
