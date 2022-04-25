@@ -35,7 +35,7 @@ def get_russell_companies(n=100, sector=None):
         return s
 
     # Download and parse the Russell 1000 companies
-    url = ("https://www.ishares.com/us/products/239707/ishares-russell-1000-etf/"
+    url = ("https://www.ishares.com/us/products/239607/ishares-msci-australia-etf/"
            "1467271812596.ajax?fileType=csv&fileName=IWB_holdings&dataType=fund")
     russell_1000 = pd.read_csv(url, skiprows=range(9), header=0,
                                usecols=["Name", "Sector"])
@@ -277,8 +277,9 @@ def create_and_save_data(start_date, end_date, save_csv=True):
     # Directories
     org_types = f"Russell_top_{Fields.n_orgs}"
     base_dir = f"dbfs:/mnt/esg/financial_report_data/GDELT_data_{org_types}"
-    daily_save_dir = os.path.join(base_dir, "daily_data")
-    range_save_dir = os.path.join(base_dir, f"{start_date}__to__{end_date}")
+    market = '/AUSTRAILIA'
+    daily_save_dir = os.path.join(base_dir, "daily_data"+market)
+    range_save_dir = os.path.join(base_dir, f"{start_date}__to__{end_date}"+market)
 
     dbutils.fs.mkdirs(base_dir)
     dbutils.fs.mkdirs(daily_save_dir)
