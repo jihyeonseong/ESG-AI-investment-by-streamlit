@@ -186,7 +186,7 @@ def main(start_data, end_data):
     link_df = df_company[["DATE", "URL"]].copy().tail(10)
     # link_df["URL"] = link_df["URL"].apply(lambda R: f"[{R}]({R})")
     link_df["ARTICLE"] = link_df.URL.apply(get_clickable_name)
-    link_df = link_df[["DATE", "ARTICLE"]].drop_duplicates(keep='last').tail(5).to_markdown(index=False)
+    link_df = link_df[["DATE", "ARTICLE"]].drop_duplicates().tail(5).to_markdown(index=False)
     URL_Expander.markdown(link_df)
     ####   
 
