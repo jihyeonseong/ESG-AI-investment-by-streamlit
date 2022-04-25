@@ -21,7 +21,8 @@ def make_files(base_dir, start_date, end_date):
     org_types = f"Russell_top_{Fields.n_orgs}"
     org_dir = os.path.join(base_dir, f"GDELT_data_{org_types}")
     date_string = f"{start_date}__to__{end_date}"
-    date_dir = os.path.join(org_dir, date_string)
+    market = '/AUSTRAILIA'
+    date_dir = os.path.join(org_dir, date_string+market)
     dbutils.fs.mkdirs(org_dir)
 
 
@@ -53,16 +54,9 @@ def make_files(base_dir, start_date, end_date):
 
 # COMMAND ----------
 
-start_date = "2022-03-12"
-end_date = "2022-03-13"
+start_date = "2021-12-01"
+end_date = "2022-04-21"
 make_files(base_dir, start_date, end_date)
 
-# COMMAND ----------
-
-start_date = "2022-03-12"
-end_date = "2022-03-13"
-make_embeddings_and_connections(start_date, end_date)
-
-# COMMAND ----------
 
 
