@@ -215,8 +215,7 @@ def main(start_data, end_data):
   
     col1, col2 = st.columns((1, 4))
     metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
-                      "WordCount", "Overall Score",
-                      "E Score", "S Score", "G Score"]
+                      "WordCount", "E Score", "S Score", "G Score"]
     line_metric = col1.radio("Please Select Evaluation Metric", options=metric_options)
 
     if line_metric == "E Score":
@@ -281,32 +280,26 @@ def main(start_data, end_data):
             )
 
     else:
-        if line_metric == "Overall Score":
-            line_metric = "Score"
-            tone_df["WHO"] = company.title()
-            ind_tone_df["WHO"] = "Industry Average"
-            plot_df = pd.concat([tone_df, ind_tone_df]).reset_index(drop=True)
-        else:
-            df1 = df_company.groupby("DATE")[line_metric].mean(
-                ).reset_index()
-            df2 = filter_on_date(df_data.groupby("DATE")[line_metric].mean(
-                ).reset_index(), start, end)
-            df1["WHO"] = company.title()
-            df2["WHO"] = "Industry Average"
-            plot_df = pd.concat([df1, df2]).reset_index(drop=True)
-        metric_chart = alt.Chart(plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
-                                 ).mark_line().encode(
-            x=alt.X("yearmonthdate(DATE):O", title=""),
-            y=alt.Y(f"{line_metric}:Q", scale=alt.Scale(type="linear")),
-            color=alt.Color("WHO", legend=None),
-            strokeDash=alt.StrokeDash("WHO", sort=None,
-                legend=alt.Legend(
-                    title=None, symbolType="stroke", symbolFillColor="gray",
-                    symbolStrokeWidth=4, orient="top",
-                    ),
+        df1 = df_company.groupby("DATE")[line_metric].mean(
+            ).reset_index()
+        df2 = filter_on_date(df_data.groupby("DATE")[line_metric].mean(
+            ).reset_index(), start, end)
+        df1["WHO"] = company.title()
+        df2["WHO"] = "Industry Average"
+        plot_df = pd.concat([df1, df2]).reset_index(drop=True)
+    metric_chart = alt.Chart(plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
+                             ).mark_line().encode(
+        x=alt.X("yearmonthdate(DATE):O", title=""),
+        y=alt.Y(f"{line_metric}:Q", scale=alt.Scale(type="linear")),
+        color=alt.Color("WHO", legend=None),
+        strokeDash=alt.StrokeDash("WHO", sort=None,
+            legend=alt.Legend(
+                title=None, symbolType="stroke", symbolFillColor="gray",
+                symbolStrokeWidth=4, orient="top",
                 ),
-            tooltip=["DATE", alt.Tooltip(line_metric, format=".3f")]
-            )
+            ),
+        tooltip=["DATE", alt.Tooltip(line_metric, format=".3f")]
+        )
     metric_chart = metric_chart.properties(
         height=340,
         width=200
