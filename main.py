@@ -233,7 +233,7 @@ def main(start_data, end_data):
                                    ).mark_line().encode(
             x=alt.X("yearmonthdate(DATE):O", title=""), #title="DATE"
             y=alt.Y("Score:Q", title="E Score"),
-            color=alt.Color("ESG", sort=None, legend=alt.Legend(
+            color=alt.Color("E", sort=None, legend=alt.Legend(
                 title=None, orient="top")),
             strokeDash=alt.StrokeDash("WHO", sort=None, legend=alt.Legend(
                 title=None, symbolType="stroke", symbolFillColor="gray",
