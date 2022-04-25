@@ -218,7 +218,7 @@ def main(start_data, end_data):
         esg_plot_df.replace({"E_score": "Environment", "S_score": "Social",
                              "G_score": "Governance"}, inplace=True)
 
-        metric_chart = alt.Chart(esg_plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
+        metric_chart = alt.Chart(esg_plot_df["Environment"], title=f"{line_metric} TimeSeries Graph", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
                                    ).mark_line().encode(
             x=alt.X("yearmonthdate(DATE):O", title=""), #title="DATE"
             y=alt.Y("Score:Q", title="ESG Score"),
