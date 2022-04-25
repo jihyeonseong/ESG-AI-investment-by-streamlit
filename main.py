@@ -140,8 +140,8 @@ def main(start_data, end_data):
     df_company = df_data[df_data.Organization == company]
     diff_col = f"{company.replace(' ', '_')}_diff"
     esg_keys = ["E_score", "S_score", "G_score"]
-    esg_df = get_melted_frame(data, esg_keys, keepcol=diff_col)
-    ind_esg_df = get_melted_frame(data, esg_keys, dropcol="industry_tone")
+    esg_df = get_melted_frame(data, esg_keys[0], keepcol=diff_col)
+    ind_esg_df = get_melted_frame(data, esg_keys[0], dropcol="industry_tone")
     tone_df = get_melted_frame(data, ["overall_score"], keepcol=diff_col)
     ind_tone_df = get_melted_frame(data, ["overall_score"],
                                    dropcol="industry_tone")
@@ -215,10 +215,11 @@ def main(start_data, end_data):
         ind_esg_df["WHO"] = "Industry Average"
         esg_plot_df = pd.concat([esg_df, ind_esg_df]
                                 ).reset_index(drop=True)
-        esg_plot_df.replace({"E_score": "Environment", "S_score": "Social",
-                             "G_score": "Governance"}, inplace=True)
+        #esg_plot_df.replace({"E_score": "Environment", "S_score": "Social",
+        #                     "G_score": "Governance"}, inplace=True)
+        esg_plot_df.replace({"E_score": "Environment"}, inplace=True)
 
-        metric_chart = alt.Chart(esg_plot_df["Environment"], title=f"{line_metric} TimeSeries Graph", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
+        metric_chart = alt.Chart(esg_plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
                                    ).mark_line().encode(
             x=alt.X("yearmonthdate(DATE):O", title=""), #title="DATE"
             y=alt.Y("Score:Q", title="ESG Score"),
