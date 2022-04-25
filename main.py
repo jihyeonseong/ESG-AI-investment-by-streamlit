@@ -164,11 +164,16 @@ def main(start_data, end_data):
     ###### FILTER DATA ######
     df_company = filter_company_data(df_company, esg_categories,
                                      start, end)
-    esg_df = filter_on_date(esg_df, start, end)
-    ind_esg_df = filter_on_date(ind_esg_df, start, end)
     tone_df = filter_on_date(tone_df, start, end)
     ind_tone_df = filter_on_date(ind_tone_df, start, end)
     date_filtered = filter_on_date(df_data, start, end)
+    
+    e_df = filter_on_date(e_df, start, end)
+    ind_e_df = filter_on_date(ind_e_df, start, end)
+    s_df = filter_on_date(s_df, start, end)
+    ind_s_df = filter_on_date(ind_s_df, start, end)
+    g_df = filter_on_date(g_df, start, end)
+    ind_g_df = filter_on_date(ind_g_df, start, end)
 
 
     ###### PUBLISHER SELECT BOX ######
