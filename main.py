@@ -139,12 +139,17 @@ def main(start_data, end_data):
     ###### FILTER ######
     df_company = df_data[df_data.Organization == company]
     diff_col = f"{company.replace(' ', '_')}_diff"
-    esg_keys = ["E_score", "S_score", "G_score"]
-    esg_df = get_melted_frame(data, esg_keys[0], keepcol=diff_col)
-    ind_esg_df = get_melted_frame(data, esg_keys[0], dropcol="industry_tone")
     tone_df = get_melted_frame(data, ["overall_score"], keepcol=diff_col)
     ind_tone_df = get_melted_frame(data, ["overall_score"],
                                    dropcol="industry_tone")
+    
+    esg_keys = ["E_score", "S_score", "G_score"]
+    e_df = get_melted_frame(data, esg_keys[0], keepcol=diff_col)
+    ind_e_df = get_melted_frame(data, esg_keys[0], dropcol="industry_tone")
+    s_df = get_melted_frame(data, esg_keys[1], keepcol=diff_col)
+    ind_s_df = get_melted_frame(data, esg_keys[1], dropcol="industry_tone")
+    g_df = get_melted_frame(data, esg_keys[2], keepcol=diff_col)
+    ind_g_df = get_melted_frame(data, esg_keys[2], dropcol="industry_tone")
 
 
     ###### DATE WIDGET ######
@@ -206,14 +211,14 @@ def main(start_data, end_data):
     col1, col2 = st.columns((1, 4))
     metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                       "ActivityDensity", "WordCount", "Overall Score",
-                      "ESG Scores"]
+                      "E Score", "S Score", "G Score"]
     line_metric = col1.radio("Please Select Evaluation Metric", options=metric_options)
 
-    if line_metric == "ESG Scores":
+    if line_metric == "E Score":
         # Get ESG Scores
-        esg_df["WHO"] = company.title()
-        ind_esg_df["WHO"] = "Industry Average"
-        esg_plot_df = pd.concat([esg_df, ind_esg_df]
+        e_df["WHO"] = company.title()
+        ind_e_df["WHO"] = "Industry Average"
+        esg_plot_df = pd.concat([e_df, ind_e_df]
                                 ).reset_index(drop=True)
         #esg_plot_df.replace({"E_score": "Environment", "S_score": "Social",
         #                     "G_score": "Governance"}, inplace=True)
@@ -222,13 +227,13 @@ def main(start_data, end_data):
         metric_chart = alt.Chart(esg_plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
                                    ).mark_line().encode(
             x=alt.X("yearmonthdate(DATE):O", title=""), #title="DATE"
-            y=alt.Y("Score:Q", title="ESG Score"),
+            y=alt.Y("Score:Q", title="E Score"),
             color=alt.Color("ESG", sort=None, legend=alt.Legend(
                 title=None, orient="top")),
             strokeDash=alt.StrokeDash("WHO", sort=None, legend=alt.Legend(
                 title=None, symbolType="stroke", symbolFillColor="gray",
                 symbolStrokeWidth=4, orient="top")),
-            tooltip=["DATE", "ESG", alt.Tooltip("Score", format=".5f")]
+            tooltip=["DATE", "E", alt.Tooltip("Score", format=".5f")]
             )
 
     else:
