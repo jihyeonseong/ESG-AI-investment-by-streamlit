@@ -335,7 +335,7 @@ def main(start_data, end_data):
                 height=340,
                 width=200
             ).interactive()
-            col2.altair_chart(metric_chart, use_container_width=True)
+            st.altair_chart(metric_chart, use_container_width=True)
 
     st.markdown("---")
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
