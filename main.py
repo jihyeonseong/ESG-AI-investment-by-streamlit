@@ -515,8 +515,7 @@ def main(start_data, end_data):
             height=25 * num_neighbors + 90
         ).configure_axis(grid=False)
         st.altair_chart(conf_plot, use_container_width=True)
-        
-        
+                
         
     with st.expander("Spread Out"):
         ###### CHART: DOCUMENT TONE DISTRIBUTION #####
@@ -596,6 +595,8 @@ def main(start_data, end_data):
                 height=25 * num_neighbors + 90
             ).configure_axis(grid=False)
             st.altair_chart(conf_plot, use_container_width=True)
+            
+    st.markdown("---")
         
         
 
