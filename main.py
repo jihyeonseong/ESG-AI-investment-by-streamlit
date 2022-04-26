@@ -81,7 +81,16 @@ def get_clickable_name(url):
         title = T.metadata["og"]["title"].replace("|", " - ")
         return f"[{title}]({url})"
     except:
-        return f"[{url}]({url})"
+        try:
+            title = []
+            for i in range(len(list(url))-1,0,-1):
+                if list(url)[i] == '/' and len(title)!=0:
+                    break
+                else:
+                    title.append(list(url)[i])
+            return f"[{title}]({url})"
+        except:
+            return f"[{url}]({url})"
 
 
 
