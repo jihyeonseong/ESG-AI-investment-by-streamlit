@@ -88,7 +88,8 @@ def get_clickable_name(url):
                     break
                 else:
                     title.append(list(url)[i])
-            title = ''.join(title[::1])
+            title = title.remove('/').reverse()
+            title = ''.join(title)
             return f"[{title}]({url})"
         except:
             return f"[{url}]({url})"
