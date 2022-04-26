@@ -76,7 +76,7 @@ Databricks develops a web-based platform for working with Spark, that provides a
 <br></br>
 
 ### What method is used to Scoring ESG?
-***Node2Vec for nlp is used!***
+***Node2Vec is used!***
 
 you can see more detailed explanation at [here](https://snap.stanford.edu/node2vec/)
 <br></br>
