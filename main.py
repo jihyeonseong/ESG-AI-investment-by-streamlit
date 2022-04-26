@@ -540,22 +540,6 @@ def main(start_data, end_data):
             ).interactive()
         st.altair_chart(scatter, use_container_width=True)
         
-        scatter = alt.Chart(df_company, title= "ESG Polarity Chart", padding={"left": 10, "top": 10, "right": 1, "bottom": 1}).mark_circle().encode(
-            x=alt.X("NegativeTone:Q", title="Negative Tone"),
-            y=alt.Y("PositiveTone:Q", title="Positive Tone"),
-            size="WordCount:Q",
-            color=alt.Color("Polarity:Q", scale=alt.Scale()),
-            tooltip=[alt.Tooltip("Polarity", format=".3f"),
-                     alt.Tooltip("NegativeTone", format=".3f"),
-                     alt.Tooltip("PositiveTone", format=".3f"),
-                     alt.Tooltip("DATE"),
-                     alt.Tooltip("WordCount", format=",d"),
-                     alt.Tooltip("SourceCommonName", title="Site")]
-            ).properties(
-                height=440
-            ).interactive()
-        st.altair_chart(scatter, use_container_width=True)
-        
         if len(neighbors)!=0:
             color_f = lambda f: f"Company: {company.title()}" if f == company else (
                 "Connected Company" if f in neighbors.values else "Other Company")
