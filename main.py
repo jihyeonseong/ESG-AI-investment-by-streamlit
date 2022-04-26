@@ -601,7 +601,7 @@ def main(start_data, end_data):
     st.markdown("---")
     portfolio1 = data["Portfolio"][company]
     portfolio2 = data["Portfolio"][neighbors]
-    portfolio = pd.concat([portfolio1, portfolio2], axis=1)
+    table = pd.concat([portfolio1, portfolio2], axis=1)
     
     returns = table.pct_change()
     mean_returns = returns.mean()
