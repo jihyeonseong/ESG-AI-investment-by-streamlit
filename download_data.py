@@ -16,6 +16,7 @@ class Data:
         self.e_score = os.path.join(esg_path, "daily_E_score.csv")
         self.s_score = os.path.join(esg_path, "daily_S_score.csv")
         self.g_score =os.path.join(esg_path, "daily_G_score.csv")
+        self.portfolio = os.path.join(data_path, "portfolio.csv")
 
 
 
@@ -42,6 +43,7 @@ class Data:
                 "G_score": pd.read_csv(self.g_score, parse_dates=["date"],
                                  infer_datetime_format=True, index_col="date"),
                 "ESG": pd.read_csv(self.avg_esg),
+                "Portfolio": pd.read_csv(self.portfolio),
                 }
         # Dat column to date (not timestamp)
         data["data"]["DATE"] = data["data"]["DATE"].dt.date
