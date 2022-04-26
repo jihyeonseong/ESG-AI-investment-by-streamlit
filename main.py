@@ -337,6 +337,39 @@ def main(start_data, end_data):
                     width=200
                 ).interactive()
                 st.altair_chart(metric_chart, use_container_width=True)
+            for i in range(3):
+                if i == 0:
+                    e_df["WHO"] = company.title()
+                    ind_e_df["WHO"] = "Industry Average"
+                    esg_plot_df = pd.concat([e_df, ind_e_df]
+                                            ).reset_index(drop=True)
+                    esg_plot_df.replace({"E_score": "Environment"}, inplace=True)
+                elif i==1:
+                    s_df["WHO"] = company.title()
+                    ind_s_df["WHO"] = "Industry Average"
+                    esg_plot_df = pd.concat([s_df, ind_s_df]
+                                            ).reset_index(drop=True)
+                    esg_plot_df.replace({"S_score": "Social"}, inplace=True)
+                else:
+                    g_df["WHO"] = company.title()
+                    ind_g_df["WHO"] = "Industry Average"
+                    esg_plot_df = pd.concat([g_df, ind_g_df]
+                                            ).reset_index(drop=True)
+
+                    esg_plot_df.replace({"G_score": "Governance"}, inplace=True)
+
+                metric_chart = alt.Chart(esg_plot_df, title=f"{metric_options[len(metric_options)-3+i]} TimeSeries Graph", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
+                                           ).mark_line().encode(
+                    x=alt.X("yearmonthdate(DATE):O", title=""), #title="DATE"
+                    y=alt.Y("Score:Q", title=metric_options[len(metric_options)-3+i]),
+                    color=alt.Color("WHO", sort=None, legend=alt.Legend(
+                        title=None, orient="top")),
+                    strokeDash=alt.StrokeDash("WHO", sort=None, legend=alt.Legend(
+                        title=None, symbolType="stroke", symbolFillColor="gray",
+                        symbolStrokeWidth=4, orient="top")),
+                    tooltip=["DATE", alt.Tooltip("Score", format=".5f")]
+                    )
+                st.altair_chart(metric_chart, use_container_width=True)
 
     st.markdown("---")
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
