@@ -629,11 +629,11 @@ def main(start_data, end_data):
     st.write("Annualised Volatility:", round(sdp,2))
     st.write(max_sharpe_allocation)
     
-    #alt.Chart(max_sharpe_allocation).mark_arc().encode(
-    #    theta=alt.Theta(field="value", type="quantitative"),
-    #    color=alt.Color(field="category", type="nominal"),
-    #)
-        
+    pie_chart = alt.Chart(max_sharpe_allocation).mark_arc().encode(
+        theta=alt.Theta(field="allocation", type="quantitative"),
+        color=alt.Color(field="company", type="nominal"),
+    )
+    st.altair_chart(pie_chart, use_container_width=True)    
         
 
 if __name__ == "__main__":
