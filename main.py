@@ -613,7 +613,7 @@ def main(start_data, end_data):
     sdp, rp = portfolio_annualised_performance(max_sharpe['x'], mean_returns, cov_matrix)
     max_sharpe_allocation = pd.DataFrame(max_sharpe.x,index=table.columns,columns=['allocation'])
     max_sharpe_allocation.allocation = [round(i*100,2)for i in max_sharpe_allocation.allocation]
-    max_sharpe_allocation = max_sharpe_allocation.T
+    max_sharpe_allocation = pd.DataFrame({"company": max_sharpe_allocation.T.columns, "allocation": max_sharpe_allocation.T.loc['allocation']})
     
     min_vol = min_variance(mean_returns, cov_matrix)
     sdp_min, rp_min = portfolio_annualised_performance(min_vol['x'], mean_returns, cov_matrix)
