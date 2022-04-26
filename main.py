@@ -619,7 +619,7 @@ def main(start_data, end_data):
     sdp_min, rp_min = portfolio_annualised_performance(min_vol['x'], mean_returns, cov_matrix)
     min_vol_allocation = pd.DataFrame(min_vol.x,index=table.columns,columns=['allocation'])
     min_vol_allocation.allocation = [round(i*100,2)for i in min_vol_allocation.allocation]
-    min_vol_allocation = min_vol_allocation.T
+    min_vol_allocation = pd.DataFrame({"company": min_vol_allocation.T.columns, "allocation": min_vol_allocation.T.loc['allocation']})
     
     an_vol = np.std(returns) * np.sqrt(252)
     an_rt = mean_returns * 252
@@ -628,6 +628,11 @@ def main(start_data, end_data):
     st.write("Annualised Return:", round(rp,2))
     st.write("Annualised Volatility:", round(sdp,2))
     st.write(max_sharpe_allocation)
+    
+    #alt.Chart(max_sharpe_allocation).mark_arc().encode(
+    #    theta=alt.Theta(field="value", type="quantitative"),
+    #    color=alt.Color(field="category", type="nominal"),
+    #)
         
         
 
