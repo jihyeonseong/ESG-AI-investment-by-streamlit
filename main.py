@@ -311,7 +311,7 @@ def main(start_data, end_data):
         pass
     with box:
         with st.expander("Spread Out"):
-            for i in range(len(metric_options)):
+            for i in range(1, len(metric_options)-3):
                 df1 = df_company.groupby("DATE")[metric_options[i]].mean(
                 ).reset_index()
                 df2 = filter_on_date(df_data.groupby("DATE")[metric_options[i]].mean(
