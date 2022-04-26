@@ -599,7 +599,7 @@ def main(start_data, end_data):
             st.altair_chart(conf_plot, use_container_width=True)
             
     st.markdown("---")
-    portfolio = data["Portfolio"][neighbors+company]
+    portfolio = data["Portfolio"][neighbors.append(company)]
     st.write(portfolio)
         
         
