@@ -37,8 +37,8 @@ def load_data(start_data, end_data, flag):
     data = Data().read(start_data, end_data, flag)
     companies = data["data"].Organization.sort_values().unique().tolist()
     if flag == 'USA':
-        companies.remove('microsoft')
-        companies.insert(0,"microsoft")
+        companies.remove('netflix')
+        companies.insert(0,"netflix")
     elif flag == 'UK':
         companies.remove('astrazeneca')
         companies.insert(0,"astrazeneca")
