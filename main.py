@@ -307,10 +307,10 @@ def main(start_data, end_data):
     col2.altair_chart(metric_chart, use_container_width=True)
     
     empty, box = st.columns((1, 4))
-    with st.expander("Spread Out"):
-        with empty:
-            pass
-        with box:
+    with empty:
+        pass
+    with box:
+        with st.expander("Spread Out"):
             df1 = df_company.groupby("DATE")[metric_options[0]].mean(
             ).reset_index()
             df2 = filter_on_date(df_data.groupby("DATE")[metric_options[0]].mean(
