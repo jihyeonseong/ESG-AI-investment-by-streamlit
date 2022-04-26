@@ -602,7 +602,30 @@ def main(start_data, end_data):
     portfolio1 = data["Portfolio"][company]
     portfolio2 = data["Portfolio"][neighbors]
     portfolio = pd.concat([portfolio1, portfolio2], axis=1)
-    st.write(portfolio)
+    
+    returns = table.pct_change()
+    mean_returns = returns.mean()
+    cov_matrix = returns.cov()
+    num_portfolios = 25000
+    risk_free_rate = 0.0178
+    
+    max_sharpe = max_sharpe_ratio(mean_returns, cov_matrix, risk_free_rate)
+    sdp, rp = portfolio_annualised_performance(max_sharpe['x'], mean_returns, cov_matrix)
+    max_sharpe_allocation = pd.DataFrame(max_sharpe.x,index=table.columns,columns=['allocation'])
+    max_sharpe_allocation.allocation = [round(i*100,2)for i in max_sharpe_allocation.allocation]
+    max_sharpe_allocation = max_sharpe_allocation.T
+    
+    min_vol = min_variance(mean_returns, cov_matrix)
+    sdp_min, rp_min = portfolio_annualised_performance(min_vol['x'], mean_returns, cov_matrix)
+    min_vol_allocation = pd.DataFrame(min_vol.x,index=table.columns,columns=['allocation'])
+    min_vol_allocation.allocation = [round(i*100,2)for i in min_vol_allocation.allocation]
+    min_vol_allocation = min_vol_allocation.T
+    
+    an_vol = np.std(returns) * np.sqrt(252)
+    an_rt = mean_returns * 252
+    
+    st.write("Maximum Sharpe Ratio Portfolio Allocation")
+    st.write("Annualised Return:", round(rp,2))
         
         
 
