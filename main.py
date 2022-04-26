@@ -311,31 +311,32 @@ def main(start_data, end_data):
         pass
     with box:
         with st.expander("Spread Out"):
-            df1 = df_company.groupby("DATE")[metric_options[0]].mean(
-            ).reset_index()
-            df2 = filter_on_date(df_data.groupby("DATE")[metric_options[0]].mean(
-                ).reset_index(), start, end)
-            df1["WHO"] = company.title()
-            df2["WHO"] = "Industry Average"
-            plot_df = pd.concat([df1, df2]).reset_index(drop=True)
-            metric_chart = alt.Chart(plot_df, title=f"{metric_options[0]} TimeSeries Graph", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
-                                     ).mark_line().encode(
-                x=alt.X("yearmonthdate(DATE):O", title=""),
-                y=alt.Y(f"{metric_options[0]}:Q", scale=alt.Scale(type="linear")),
-                color=alt.Color("WHO", legend=None),
-                strokeDash=alt.StrokeDash("WHO", sort=None,
-                    legend=alt.Legend(
-                        title=None, symbolType="stroke", symbolFillColor="gray",
-                        symbolStrokeWidth=4, orient="top",
+            for i in range(len(metric_options)):
+                df1 = df_company.groupby("DATE")[metric_options[i]].mean(
+                ).reset_index()
+                df2 = filter_on_date(df_data.groupby("DATE")[metric_options[i]].mean(
+                    ).reset_index(), start, end)
+                df1["WHO"] = company.title()
+                df2["WHO"] = "Industry Average"
+                plot_df = pd.concat([df1, df2]).reset_index(drop=True)
+                metric_chart = alt.Chart(plot_df, title=f"{metric_options[i]} TimeSeries Graph", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
+                                         ).mark_line().encode(
+                    x=alt.X("yearmonthdate(DATE):O", title=""),
+                    y=alt.Y(f"{metric_options[i]}:Q", scale=alt.Scale(type="linear")),
+                    color=alt.Color("WHO", legend=None),
+                    strokeDash=alt.StrokeDash("WHO", sort=None,
+                        legend=alt.Legend(
+                            title=None, symbolType="stroke", symbolFillColor="gray",
+                            symbolStrokeWidth=4, orient="top",
+                            ),
                         ),
-                    ),
-                tooltip=["DATE", alt.Tooltip(metric_options[0], format=".3f")]
-                )
-            metric_chart = metric_chart.properties(
-                height=340,
-                width=200
-            ).interactive()
-            st.altair_chart(metric_chart, use_container_width=True)
+                    tooltip=["DATE", alt.Tooltip(metric_options[i], format=".3f")]
+                    )
+                metric_chart = metric_chart.properties(
+                    height=340,
+                    width=200
+                ).interactive()
+                st.altair_chart(metric_chart, use_container_width=True)
 
     st.markdown("---")
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
