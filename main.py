@@ -627,8 +627,10 @@ def main(start_data, end_data):
     pie_chart = alt.Chart(max_sharpe_allocation, title="Maximum Sharpe Ratio Portfolio Allocation").mark_arc().encode(
         theta=alt.Theta(field="allocation", type="quantitative"),
         color=alt.Color(field="company", type="nominal"),
-    ).properties(
-        height=325,
+    )
+    pie_chart = pie_chart.properties(
+        height=340,
+        width=200
     ).interactive()
     st.altair_chart(pie_chart, use_container_width=True) 
     st.write("Annualised Return:", round(rp,2))
