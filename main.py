@@ -623,17 +623,14 @@ def main(start_data, end_data):
     
     an_vol = np.std(returns) * np.sqrt(252)
     an_rt = mean_returns * 252
-    
-    st.write("Maximum Sharpe Ratio Portfolio Allocation")
-    st.write("Annualised Return:", round(rp,2))
-    st.write("Annualised Volatility:", round(sdp,2))
-    st.write(max_sharpe_allocation)
-    
-    pie_chart = alt.Chart(max_sharpe_allocation).mark_arc().encode(
+     
+    pie_chart = alt.Chart(max_sharpe_allocation, title="Maximum Sharpe Ratio Portfolio Allocation").mark_arc().encode(
         theta=alt.Theta(field="allocation", type="quantitative"),
         color=alt.Color(field="company", type="nominal"),
     )
-    st.altair_chart(pie_chart, use_container_width=True)    
+    st.altair_chart(pie_chart, use_container_width=True) 
+    st.write("Annualised Return:", round(rp,2))
+    st.write("Annualised Volatility:", round(sdp,2))
         
 
 if __name__ == "__main__":
