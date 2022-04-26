@@ -636,7 +636,7 @@ def main(start_data, end_data):
         st.write("Annualised Return:", round(rp,2))
         st.write("Annualised Volatility:", round(sdp,2))
     else:
-        pie_chart = alt.Chart(min_vol_allocation, title="Maximum Sharpe Ratio Portfolio Allocation").mark_arc().encode(
+        pie_chart = alt.Chart(min_vol_allocation, title="Minimum Volatility Portfolio Allocation").mark_arc().encode(
                     theta=alt.Theta(field="allocation", type="quantitative"),
                     color=alt.Color(field="company", type="nominal"),
                     ).properties(height=350)
@@ -645,7 +645,7 @@ def main(start_data, end_data):
         st.write("Annualised Volatility:", round(sdp_min,2))
     
     with st.expander("Spread Out"):
-        pie_chart = alt.Chart(min_vol_allocation, title="Maximum Sharpe Ratio Portfolio Allocation").mark_arc().encode(
+        pie_chart = alt.Chart(min_vol_allocation, title="Minimum Volatility Portfolio Allocation").mark_arc().encode(
                     theta=alt.Theta(field="allocation", type="quantitative"),
                     color=alt.Color(field="company", type="nominal"),
                     ).properties(height=350)
