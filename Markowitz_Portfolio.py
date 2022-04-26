@@ -1,10 +1,5 @@
 import numpy as np
 import pandas as pd
-import re
-from itertools import product
-from tqdm.auto import tqdm
-import matplotlib.pyplot as plt
-import seaborn as sns
 import scipy.optimize as sco
 
 def portfolio_annualised_performance(weights, mean_returns, cov_matrix):
