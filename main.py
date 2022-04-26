@@ -628,10 +628,7 @@ def main(start_data, end_data):
         theta=alt.Theta(field="allocation", type="quantitative"),
         color=alt.Color(field="company", type="nominal"),
     )
-    pie_chart = pie_chart.properties(
-        height=340,
-        width=200
-    ).configure_axis(grid=False)
+    
     st.altair_chart(pie_chart, use_container_width=True) 
     st.write("Annualised Return:", round(rp,2))
     st.write("Annualised Volatility:", round(sdp,2))
