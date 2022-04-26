@@ -626,6 +626,8 @@ def main(start_data, end_data):
     
     st.write("Maximum Sharpe Ratio Portfolio Allocation")
     st.write("Annualised Return:", round(rp,2))
+    st.write("Annualised Volatility:", round(sdp,2))
+    st.write(max_sharpe_allocation)
         
         
 
