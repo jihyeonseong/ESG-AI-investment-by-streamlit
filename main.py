@@ -278,7 +278,6 @@ def main(start_data, end_data):
                 symbolStrokeWidth=4, orient="top")),
             tooltip=["DATE", alt.Tooltip("Score", format=".5f")]
             )
-
     else:
         df1 = df_company.groupby("DATE")[line_metric].mean(
             ).reset_index()
@@ -287,7 +286,7 @@ def main(start_data, end_data):
         df1["WHO"] = company.title()
         df2["WHO"] = "Industry Average"
         plot_df = pd.concat([df1, df2]).reset_index(drop=True)
-    metric_chart = alt.Chart(plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
+        metric_chart = alt.Chart(plot_df, title=f"{line_metric} TimeSeries Graph", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
                              ).mark_line().encode(
         x=alt.X("yearmonthdate(DATE):O", title=""),
         y=alt.Y(f"{line_metric}:Q", scale=alt.Scale(type="linear")),
@@ -369,6 +368,10 @@ def main(start_data, end_data):
                         symbolStrokeWidth=4, orient="top")),
                     tooltip=["DATE", alt.Tooltip("Score", format=".5f")]
                     )
+                metric_chart = metric_chart.properties(
+                    height=340,
+                    width=200
+                ).interactive()
                 st.altair_chart(metric_chart, use_container_width=True)
 
     st.markdown("---")
