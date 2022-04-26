@@ -599,7 +599,9 @@ def main(start_data, end_data):
             st.altair_chart(conf_plot, use_container_width=True)
             
     st.markdown("---")
-    portfolio = data["Portfolio"][neighbors.append(company)]
+    portfolio1 = data["Portfolio"][company]
+    portfolio2 = data["Portfolio"][neighbors.append(company)]
+    portfolio = pd.concat([portfolio1, portfolio2], axis=1)
     st.write(portfolio)
         
         
