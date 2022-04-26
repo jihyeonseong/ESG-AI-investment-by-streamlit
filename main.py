@@ -7,9 +7,11 @@ import time
 from datetime import datetime
 import pickle
 import itertools
+import scipy.optimize as sco
 import plotly.express as px
 from plt_setup import finastra_theme
 from download_data import Data
+from Markowitz_Portfolio import *
 import sys
 
 import metadata_parser
@@ -597,6 +599,8 @@ def main(start_data, end_data):
             st.altair_chart(conf_plot, use_container_width=True)
             
     st.markdown("---")
+    portfolio = data["Portfolio"][neighbors]
+    st.write(portfolio)
         
         
 
