@@ -631,7 +631,7 @@ def main(start_data, end_data):
     pie_chart = pie_chart.properties(
         height=340,
         width=200
-    ).interactive()
+    )
     st.altair_chart(pie_chart, use_container_width=True) 
     st.write("Annualised Return:", round(rp,2))
     st.write("Annualised Volatility:", round(sdp,2))
