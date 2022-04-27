@@ -54,6 +54,6 @@ def make_files(base_dir, start_date, end_date):
 
 # COMMAND ----------
 
-start_date = "2022-04-25"
+start_date = "2022-01-01"
 end_date = "2022-04-26"
 make_files(base_dir, start_date, end_date)
