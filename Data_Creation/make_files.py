@@ -21,7 +21,7 @@ def make_files(base_dir, start_date, end_date):
     org_types = f"Russell_top_{Fields.n_orgs}"
     org_dir = os.path.join(base_dir, f"GDELT_data_{org_types}")
     date_string = f"{start_date}__to__{end_date}"
-    market = '/AUSTRAILIA'
+    market = '/USA'
     date_dir = os.path.join(org_dir, date_string+market)
     dbutils.fs.mkdirs(org_dir)
 
@@ -29,7 +29,7 @@ def make_files(base_dir, start_date, end_date):
     # Check if file has already been created, and if not, do so
     exists = False
     subdirs = [x.name for x in dbutils.fs.ls(org_dir)]
-    if date_string + "/" in subdirs:
+    if date_string + market + "/" in subdirs:
         subsubdirs = [x.name for x in dbutils.fs.ls(date_dir)]
         if "data_as_delta/" in subsubdirs:
             exists = True
@@ -54,9 +54,6 @@ def make_files(base_dir, start_date, end_date):
 
 # COMMAND ----------
 
-start_date = "2021-12-01"
-end_date = "2022-04-21"
+start_date = "2022-04-25"
+end_date = "2022-04-26"
 make_files(base_dir, start_date, end_date)
-
-
-
