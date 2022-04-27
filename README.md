@@ -78,8 +78,13 @@ Databricks develops a web-based platform for working with Spark, that provides a
 ### What method is used to Scoring ESG?
 ***Node2Vec is used!***
 
-you can see more detailed explanation at [here](https://snap.stanford.edu/node2vec/)
+you can see more detail explanation at [here](https://snap.stanford.edu/node2vec/)
 <br></br>
+
+### What method is used to form Portfolio?
+***Markowitz Portfolio Theory is used!***
+
+you can see more detail explanation at [Wikipedia](https://en.wikipedia.org/wiki/Modern_portfolio_theory)
 
 ## Streamlit for Web demo
 ### Let's move to streamlit!
