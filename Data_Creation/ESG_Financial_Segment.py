@@ -45,6 +45,32 @@ def fill_dates(sdf, min_date, max_date, date_col="date"):
     return sdf
 
 
+def unique_publisher(filtered_df):
+    #Tone	PositiveTone	NegativeTone	Polarity	ActivityDensity	SelfDensity	WordCount
+    filtered_df_result = (filtered_df.groupby(F.date_format("DATE", "y-MM-dd").alias("date"), 'SourceCommonName')
+                                      .agg(F.mean("Tone"), F.mean("PositiveTone"), F.mean("NegativeTone"), 
+                                           F.mean("Polarity"), F.mean("ActivityDensity"), 
+                                           F.mean("SelfDensity"), F.mean("WordCount"))
+                                      .withColumn("date", F.to_date("date", format="y-MM-dd"))
+                                      .withColumn("date", F.col("date").cast("date"))
+                                      .orderBy(F.col("date").asc())
+                          )
+    filtered_df_result = (filtered_df_result.select("date", "SourceCommonName", F.col("avg(Tone)").alias("Tone"), F.col("avg(PositiveTone)").alias("PositiveTone"), 
+                                             F.col("avg(NegativeTone)").alias("NegativeTone"),
+                                             F.col("avg(Polarity)").alias("Polarity"), F.col("avg(ActivityDensity)").alias("ActivityDensity"), 
+                                             F.col("avg(SelfDensity)").alias("SelfDensity"), F.col("avg(WordCount)").alias("WordCount"))
+                                           
+                          )
+    
+    save_date = (filtered_df_result.groupby("date")
+                                  .agg((F.countDistinct("SourceCommonName")<2).alias("except"))
+                )
+    save_date = save_date.filter("except == False").select("date")
+    
+    filtered_df = save_date.join(filtered_df_result, [save_date.date == filtered_df_result.date], 'inner').drop(save_date.date)
+    return filtered_df
+
+
 def daily_tone(filtered_df, name):
     """ """
     colname = f"{name.replace(' ', '_')}_tone"
@@ -67,7 +93,7 @@ def subtract_cols(df, col1, col2):
 
 
 def get_col_avgs(df):
-    exclude = [k for k, v in df.dtypes if v in ["date", "timestamp", "string"]]
+    exclude = [k for k, v in df.dtypes if v in ["date", "timestamp", "string", "SourceCommonName"]]
     avgs = df.select([F.avg(c).alias(c) for c in df.columns if c not in exclude]).collect()[0]
     return {c: avgs[c] for c in df.columns if c not in exclude}
 
@@ -79,7 +105,7 @@ def make_tables(start_date, end_date):
     # Directories
     org_types = f"Russell_top_{Fields.n_orgs}"
     base_dir = f"dbfs:/mnt/esg/financial_report_data/GDELT_data_{org_types}"
-    market = '/AUSTRAILIA'
+    market = '/AUSTRALIA'
     range_save_dir = os.path.join(base_dir, f"{start_date}__to__{end_date}"+market)
     esg_dir = os.path.join(range_save_dir, "esg_scores")
     dbutils.fs.mkdirs(esg_dir)
@@ -104,25 +130,29 @@ def make_tables(start_date, end_date):
     
     # Get the overall tone
     print("Calculating Tones Over Time")
-    overall_tone = daily_tone(data, "industry")
-    esg_tones = {L: daily_tone(data.filter(f"{L} == True"), "industry")
+    overall_tone = daily_tone(unique_publisher(data), "industry")
+    esg_tones = {L: daily_tone(unique_publisher(data.filter(f"{L} == True")), "industry")
                  for L in ["E", "S", "G"]}
     
     # Loop through the organizations to get the average daily tone for each company
-    pct_idxs = range(0, len(organizations), len(organizations) // 10)
+    pct_idxs = 0
+    if len(organizations) >= 10:
+        pct_idxs = range(0, len(organizations), len(organizations) // 10)
+    else:
+        pct_idxs = range(0, len(organizations))
     for i, org in enumerate(organizations):
         if i in pct_idxs:
             print(f"{pct_idxs.index(i) * 10}%")
         tone_label = f"{org.replace(' ', '_')}_tone"
         
         overall_org_df = data.filter(f"Organization == '{org}'")
-        org_tone = daily_tone(overall_org_df, org)
+        org_tone = daily_tone(unique_publisher(overall_org_df), org)
         overall_tone = subtract_cols(overall_tone.join(org_tone, on="date", how="left"),
                                      tone_label, "industry_tone")
       
         for L, tdf in esg_tones.items():
             esg_org_df = overall_org_df.filter(f"{L} == True")
-            esg_org_tone = daily_tone(esg_org_df, org)
+            esg_org_tone = daily_tone(unique_publisher(esg_org_df), org)
             esg_tones[L] = subtract_cols(tdf.join(esg_org_tone, on="date", how="left"), 
                                          tone_label, "industry_tone")            
     del data   
@@ -130,9 +160,12 @@ def make_tables(start_date, end_date):
     # Average to get overall scores
     print("Computing Overall Scores")
     scores = {}
+    print("    Calculating overall tone")
     overall_scores = get_col_avgs(overall_tone)
+    print("    Calculating esg tone")
     esg_scores = {L: get_col_avgs(tdf) for L, tdf in esg_tones.items()}
-
+    
+    print("    Calculating esg tone diff by organization")
     for org in organizations:
         diff_label = f"{org.replace(' ', '_')}_diff"
         scores[org] = {L: tdf[diff_label] for L, tdf in esg_scores.items()}
