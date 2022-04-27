@@ -85,6 +85,8 @@ you can see more detail explanation at [here](https://snap.stanford.edu/node2vec
 ***Markowitz Portfolio Theory is used!***
 
 you can see more detail explanation at [Wikipedia](https://en.wikipedia.org/wiki/Modern_portfolio_theory)
+<br></br>
+
 
 ## Streamlit for Web demo
 ### Let's move to streamlit!
