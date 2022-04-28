@@ -139,18 +139,17 @@ def main(start_data, end_data):
     state = []
     with box1:
         st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
-        metric_options = ["USA", "UK", "CANADA"]
-        line_metric = st.radio("Please Select your Market", options=metric_options)
+        market_options = ["USA", "UK", "CANADA"]
+        market_metric = st.radio("Please Select your Market", options=market_options)
     with box2:
         with st.spinner(text="Fetching Data..."):
-            data, companies = load_data(start_data, end_data, line_metric)
+            data, companies = load_data(start_data, end_data, market_metric)
 
             df_conn = data["conn"]
             df_data = data["data"]
             embeddings = data["embed"]  
 
-        company = st.selectbox(INFO, companies)
-        line_metric_old = line_metric            
+        company = st.selectbox(INFO, companies)         
     
         
     ###### FILTER ######
@@ -600,60 +599,61 @@ def main(start_data, end_data):
             ).configure_axis(grid=False)
             st.altair_chart(conf_plot, use_container_width=True)
             
-    st.markdown("---")
-    portfolio1 = data["Portfolio"][company]
-    portfolio2 = data["Portfolio"][neighbors]
-    table = pd.concat([portfolio1, portfolio2], axis=1)
-    
-    returns = table.pct_change()
-    mean_returns = returns.mean()
-    cov_matrix = returns.cov()
-    num_portfolios = 25000
-    risk_free_rate = 0.0178
-    
-    max_sharpe = max_sharpe_ratio(mean_returns, cov_matrix, risk_free_rate)
-    sdp, rp = portfolio_annualised_performance(max_sharpe['x'], mean_returns, cov_matrix)
-    max_sharpe_allocation = pd.DataFrame(max_sharpe.x,index=table.columns,columns=['allocation'])
-    max_sharpe_allocation.allocation = [round(i*100,2)for i in max_sharpe_allocation.allocation]
-    max_sharpe_allocation = pd.DataFrame({"company": max_sharpe_allocation.T.columns, "allocation": max_sharpe_allocation.T.loc['allocation']})
-    
-    min_vol = min_variance(mean_returns, cov_matrix)
-    sdp_min, rp_min = portfolio_annualised_performance(min_vol['x'], mean_returns, cov_matrix)
-    min_vol_allocation = pd.DataFrame(min_vol.x,index=table.columns,columns=['allocation'])
-    min_vol_allocation.allocation = [round(i*100,2)for i in min_vol_allocation.allocation]
-    min_vol_allocation = pd.DataFrame({"company": min_vol_allocation.T.columns, "allocation": min_vol_allocation.T.loc['allocation']})
-    
-    an_vol = np.std(returns) * np.sqrt(252)
-    an_rt = mean_returns * 252
-    
-    choose_portfolio = ["Min Vol", "Max Sharpe"]
-    portfolio_metric = st.radio("Please Select your Portfolio", options=choose_portfolio)
-    
-    if portfolio_metric == 'Max Sharpe':
-        pie_chart = alt.Chart(max_sharpe_allocation, title="Maximum Sharpe Ratio Portfolio Allocation").mark_arc().encode(
-                    theta=alt.Theta(field="allocation", type="quantitative"),
-                    color=alt.Color(field="company", type="nominal"),
-                    ).properties(height=350)
-        st.altair_chart(pie_chart, use_container_width=True) 
-        st.write("Annualised Return:", round(rp,2))
-        st.write("Annualised Volatility:", round(sdp,2))
-    else:
-        pie_chart = alt.Chart(min_vol_allocation, title="Minimum Volatility Portfolio Allocation").mark_arc().encode(
-                    theta=alt.Theta(field="allocation", type="quantitative"),
-                    color=alt.Color(field="company", type="nominal"),
-                    ).properties(height=350)
-        st.altair_chart(pie_chart, use_container_width=True) 
-        st.write("Annualised Return:", round(rp_min,2))
-        st.write("Annualised Volatility:", round(sdp_min,2))
-    
-    with st.expander("Spread Out"):
-        pie_chart = alt.Chart(max_sharpe_allocation, title="Maximum Sharpe Ratio Portfolio Allocation").mark_arc().encode(
-                    theta=alt.Theta(field="allocation", type="quantitative"),
-                    color=alt.Color(field="company", type="nominal"),
-                    ).properties(height=350)
-        st.altair_chart(pie_chart, use_container_width=True) 
-        st.write("Annualised Return:", round(rp,2))
-        st.write("Annualised Volatility:", round(sdp,2))
+    if market_metric == 'USA':
+        st.markdown("---")
+        portfolio1 = data["Portfolio"][company]
+        portfolio2 = data["Portfolio"][neighbors]
+        table = pd.concat([portfolio1, portfolio2], axis=1)
+
+        returns = table.pct_change()
+        mean_returns = returns.mean()
+        cov_matrix = returns.cov()
+        num_portfolios = 25000
+        risk_free_rate = 0.0178
+
+        max_sharpe = max_sharpe_ratio(mean_returns, cov_matrix, risk_free_rate)
+        sdp, rp = portfolio_annualised_performance(max_sharpe['x'], mean_returns, cov_matrix)
+        max_sharpe_allocation = pd.DataFrame(max_sharpe.x,index=table.columns,columns=['allocation'])
+        max_sharpe_allocation.allocation = [round(i*100,2)for i in max_sharpe_allocation.allocation]
+        max_sharpe_allocation = pd.DataFrame({"company": max_sharpe_allocation.T.columns, "allocation": max_sharpe_allocation.T.loc['allocation']})
+
+        min_vol = min_variance(mean_returns, cov_matrix)
+        sdp_min, rp_min = portfolio_annualised_performance(min_vol['x'], mean_returns, cov_matrix)
+        min_vol_allocation = pd.DataFrame(min_vol.x,index=table.columns,columns=['allocation'])
+        min_vol_allocation.allocation = [round(i*100,2)for i in min_vol_allocation.allocation]
+        min_vol_allocation = pd.DataFrame({"company": min_vol_allocation.T.columns, "allocation": min_vol_allocation.T.loc['allocation']})
+
+        an_vol = np.std(returns) * np.sqrt(252)
+        an_rt = mean_returns * 252
+
+        choose_portfolio = ["Min Vol", "Max Sharpe"]
+        portfolio_metric = st.radio("Please Select your Portfolio", options=choose_portfolio)
+
+        if portfolio_metric == 'Max Sharpe':
+            pie_chart = alt.Chart(max_sharpe_allocation, title="Maximum Sharpe Ratio Portfolio Allocation").mark_arc().encode(
+                        theta=alt.Theta(field="allocation", type="quantitative"),
+                        color=alt.Color(field="company", type="nominal"),
+                        ).properties(height=350)
+            st.altair_chart(pie_chart, use_container_width=True) 
+            st.write("Annualised Return:", round(rp,2))
+            st.write("Annualised Volatility:", round(sdp,2))
+        else:
+            pie_chart = alt.Chart(min_vol_allocation, title="Minimum Volatility Portfolio Allocation").mark_arc().encode(
+                        theta=alt.Theta(field="allocation", type="quantitative"),
+                        color=alt.Color(field="company", type="nominal"),
+                        ).properties(height=350)
+            st.altair_chart(pie_chart, use_container_width=True) 
+            st.write("Annualised Return:", round(rp_min,2))
+            st.write("Annualised Volatility:", round(sdp_min,2))
+
+        with st.expander("Spread Out"):
+            pie_chart = alt.Chart(max_sharpe_allocation, title="Maximum Sharpe Ratio Portfolio Allocation").mark_arc().encode(
+                        theta=alt.Theta(field="allocation", type="quantitative"),
+                        color=alt.Color(field="company", type="nominal"),
+                        ).properties(height=350)
+            st.altair_chart(pie_chart, use_container_width=True) 
+            st.write("Annualised Return:", round(rp,2))
+            st.write("Annualised Volatility:", round(sdp,2))
         
 
 if __name__ == "__main__":
