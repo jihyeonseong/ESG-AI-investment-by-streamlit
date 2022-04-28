@@ -626,7 +626,7 @@ def main(start_data, end_data):
     an_vol = np.std(returns) * np.sqrt(252)
     an_rt = mean_returns * 252
     
-    choose_portfolio = ["Max Sharpe", "Min Vol"]
+    choose_portfolio = ["Min Vol", "Max Sharpe"]
     portfolio_metric = st.radio("Please Select your Portfolio", options=choose_portfolio)
     
     if portfolio_metric == 'Max Sharpe':
@@ -647,13 +647,13 @@ def main(start_data, end_data):
         st.write("Annualised Volatility:", round(sdp_min,2))
     
     with st.expander("Spread Out"):
-        pie_chart = alt.Chart(min_vol_allocation, title="Minimum Volatility Portfolio Allocation").mark_arc().encode(
+        pie_chart = alt.Chart(max_sharpe_allocation, title="Maximum Sharpe Ratio Portfolio Allocation").mark_arc().encode(
                     theta=alt.Theta(field="allocation", type="quantitative"),
                     color=alt.Color(field="company", type="nominal"),
                     ).properties(height=350)
         st.altair_chart(pie_chart, use_container_width=True) 
-        st.write("Annualised Return:", round(rp_min,2))
-        st.write("Annualised Volatility:", round(sdp_min,2))
+        st.write("Annualised Return:", round(rp,2))
+        st.write("Annualised Volatility:", round(sdp,2))
         
 
 if __name__ == "__main__":
