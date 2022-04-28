@@ -181,6 +181,7 @@ def main(start_data, end_data):
     ###### FILTER DATA ######
     df_company = filter_company_data(df_company, esg_categories,
                                      start, end)
+    df_company = df_company.drop_duplicates(keep='last', subset=['DATE', 'SourceCommonName'])
     tone_df = filter_on_date(tone_df, start, end)
     ind_tone_df = filter_on_date(ind_tone_df, start, end)
     date_filtered = filter_on_date(df_data, start, end)
@@ -202,10 +203,10 @@ def main(start_data, end_data):
 
     ###### DISPLAY DATA ######
     URL_Expander = st.expander(f"{company.title()}'s Data: ", True)
-    URL_Expander.write(f"### Chosen {company.title()}'s {len(df_company.drop_duplicates(keep='last', subset=['DATE', 'SourceCommonName'])):,d} Article ESG Tone Table")
+    URL_Expander.write(f"### Chosen {company.title()}'s {len(df_company):,d} Article ESG Tone Table")
     display_cols = ["DATE", "SourceCommonName", "Tone", "Polarity",
                     "NegativeTone", "PositiveTone"]  #  "WordCount"
-    URL_Expander.write(df_company[display_cols].drop_duplicates(keep='last', subset=['DATE', 'SourceCommonName'])[::-1])
+    URL_Expander.write(df_company[display_cols][::-1])
 
     
     ####
