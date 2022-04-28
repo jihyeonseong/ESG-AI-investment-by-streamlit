@@ -1,0 +1,301 @@
+ticker,company
+AAPL,apple
+MSFT,microsoft
+AMZN,amazon com
+TSLA,tesla
+GOOGL,alphabet
+GOOG,alphabet
+BRKB,berkshire hathaway
+JNJ,johnson & johnson
+UNH,unitedhealth
+NVDA,nvidia
+FB,meta platforms
+PG,procter & gamble
+JPM,jpmorgan chase &
+XOM,exxon mobil
+V,visa
+HD,home depot
+CVX,chevron
+MA,mastercard
+ABBV,abbvie
+PFE,pfizer
+BAC,bank of
+KO,coca cola
+COST,costco wholesale
+LLY,eli lilly
+PEP,pepsico
+AVGO,broadcom
+WMT,walmart
+CSCO,cisco systems
+MRK,merck &
+DIS,walt disney
+VZ,verizon communications
+ABT,abbott laboratories
+TMO,thermo fisher scientific
+CMCSA,comcast
+ACN,accenture
+ADBE,adobe
+MCD,mcdonalds
+INTC,intel corporation
+WFC,wells fargo
+BMY,bristol myers squibb
+PM,philip morris
+DHR,danaher
+CRM,salesforce
+TXN,texas instrument
+QCOM,qualcomm
+UNP,union pacific
+NKE,nike
+RTX,raytheon technologies
+NEE,nextera
+MDT,medtronic
+AMGN,amgen
+AMD,advanced micro devices
+T,at&t
+LOW,lowes companies
+CVS,cvs health
+UPS,united parcel service
+SPGI,s&p global
+HON,honeywell
+ANTM,anthem
+PLD,prologis
+IBM,international business machines
+COP,conocophillips
+ORCL,oracle
+AMT,american tower
+CAT,caterpillar
+TGT,target
+INTU,intuit
+AXP,american express
+MS,morgan stanley
+LMT,lockheed martin
+DE,deere
+SCHW,charles schwab
+GS,goldman sachs
+MO,altria
+C,citigroup
+PYPL,paypal holdings
+AMAT,applied material
+ADP,automatic data processing
+BLK,blackrock
+NOW,servicenow
+BA,boeing
+MDLZ,mondelez
+BKNG,booking holdings
+GE,general electric
+SBUX,starbucks
+CB,chubb ltd
+DUK,duke
+SYK,stryker
+ISRG,intuitive surgical
+NFLX,netflix
+MMC,marsh & mclennan
+ZTS,zoetis
+MMM,3m
+CI,cigna
+CCI,crown castle
+ADI,analog devices
+SO,southern
+GILD,gilead sciences
+CME,cme
+BX,blackstone
+CSX,csx
+MU,micron technology
+XTSLA,blk csh fnd treasury sl agency
+TMUS,t mobile us
+TJX,tjx
+BDX,becton dickinson
+PNC,pnc financial services
+EW,edwards lifesciences
+WM,waste management
+REGN,regeneron
+VRTX,vertex
+AON,aon
+USB,us bancorp
+D,dominion
+TFC,truist financial
+CL,colgate palmolive
+EQIX,equinix
+SHW,sherwin williams
+EOG,eog resources
+NOC,northrop grumman
+LRCX,lam research
+ICE,intercontinental exchange
+PGR,progressive
+ITW,illinois tool
+NSC,norfolk southern
+BSX,boston scientific
+PSA,public storage
+ATVI,activision blizzard
+FCX,freeport mcmoran
+GD,general dynamics
+CHTR,charter communications
+EL,estee lauder
+FIS,fidelity national information serv
+NEM,newmont
+F,ford motor
+FISV,fiserv
+DG,dollar general
+ETN,eaton
+PANW,palo alto networks
+HUM,humana
+SLB,schlumberger
+COF,capital one financial
+EMR,emerson electric
+HCA,hca healthcare
+SRE,sempra
+MPC,marathon petroleum
+GM,general motors
+APD,air products and chemicals
+MCO,moodys
+UBER,uber technologies
+ADM,archer daniels midland
+DOW,dow
+AEP,american electric power
+MRNA,moderna
+ROP,roper technologies
+PXD,pioneer natural resource
+FDX,fedex
+MRVL,marvell technology
+MAR,marriott
+SQ,block
+ORLY,oreilly automotive
+AIG,american
+KLAC,kla
+MCK,mckesson
+CNC,centene
+EXC,exelon
+LHX,l3harris technologies
+KMB,kimberly clark
+MET,metlife
+OXY,occidental petroleum
+AZO,autozone
+SYY,sysco
+NXPI,nxp semiconductors
+ILMN,illumina
+WBD,warner bros. discovery inc series
+CTSH,cognizant technology solutions
+GIS,general mills
+VLO,valero
+SNPS,synopsys
+NUE,nucor
+JCI,johnson controls
+ECL,ecolab
+DLR,digital realty
+PRU,prudential financial
+TRV,travelers companies
+CDNS,cadence design systems
+WELL,welltower
+PAYX,paychex
+WMB,williams
+HLT,hilton worldwide holdings
+CTVA,corteva
+ADSK,autodesk
+DXCM,dexcom
+FTNT,fortinet
+O,realty income
+KR,kroger
+CMG,chipotle mexican grill
+SPG,simon property
+CRWD,crowdstrike holdings
+LULU,lululemon athletica
+APH,amphenol
+XEL,xcel
+IQV,iqvia holdings
+HPQ,hp
+AFL,aflac
+WDAY,workday
+STZ,constellation brands
+IDXX,idexx laboratories
+TWTR,twitter
+PSX,phillips 66
+DVN,devon
+DLTR,dollar tree
+SBAC,sba communications reit corp class
+GPN,global payments
+ALL,allstate
+PEG,public service enterprise
+MSI,motorola solutions
+SNOW,snowflake
+ROST,ross stores
+KMI,kinder morgan
+A,agilent technologies
+AJG,arthur j gallagher
+MCHP,microchip technology
+BAX,baxter
+PH,parker hannifin
+CTAS,cintas
+EA,electronic arts
+CARR,carrier global
+DD,dupont de nemours
+MSCI,msci
+ED,consolidated edison
+AVB,avalonbay communities
+TEAM,atlassian
+YUM,yum brands
+TT,trane technologies
+EBAY,ebay
+EQR,equity residential
+VRSK,verisk analytics
+HSY,hershey foods
+WEC,wec
+MNST,monster beverage
+TDG,transdigm
+WBA,walgreen boots alliance
+BK,bank of new york mellon
+ARE,alexandria real estate equities
+FAST,fastenal
+LNG,cheniere
+DFS,discover financial services
+RMD,resmed
+HAL,halliburton
+WY,weyerhaeuser
+IFF,international flavors & fragrances
+ES,eversource
+DDOG,datadog
+OTIS,otis worldwide
+BIIB,biogen
+MTB,m&t bank
+TROW,t rowe price
+WTW,willis towers watson
+AMP,ameriprise finance
+PPG,ppg industries
+KHC,kraft heinz
+OKE,oneok
+SIVB,svb financial
+ROK,rockwell automation
+AME,ametek
+PCAR,paccar
+MTD,mettler toledo
+AWK,american water works
+ALGN,align technology
+HES,hess
+KKR,kkr and
+RSG,republic services
+ODFL,old dominion freight line
+APTV,aptiv
+CMI,cummins
+ANET,arista networks
+CERN,cerner
+CBRE,cbre
+FRC,first republic bank
+LYB,lyondellbasell industries nv class
+GLW,corning
+TSN,tyson foods
+DAL,delta air lines
+EXR,extra space storage
+LUV,southwest airlines
+EXPE,expedia
+TTD,trade desk
+EIX,edison
+ZBH,zimmer biomet holdings
+KEYS,keysight technologies
+DTE,dte
+KDP,keurig dr pepper
+BLL,ball
+FITB,fifth third bancorp
+INVH,invitation homes
+VEEV,veeva systems
+MKC,mccormick & co non voting
+CHD,church and dwight
+EFX,equifax
