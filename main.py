@@ -205,7 +205,7 @@ def main(start_data, end_data):
     URL_Expander.write(f"### Chosen {company.title()}'s {len(df_company):,d} Article ESG Tone Table")
     display_cols = ["DATE", "SourceCommonName", "Tone", "Polarity",
                     "NegativeTone", "PositiveTone"]  #  "WordCount"
-    URL_Expander.write(df_company[display_cols][::-1])
+    URL_Expander.write(df_company[display_cols].drop_duplicates[keep='last', subset=['DATE', 'SourceCommonName']][::-1])
 
     
     ####
