@@ -123,10 +123,10 @@ def main(start_data, end_data):
     ####### CREATE SIDEBAR CATEGORY FILTER######
     st.sidebar.title("Please Choose Options!")
     date_place = st.sidebar.empty()
-    esg_categories = st.sidebar.multiselect("Choose ESG Categories",
+    esg_categories = st.sidebar.multiselect("Select Articles' Theme among ESG",
                                             ["E", "S", "G"], ["E", "S", "G"])
     pub = st.sidebar.empty()
-    num_neighbors = st.sidebar.slider("Select Similar Company Number", 1, 20, value=8)
+    num_neighbors = st.sidebar.slider("Select Number of Similar Company to Make Portfolio", 1, 20, value=8)
 
 
     ###### LayOut ######           
@@ -134,7 +134,7 @@ def main(start_data, end_data):
     
     ###### LOAD DATA ######  
     ###default setting### 
-    market = 'SP500'
+    market = 'USA'
     INFO = 'Please Choose your Stock'
     state = []
     with box1:
@@ -196,7 +196,7 @@ def main(start_data, end_data):
     ###### PUBLISHER SELECT BOX ######
     publishers = df_company.SourceCommonName.sort_values().unique().tolist()
     publishers.insert(0, "all")
-    publisher = pub.selectbox("Publisher", publishers)
+    publisher = pub.selectbox("Select Publisher", publishers)
     df_company = filter_publisher(df_company, publisher)
 
 
