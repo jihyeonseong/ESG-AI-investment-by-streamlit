@@ -126,7 +126,7 @@ def main(start_data, end_data):
     esg_categories = st.sidebar.multiselect("Select Articles' Theme among ESG",
                                             ["E", "S", "G"], ["E", "S", "G"])
     pub = st.sidebar.empty()
-    num_neighbors = st.sidebar.slider("Select Number of Similar Company \n for your Portfolio", 1, 20, value=8)
+    num_neighbors = st.sidebar.slider("Select Number of Similar Company for Portfolio", 1, 20, value=8)
 
 
     ###### LayOut ######           
