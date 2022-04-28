@@ -84,7 +84,7 @@ you can see more detail explanation at [here](https://snap.stanford.edu/node2vec
 ### What method is used to form Portfolio?
 ***Markowitz Portfolio Theory is used!***
 
-you can see more detail explanation at [Wikipedia](https://en.wikipedia.org/wiki/Modern_portfolio_theory)
+you can see more detail explanation at [here](https://towardsdatascience.com/efficient-frontier-portfolio-optimisation-in-python-e7844051e7f)
 <br></br>
 
 
