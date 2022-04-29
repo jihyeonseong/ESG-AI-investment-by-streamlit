@@ -248,7 +248,7 @@ def main(start_data, end_data):
         metric_chart = alt.Chart(esg_plot_df, title=f"{line_metric} 시계열 그래프", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
                                    ).mark_line().encode(
             x=alt.X("yearmonthdate(DATE):O", title=""), #title="DATE"
-            y=alt.Y("Score:Q", title="E Score"),
+            y=alt.Y("Score:Q", title="E 점수"),
             color=alt.Color("WHO", sort=None, legend=alt.Legend(
                 title=None, orient="top")),
             strokeDash=alt.StrokeDash("WHO", sort=None, legend=alt.Legend(
@@ -268,7 +268,7 @@ def main(start_data, end_data):
         metric_chart = alt.Chart(esg_plot_df, title=f"{line_metric} 시계열 그래프", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
                                    ).mark_line().encode(
             x=alt.X("yearmonthdate(DATE):O", title=""), #title="DATE"
-            y=alt.Y("Score:Q", title="S Score"),
+            y=alt.Y("Score:Q", title="S 점수"),
             color=alt.Color("WHO", sort=None, legend=alt.Legend(
                 title=None, orient="top")),
             strokeDash=alt.StrokeDash("WHO", sort=None, legend=alt.Legend(
@@ -324,7 +324,7 @@ def main(start_data, end_data):
         metric_chart = alt.Chart(plot_df, title=f"{line_metric} 시계열 그래프", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
                              ).mark_line().encode(
         x=alt.X("yearmonthdate(DATE):O", title=""),
-        y=alt.Y(f"{line_metric_}:Q", scale=alt.Scale(type="linear")),
+        y=alt.Y(f"{line_metric_}:Q", scale=alt.Scale(type="linear"), title=line_metric),
         color=alt.Color("WHO", legend=None),
         strokeDash=alt.StrokeDash("WHO", sort=None,
             legend=alt.Legend(
