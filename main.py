@@ -233,9 +233,10 @@ def main(start_data, end_data):
     col1, col2 = st.columns((1.3, 4))
     metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                       "WordCount", "E Score", "S Score", "G Score"]
+    metric_options = ["어조", "부정적 어조", "긍정적 어조", "양극성", "단어수", "E 점수", "S 점수", "G 점수"]
     line_metric = col1.radio("평가 지표를 선택하세요", options=metric_options)
 
-    if line_metric == "E Score":
+    if line_metric == "E 점수":
         # Get E Scores
         e_df["WHO"] = company.title()
         ind_e_df["WHO"] = "Industry Average"
@@ -255,7 +256,7 @@ def main(start_data, end_data):
                 symbolStrokeWidth=4, orient="top")),
             tooltip=["DATE", alt.Tooltip("Score", format=".5f")]
             )
-    elif line_metric == "S Score":
+    elif line_metric == "S 점수":
         # Get E Scores
         s_df["WHO"] = company.title()
         ind_s_df["WHO"] = "Industry Average"
@@ -275,7 +276,7 @@ def main(start_data, end_data):
                 symbolStrokeWidth=4, orient="top")),
             tooltip=["DATE", alt.Tooltip("Score", format=".5f")]
             )
-    elif line_metric == "G Score":
+    elif line_metric == "G 점수":
         # Get E Scores
         g_df["WHO"] = company.title()
         ind_g_df["WHO"] = "Industry Average"
@@ -296,17 +297,34 @@ def main(start_data, end_data):
             tooltip=["DATE", alt.Tooltip("Score", format=".5f")]
             )
     else:
-        df1 = df_company.groupby("DATE")[line_metric].mean(
+        if line_metric == '어조':
+            line_metric_ = "Tone"
+        elif line_metric == '부정적 어조':
+            line_metric_ = "NegativeTone"
+        elif line_metric == '긍정적 어조':
+            line_metric_ = "PositiveTone"
+        elif line_metric == '양극성':
+            line_metric_ = "Polarity"
+        elif line_metric == '단어수':
+            line_metric_ = "WordCount"
+        elif line_metric == 'E 점수':
+            line_metric_ = "E Score"
+        elif line_metric == 'S 점수':
+            line_metric_ = "S Score"
+        elif line_metric == 'G 점수':
+            line_metric_ = "G Score"
+        
+        df1 = df_company.groupby("DATE")[line_metric_].mean(
             ).reset_index()
-        df2 = filter_on_date(df_data.groupby("DATE")[line_metric].mean(
+        df2 = filter_on_date(df_data.groupby("DATE")[line_metric_].mean(
             ).reset_index(), start, end)
         df1["WHO"] = company.title()
         df2["WHO"] = "Industry Average"
         plot_df = pd.concat([df1, df2]).reset_index(drop=True)
-        metric_chart = alt.Chart(plot_df, title=f"{line_metric} 시계열 그래프", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
+        metric_chart = alt.Chart(plot_df, title=f"{line_metric_} 시계열 그래프", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
                              ).mark_line().encode(
         x=alt.X("yearmonthdate(DATE):O", title=""),
-        y=alt.Y(f"{line_metric}:Q", scale=alt.Scale(type="linear")),
+        y=alt.Y(f"{line_metric_}:Q", scale=alt.Scale(type="linear")),
         color=alt.Color("WHO", legend=None),
         strokeDash=alt.StrokeDash("WHO", sort=None,
             legend=alt.Legend(
