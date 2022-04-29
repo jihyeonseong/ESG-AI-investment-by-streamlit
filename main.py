@@ -206,8 +206,8 @@ def main(start_data, end_data):
                     "NegativeTone", "PositiveTone"]  
     display_cols_ = ["날짜", "언론사", "어조", "양극성",
                     "부정적 어조", "긍정적 어조"]  
-    df_company[display_cols_] = df_company[display_cols]
-    URL_Expander.write(df_company[display_cols_][::-1])
+    tmp[display_cols_] = df_company[display_cols]
+    URL_Expander.write(tmp[display_cols_][::-1])
 
     
     ####
