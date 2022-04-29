@@ -178,8 +178,7 @@ def main(start_data, end_data):
 
 
     ###### FILTER DATA ######
-    df_company = filter_company_data(df_company, esg_categories,
-                                     start, end)
+    df_company = filter_company_data(df_company, esg_categories, start, end)
     df_company = df_company.drop_duplicates(keep='last', subset=['DATE', 'SourceCommonName'])
     tone_df = filter_on_date(tone_df, start, end)
     ind_tone_df = filter_on_date(ind_tone_df, start, end)
@@ -204,8 +203,11 @@ def main(start_data, end_data):
     URL_Expander = st.expander(f"{company.title()}의 ESG 테마 기사: ", True)
     URL_Expander.write(f"### 선택된 {company.title()}의 {len(df_company):,d}개 ESG 테마 기사의 어조 분석 표입니다")
     display_cols = ["DATE", "SourceCommonName", "Tone", "Polarity",
-                    "NegativeTone", "PositiveTone"]  #  "WordCount"
-    URL_Expander.write(df_company[display_cols][::-1])
+                    "NegativeTone", "PositiveTone"]  
+    display_cols_ = ["날짜", "언론사", "어조", "양극성",
+                    "부정적 어조", "긍정적 어조"]  
+    df_company[display_cols_] = df_company[display_cols]
+    URL_Expander.write(df_company[display_cols_][::-1])
 
     
     ####
