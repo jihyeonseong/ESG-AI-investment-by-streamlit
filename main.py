@@ -230,7 +230,7 @@ def main(start_data, end_data):
         neighbors = []
         print("유사 기업이 없습니다")
   
-    col1, col2 = st.columns((1.3, 4))
+    col1, col2 = st.columns((1.2, 4))
     metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                       "WordCount", "E Score", "S Score", "G Score"]
     metric_options = ["어조", "부정적 어조", "긍정적 어조", "양극성", "단어수", "E 점수", "S 점수", "G 점수"]
