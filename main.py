@@ -135,7 +135,7 @@ def main(start_data, end_data):
     ###### LOAD DATA ######  
     ###default setting### 
     market = 'USA'
-    INFO = '기업을 '
+    INFO = '기업을 선택하세요'
     state = []
     with box1:
         st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
@@ -201,7 +201,7 @@ def main(start_data, end_data):
 
 
     ###### DISPLAY DATA ######
-    URL_Expander = st.expander(f"{company.title()}'의 ESG 테마 기사: ", True)
+    URL_Expander = st.expander(f"{company.title()}의 ESG 테마 기사: ", True)
     URL_Expander.write(f"### 선택된 {company.title()}의 {len(df_company):,d}개 ESG 테마 기사의 어조 분석 표입니다")
     display_cols = ["DATE", "SourceCommonName", "Tone", "Polarity",
                     "NegativeTone", "PositiveTone"]  #  "WordCount"
