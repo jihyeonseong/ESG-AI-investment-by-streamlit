@@ -665,7 +665,7 @@ def main(start_data, end_data):
             pie_chart = alt.Chart(max_sharpe_allocation, title="높은 수익률의 포트폴리오 예시입니다").mark_arc().encode(
                         theta=alt.Theta(field="allocation", type="quantitative"),
                         color=alt.Color(field="company", type="nominal"),
-                        ).properties(height=350)
+                        ).properties(height=350).interactive()
             st.altair_chart(pie_chart, use_container_width=True) 
             st.write("연 평균 예상 수익:", round(rp,2))
             st.write("연 평균 포트폴리오 변동성:", round(sdp,2))
@@ -673,7 +673,7 @@ def main(start_data, end_data):
             pie_chart = alt.Chart(min_vol_allocation, title="마코위츠 포트폴리오 이론 예시입니다").mark_arc().encode(
                         theta=alt.Theta(field="allocation", type="quantitative"),
                         color=alt.Color(field="company", type="nominal"),
-                        ).properties(height=350)
+                        ).properties(height=350).interactive()
             st.altair_chart(pie_chart, use_container_width=True) 
             st.write("연 평균 예상 수익:", round(rp_min,2))
             st.write("연 평균 포트폴리오 변동성:", round(sdp_min,2))
@@ -682,7 +682,7 @@ def main(start_data, end_data):
             pie_chart = alt.Chart(max_sharpe_allocation, title="높은 수익률의 포트폴리오 예시입니다").mark_arc().encode(
                         theta=alt.Theta(field="allocation", type="quantitative"),
                         color=alt.Color(field="company", type="nominal"),
-                        ).properties(height=350)
+                        ).properties(height=350).interactive()
             st.altair_chart(pie_chart, use_container_width=True) 
             st.write("연 평균 예상 수익:", round(rp,2))
             st.write("연 평균 포트폴리오 변동성:", round(sdp,2))
