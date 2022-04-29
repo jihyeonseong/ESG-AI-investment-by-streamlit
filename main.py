@@ -126,7 +126,7 @@ def main(start_data, end_data):
     esg_categories = st.sidebar.multiselect("기사 테마 중 ESG 옵션을 선택하세요",
                                             ["E", "S", "G"], ["E", "S", "G"])
     pub = st.sidebar.empty()
-    num_neighbors = st.sidebar.slider("포트폴리오구성을 위한 유사 기업 수를 ", 1, 20, value=8)
+    num_neighbors = st.sidebar.slider("포트폴리오구성을 위한 유사 기업 수를 선택하세요", 1, 20, value=8)
 
 
     ###### LayOut ######           
@@ -322,7 +322,7 @@ def main(start_data, end_data):
     ).interactive()
     col2.altair_chart(metric_chart, use_container_width=True)
     
-    empty, box = st.columns((1, 4))
+    empty, box = st.columns((1.3, 4))
     with empty:
         pass
     with box:
