@@ -12,7 +12,8 @@ Winner: Best Environmental Impact & Best User Experience***
 - s&p500's 90% of enterprises reveal sustainability report every year.
 - But we do not have standard evaluation format to get score of ESG.
 - So crawlling the article from gdelt, and analyze tone of article about ESG and then scoring with the word that used in article 
-- At scoring, crawlling and node2vec method for NLP is used. 
+- At scoring, gdelt databse is used.
+- At porfolio creation, Node2Vec and Markowitz portfolio theory are used. 
 <br></br>
 
 ## Data Crawling & Creation with Databricks 
@@ -67,7 +68,7 @@ Databricks develops a web-based platform for working with Spark, that provides a
 ***We can Create and Manage Data parallely with PySpark and this is really fast!***
 
 ### Why we need data crawlling and important rule to follow!
-1. You must have to include December to January when crawling data!
+1. You must have to include December or January when crawling data!
    - This is important point, because year end and start is the evaluation period of company.
    - So you can get superior quality and quantity of article.
 
