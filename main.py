@@ -126,7 +126,7 @@ def main(start_data, end_data):
     esg_categories = st.sidebar.multiselect("기사 테마 중 ESG 옵션을 선택하세요",
                                             ["E", "S", "G"], ["E", "S", "G"])
     pub = st.sidebar.empty()
-    num_neighbors = st.sidebar.slider("Select Number of Similar Company for Portfolio", 1, 20, value=8)
+    num_neighbors = st.sidebar.slider("포트폴리오구성을 위한 유사 기업 수를 ", 1, 20, value=8)
 
 
     ###### LayOut ######           
@@ -196,7 +196,7 @@ def main(start_data, end_data):
     ###### PUBLISHER SELECT BOX ######
     publishers = df_company.SourceCommonName.sort_values().unique().tolist()
     publishers.insert(0, "all")
-    publisher = pub.selectbox("Select Publisher", publishers)
+    publisher = pub.selectbox("언론사를 선택하세요", publishers)
     df_company = filter_publisher(df_company, publisher)
 
 
@@ -209,7 +209,7 @@ def main(start_data, end_data):
 
     
     ####
-    URL_Expander.write(f"#### Sample Article Information")
+    URL_Expander.write(f"#### 최근 5일의 샘플 기사입니다")
     link_df = df_company[["DATE", "URL"]].drop_duplicates(keep='last', subset='DATE').tail(5).copy()
     # link_df["URL"] = link_df["URL"].apply(lambda R: f"[{R}]({R})")
     link_df["ARTICLE"] = link_df.URL.apply(get_clickable_name)
@@ -233,7 +233,7 @@ def main(start_data, end_data):
     col1, col2 = st.columns((1, 4))
     metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                       "WordCount", "E Score", "S Score", "G Score"]
-    line_metric = col1.radio("Please Select Evaluation Metric", options=metric_options)
+    line_metric = col1.radio("평가 지표를 선택하세요", options=metric_options)
 
     if line_metric == "E Score":
         # Get E Scores
@@ -335,7 +335,7 @@ def main(start_data, end_data):
                 df1["WHO"] = company.title()
                 df2["WHO"] = "Industry Average"
                 plot_df = pd.concat([df1, df2]).reset_index(drop=True)
-                metric_chart = alt.Chart(plot_df, title=f"{metric_options[i]} ", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
+                metric_chart = alt.Chart(plot_df, title=f"{metric_options[i]} 시계열 그래프", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
                                          ).mark_line().encode(
                     x=alt.X("yearmonthdate(DATE):O", title=""),
                     y=alt.Y(f"{metric_options[i]}:Q", scale=alt.Scale(type="linear")),
@@ -374,7 +374,7 @@ def main(start_data, end_data):
 
                     esg_plot_df.replace({"G_score": "Governance"}, inplace=True)
 
-                metric_chart = alt.Chart(esg_plot_df, title=f"{metric_options[len(metric_options)-3+i]} TimeSeries Graph", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
+                metric_chart = alt.Chart(esg_plot_df, title=f"{metric_options[len(metric_options)-3+i]} 시계열 그래프", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
                                            ).mark_line().encode(
                     x=alt.X("yearmonthdate(DATE):O", title=""), #title="DATE"
                     y=alt.Y("Score:Q", title=metric_options[len(metric_options)-3+i]),
@@ -510,8 +510,8 @@ def main(start_data, end_data):
                                       range(num_neighbors)]].values[0]})
         conf_plot = alt.Chart(neighbor_conf, title=f"상위 {num_neighbors}개 유사 기업의 유사도 점수 차트", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
                               ).mark_bar().encode(
-            x=alt.X("Confidence:Q", title="Confidence"),
-            y=alt.Y("Neighbor:N", sort="-x", title="Similar Company"),
+            x=alt.X("Confidence:Q", title="유사 정도"),
+            y=alt.Y("Neighbor:N", sort="-x", title="유사 "),
             tooltip=["Neighbor", alt.Tooltip("Confidence", format=".3f")],
             color=alt.Color("Confidence:Q", scale=alt.Scale(), legend=None)
         ).properties(
@@ -590,8 +590,8 @@ def main(start_data, end_data):
                                       range(num_neighbors)]].values[0]})
             conf_plot = alt.Chart(neighbor_conf, title=f"상위 {num_neighbors}개 유사 기업의 유사도 점수 차트", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
                                   ).mark_bar().encode(
-                x=alt.X("Confidence:Q", title="Confidence"),
-                y=alt.Y("Neighbor:N", sort="-x", title="Similar Company"),
+                x=alt.X("Confidence:Q", title="유사 정도"),
+                y=alt.Y("Neighbor:N", sort="-x", title="유사 "),
                 tooltip=["Neighbor", alt.Tooltip("Confidence", format=".3f")],
                 color=alt.Color("Confidence:Q", scale=alt.Scale(), legend=None)
             ).properties(
@@ -635,16 +635,16 @@ def main(start_data, end_data):
                         color=alt.Color(field="company", type="nominal"),
                         ).properties(height=350)
             st.altair_chart(pie_chart, use_container_width=True) 
-            st.write("Annualised Return:", round(rp,2))
-            st.write("Annualised Volatility:", round(sdp,2))
+            st.write("연 평균 예상 수익:", round(rp,2))
+            st.write("연 평균 포트폴리오 변동성:", round(sdp,2))
         else:
             pie_chart = alt.Chart(min_vol_allocation, title="안정성이 높은 포트폴리오 구성 예시입니다").mark_arc().encode(
                         theta=alt.Theta(field="allocation", type="quantitative"),
                         color=alt.Color(field="company", type="nominal"),
                         ).properties(height=350)
             st.altair_chart(pie_chart, use_container_width=True) 
-            st.write("Annualised Return:", round(rp_min,2))
-            st.write("Annualised Volatility:", round(sdp_min,2))
+            st.write("연 평균 예상 수익:", round(rp_min,2))
+            st.write("연 평균 포트폴리오 변동성:", round(sdp_min,2))
 
         with st.expander("Spread Out"):
             pie_chart = alt.Chart(max_sharpe_allocation, title="높은 수익률을 낼 수 있는 포트폴리오 구성 예시입니다").mark_arc().encode(
@@ -652,8 +652,8 @@ def main(start_data, end_data):
                         color=alt.Color(field="company", type="nominal"),
                         ).properties(height=350)
             st.altair_chart(pie_chart, use_container_width=True) 
-            st.write("Annualised Return:", round(rp,2))
-            st.write("Annualised Volatility:", round(sdp,2))
+            st.write("연 평균 예상 수익:", round(rp,2))
+            st.write("연 평균 포트폴리오 변동성:", round(sdp,2))
         
 
 if __name__ == "__main__":
