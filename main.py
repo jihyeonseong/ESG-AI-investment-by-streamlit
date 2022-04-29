@@ -658,11 +658,11 @@ def main(start_data, end_data):
         an_vol = np.std(returns) * np.sqrt(252)
         an_rt = mean_returns * 252
 
-        choose_portfolio = ["Min Vol", "Max Sharpe"]
+        choose_portfolio = ["낮은 변동성", "높은 수익률"]
         portfolio_metric = st.radio("수익률에 따른 포트폴리오를 선택하세요", options=choose_portfolio)
         st.write("")
-        if portfolio_metric == 'Max Sharpe':
-            pie_chart = alt.Chart(max_sharpe_allocation, title="높은 수익률의 포트폴리오 예시입니다").mark_arc().encode(
+        if portfolio_metric == '높은 수익률':
+            pie_chart = alt.Chart(max_sharpe_allocation, title="높은 수익률의 포트폴리오 예시입니다", padding={"left": 0, "top": 10, "right": 0, "bottom": 1}).mark_arc().encode(
                         theta=alt.Theta(field="allocation", type="quantitative"),
                         color=alt.Color(field="company", type="nominal"),
                         ).properties(height=350).interactive()
@@ -679,7 +679,7 @@ def main(start_data, end_data):
             st.write("연 평균 포트폴리오 변동성:", round(sdp_min,2))
 
         with st.expander("Spread Out"):
-            pie_chart = alt.Chart(max_sharpe_allocation, title="높은 수익률의 포트폴리오 예시입니다").mark_arc().encode(
+            pie_chart = alt.Chart(max_sharpe_allocation, title="높은 수익률의 포트폴리오 예시입니다", padding={"left": 0, "top": 10, "right": 0, "bottom": 1}).mark_arc().encode(
                         theta=alt.Theta(field="allocation", type="quantitative"),
                         color=alt.Color(field="company", type="nominal"),
                         ).properties(height=350).interactive()
