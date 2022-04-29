@@ -324,7 +324,7 @@ def main(start_data, end_data):
         metric_chart = alt.Chart(plot_df, title=f"{line_metric} 시계열 그래프", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
                              ).mark_line().encode(
         x=alt.X("yearmonthdate(DATE):O", title=""),
-        y=alt.Y(f"{line_metric}:Q", scale=alt.Scale(type="linear")),
+        y=alt.Y(f"{line_metric_}:Q", scale=alt.Scale(type="linear")),
         color=alt.Color("WHO", legend=None),
         strokeDash=alt.StrokeDash("WHO", sort=None,
             legend=alt.Legend(
@@ -332,7 +332,7 @@ def main(start_data, end_data):
                 symbolStrokeWidth=4, orient="top",
                 ),
             ),
-        tooltip=["DATE", alt.Tooltip(line_metric, format=".3f")]
+        tooltip=["DATE", alt.Tooltip(line_metric_, format=".3f")]
         )
     metric_chart = metric_chart.properties(
         height=340,
