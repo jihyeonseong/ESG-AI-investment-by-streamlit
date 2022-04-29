@@ -230,7 +230,7 @@ def main(start_data, end_data):
         neighbors = []
         print("유사 기업이 없습니다")
   
-    col1, col2 = st.columns((1, 4))
+    col1, col2 = st.columns((1.5, 4))
     metric_options = ["Tone", "NegativeTone", "PositiveTone", "Polarity",
                       "WordCount", "E Score", "S Score", "G Score"]
     line_metric = col1.radio("평가 지표를 선택하세요", options=metric_options)
