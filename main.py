@@ -488,8 +488,8 @@ def main(start_data, end_data):
     ###### CHART: SCATTER OF ARTICLES OVER TIME #####
     elif graph_metric == '단어 양극성 차트':
         scatter = alt.Chart(df_company, title= "단어 양극성 차트", padding={"left": 10, "top": 10, "right": 1, "bottom": 1}).mark_circle().encode(
-            x=alt.X("NegativeTone:Q", title="Negative Tone"),
-            y=alt.Y("PositiveTone:Q", title="Positive Tone"),
+            x=alt.X("NegativeTone:Q", title="부정적 어조"),
+            y=alt.Y("PositiveTone:Q", title="긍정적 어조"),
             size="WordCount:Q",
             color=alt.Color("Polarity:Q", scale=alt.Scale()),
             tooltip=[alt.Tooltip("Polarity", format=".3f"),
