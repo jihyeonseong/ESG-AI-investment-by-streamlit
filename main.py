@@ -212,8 +212,9 @@ def main(start_data, end_data):
     URL_Expander.write(f"#### 최근 5일의 샘플 기사입니다")
     link_df = df_company[["DATE", "URL"]].drop_duplicates(keep='last', subset='DATE').tail(5).copy()
     # link_df["URL"] = link_df["URL"].apply(lambda R: f"[{R}]({R})")
-    link_df["ARTICLE"] = link_df.URL.apply(get_clickable_name)
-    link_df = link_df[["DATE", "ARTICLE"]][::-1].to_markdown(index=False)
+    link_df["기사"] = link_df.URL.apply(get_clickable_name)
+    link_df['날짜'] = link_df['DATE']
+    link_df = link_df[["날짜", "기사"]][::-1].to_markdown(index=False)
     URL_Expander.markdown(link_df)
     ####   
 
