@@ -346,9 +346,17 @@ def main(start_data, end_data):
     with box:
         with st.expander("펼쳐보기"):
             for i in range(1, len(metric_options)-3):
-                df1 = df_company.groupby("DATE")[metric_options[i]].mean(
+                if i==1:
+                    metric_options_ = "NegativeTone"
+                elif i==2:
+                    metric_options_ = "PositiveTone"
+                elif i==3:
+                    metric_options_ = "Polarity"
+                elif i==4:
+                    metric_options_ = "WordCount"
+                df1 = df_company.groupby("DATE")[metric_options_].mean(
                 ).reset_index()
-                df2 = filter_on_date(df_data.groupby("DATE")[metric_options[i]].mean(
+                df2 = filter_on_date(df_data.groupby("DATE")[metric_options_].mean(
                     ).reset_index(), start, end)
                 df1["WHO"] = company.title()
                 df2["WHO"] = "Industry Average"
@@ -356,7 +364,7 @@ def main(start_data, end_data):
                 metric_chart = alt.Chart(plot_df, title=f"{metric_options[i]} 시계열 그래프", padding={"left": 40, "top": 1, "right": 10, "bottom": 1}
                                          ).mark_line().encode(
                     x=alt.X("yearmonthdate(DATE):O", title=""),
-                    y=alt.Y(f"{metric_options[i]}:Q", scale=alt.Scale(type="linear")),
+                    y=alt.Y(f"{metric_options_}:Q", scale=alt.Scale(type="linear"), title=metric_options[i]),
                     color=alt.Color("WHO", legend=None),
                     strokeDash=alt.StrokeDash("WHO", sort=None,
                         legend=alt.Legend(
@@ -364,7 +372,7 @@ def main(start_data, end_data):
                             symbolStrokeWidth=4, orient="top",
                             ),
                         ),
-                    tooltip=["DATE", alt.Tooltip(metric_options[i], format=".3f")]
+                    tooltip=["DATE", alt.Tooltip(metric_options_, format=".3f")]
                     )
                 metric_chart = metric_chart.properties(
                     height=340,
@@ -378,19 +386,21 @@ def main(start_data, end_data):
                     esg_plot_df = pd.concat([e_df, ind_e_df]
                                             ).reset_index(drop=True)
                     esg_plot_df.replace({"E_score": "Environment"}, inplace=True)
+                    metric_options_ = "E Score"
                 elif i==1:
                     s_df["WHO"] = company.title()
                     ind_s_df["WHO"] = "Industry Average"
                     esg_plot_df = pd.concat([s_df, ind_s_df]
                                             ).reset_index(drop=True)
                     esg_plot_df.replace({"S_score": "Social"}, inplace=True)
+                    metric_options_ = "S Score"
                 else:
                     g_df["WHO"] = company.title()
                     ind_g_df["WHO"] = "Industry Average"
                     esg_plot_df = pd.concat([g_df, ind_g_df]
                                             ).reset_index(drop=True)
-
                     esg_plot_df.replace({"G_score": "Governance"}, inplace=True)
+                    metric_options_ = "G Score"
 
                 metric_chart = alt.Chart(esg_plot_df, title=f"{metric_options[len(metric_options)-3+i]} 시계열 그래프", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
                                            ).mark_line().encode(
