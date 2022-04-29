@@ -660,7 +660,7 @@ def main(start_data, end_data):
 
         choose_portfolio = ["Min Vol", "Max Sharpe"]
         portfolio_metric = st.radio("수익률에 따른 포트폴리오를 선택하세요", options=choose_portfolio)
-
+        st.write("")
         if portfolio_metric == 'Max Sharpe':
             pie_chart = alt.Chart(max_sharpe_allocation, title="높은 수익률의 포트폴리오 예시입니다").mark_arc().encode(
                         theta=alt.Theta(field="allocation", type="quantitative"),
