@@ -560,8 +560,8 @@ def main(start_data, end_data):
                 density='Tone',
                 as_=["Tone", "density"]
             ).mark_area(opacity=0.5,color="purple").encode(
-                    x=alt.X('Tone:Q', scale=alt.Scale(domain=(-10, 10)), title="Tone"),
-                    y=alt.Y('density:Q', title="Density"),
+                    x=alt.X('Tone:Q', scale=alt.Scale(domain=(-10, 10)), title="어조"),
+                    y=alt.Y('density:Q', title="밀도"),
                     tooltip=[alt.Tooltip("Tone", format=".3f"),
                              alt.Tooltip("density:Q", format=".4f")]
                 ).properties(
@@ -573,8 +573,8 @@ def main(start_data, end_data):
         st.altair_chart(dist_chart,use_container_width=True)
         
         scatter = alt.Chart(df_company, title= "단어 양극성 차트", padding={"left": 10, "top": 10, "right": 1, "bottom": 1}).mark_circle().encode(
-            x=alt.X("NegativeTone:Q", title="Negative Tone"),
-            y=alt.Y("PositiveTone:Q", title="Positive Tone"),
+            x=alt.X("NegativeTone:Q", title="부정적 어조"),
+            y=alt.Y("PositiveTone:Q", title="긍정적 어조"),
             size="WordCount:Q",
             color=alt.Color("Polarity:Q", scale=alt.Scale()),
             tooltip=[alt.Tooltip("Polarity", format=".3f"),
@@ -623,7 +623,7 @@ def main(start_data, end_data):
             conf_plot = alt.Chart(neighbor_conf, title=f"상위 {num_neighbors}개 유사 기업의 유사도 점수 차트", padding={"left": 1, "top": 10, "right": 1, "bottom": 1}
                                   ).mark_bar().encode(
                 x=alt.X("Confidence:Q", title="유사 정도"),
-                y=alt.Y("Neighbor:N", sort="-x", title="유사 "),
+                y=alt.Y("Neighbor:N", sort="-x", title="유사 기업"),
                 tooltip=["Neighbor", alt.Tooltip("Confidence", format=".3f")],
                 color=alt.Color("Confidence:Q", scale=alt.Scale(), legend=None)
             ).properties(
