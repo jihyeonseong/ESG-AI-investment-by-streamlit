@@ -665,7 +665,7 @@ def main(start_data, end_data):
             pie_chart = alt.Chart(max_sharpe_allocation, title="마코위츠 포트폴리오 이론 예시입니다", padding={"left": 0, "top": 10, "right": 0, "bottom": 1}).mark_arc().encode(
                         theta=alt.Theta(field="allocation", type="quantitative"),
                         color=alt.Color(field="company", type="nominal"),
-                        ).properties(height=350).interactive()
+                        ).properties(height=350)
             st.altair_chart(pie_chart, use_container_width=True) 
             st.write("연 평균 예상 수익:", round(rp,2))
             st.write("연 평균 포트폴리오 변동성:", round(sdp,2))
