@@ -288,7 +288,7 @@ def main(start_data, end_data):
         metric_chart = alt.Chart(esg_plot_df, title=f"{line_metric} 시계열 그래프", padding={"left": 30, "top": 1, "right": 10, "bottom": 1}
                                    ).mark_line().encode(
             x=alt.X("yearmonthdate(DATE):O", title=""), #title="DATE"
-            y=alt.Y("Score:Q", title="G Score"),
+            y=alt.Y("Score:Q", title="G 점수"),
             color=alt.Color("WHO", sort=None, legend=alt.Legend(
                 title=None, orient="top")),
             strokeDash=alt.StrokeDash("WHO", sort=None, legend=alt.Legend(
