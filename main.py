@@ -332,7 +332,7 @@ def main(start_data, end_data):
                 symbolStrokeWidth=4, orient="top",
                 ),
             ),
-        tooltip=["DATE", alt.Tooltip(line_metric, format=".3f")]
+        tooltip=["DATE", alt.Tooltip(line_metric_, format=".3f")]
         )
     metric_chart = metric_chart.properties(
         height=340,
