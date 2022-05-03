@@ -72,18 +72,18 @@ Databricks develops a web-based platform for working with Spark, that provides a
    - This is important point, because year end and start is the evaluation period of company.
    - So you can get superior quality and quantity of article.
 
-2. The number of article that crawled means the power or influence of company to society (ex. 551 press make article about MSFT)
-   - This means, you can get rough information like company's trending degree from number of article
+2. The number of article that crawled means the power or influence of company to society (ex. 421 press make article about Netflix)
+   - This means, you can get rough information such as company's trending degree from number of article
 <br></br>
 
 ### What method is used to Scoring ESG?
-***Node2Vec is used!***
+***Gdelt and PySpark is used!***
 
 you can see more detail explanation at [here](https://snap.stanford.edu/node2vec/)
 <br></br>
 
 ### What method is used to form Portfolio?
-***Markowitz Portfolio Theory is used!***
+***Node2Vec and Markowitz Portfolio Theory is used!***
 
 you can see more detail explanation at [here](https://towardsdatascience.com/efficient-frontier-portfolio-optimisation-in-python-e7844051e7f)
 <br></br>
