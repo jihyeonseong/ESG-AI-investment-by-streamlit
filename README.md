@@ -1,14 +1,14 @@
 # ESG-investment with AI
-***This repository is referenced by [ESG_AI](https://github.com/hannahawalsh/ESG_AI) 
-which is [Hack to the Future 2020](https://devpost.com/software/esg-ai) 
-Winner: Best Environmental Impact & Best User Experience***
+***이 깃은 [Hack to the Future 2020](https://devpost.com/software/esg-ai) 대회에서 우승(Winner: Best Environmental Impact & Best User Experience)한 
+[ESG_AI](https://github.com/hannahawalsh/ESG_AI)를 reference로 하고 있습니다.
+***
 <br></br>
-**Demonstrating the power of Streamlit.** [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/monouns/esg-ai-investment/main.py)  
+**웹데모 열기** [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/monouns/esg-ai-investment/main.py)  
 
 ![visual_demo](https://user-images.githubusercontent.com/56622667/163711185-8fea43e6-0a1b-4145-95a4-b755cf915dbe.png)
 
 ## Project Flow
-### This project's flow is,
+### 이 프로젝트는,
 - s&p500's 90% of enterprises reveal sustainability report every year.
 - But we do not have standard evaluation format to get score of ESG.
 - So crawlling the article from gdelt, and analyze tone of article about ESG and then scoring with the word that used in article 
