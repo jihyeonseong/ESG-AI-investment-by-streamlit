@@ -2,7 +2,7 @@
 ***이 깃은 [Hack to the Future 2020](https://devpost.com/software/esg-ai) 대회에서 우승(Winner: Best Environmental Impact & Best User Experience)한 
 [ESG_AI](https://github.com/hannahawalsh/ESG_AI)를 reference로 하고 있습니다.***
 <br></br>
-**웹데모 열기** [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/monouns/esg-ai-investment/main.py)  
+**웹데모 열기** [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/monouns/esg-ai-investment/korean-ver/main.py)  
 
 ![visual_demo](https://user-images.githubusercontent.com/56622667/163711185-8fea43e6-0a1b-4145-95a4-b755cf915dbe.png)
 
