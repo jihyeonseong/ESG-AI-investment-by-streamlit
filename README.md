@@ -16,11 +16,21 @@ Winner: Best Environmental Impact & Best User Experience***
 - At porfolio creation, Node2Vec and Markowitz portfolio theory are used. 
 <br></br>
 
+## What is difference between benchmark github?
+### Markowitz Portfolio
+- I added additional service for personal investor to get example portfolio based on modern portfolio theory.
+
+### Market Evaluation and Prediction
+- I added additioinal Chart with not only Gdelt but also twitter crawling.
+
+
+**With above services I added, user can reach more diverse information for ESG investment!**
+
 ## Data Crawling & Creation with Databricks 
 Firstly, You have to sign up or sign in Databricks. You can use free trial for 14 days.
 In Databricks, you can use pyspark very easily which can makes data crawling really fast!
  - Create your own workspace
- - Go to setting - Admin Console - Workspace Settings and set whatever you like to (I recommend Git, Web Terminal, DBGS File Browser enable)
+ - Go to setting - Admin Console - Workspace Settings and set whatever you like to (I recommend Git, Web Terminal, DBFS File Browser enable)
  - Go to Compute and Create your own Cluster (If you are connected with AWS, it will create EC2 automatically)
  - Go to Repos and Create your own folder and notebooks (You can use Data_Creation folder!). Then run with your own cluster.
  - Go to Data and Select DFBS folder. You can see Data is created as csv!
@@ -114,13 +124,14 @@ you can see more detail explanation at [here](https://towardsdatascience.com/eff
 
 ### What we can get from this web?
 - You can get enough detailed information from graph and chart in web
-   - Several metrics such as Tone, ESG score and graphs such as chart, rader are provided for detailed evaluation!
+   - Several metrics such as Tone, ESG score and graphs such as chart, rader are provided for detailed evaluation.
+   - Portfolio example is also provided!
 <br></br>
 
 ## Detail information for technical stack
 1. What we usel for data?
    - gdelt
-   - The GDELT Project, or Global Database of Events, Language, and Tone, created by Kalev Leetaru of Yahoo! and Georgetown University, along with Philip Schrodt and others, describes itself as "an initiative to construct a catalog of human societal-scale behavior and beliefs across all countries of the world, connecting every person, organization, location, count, theme, news source, and event across the planet into a single massive network that captures what's happening around the world, what its context is and who's involved, and how the world is feeling about it, every single day." Early explorations leading up to the creation of GDELT were described by co-creator Philip Schrodt in a conference paper in January 2011. The dataset is available on Google Cloud Platform. [wikipedia](https://en.wikipedia.org/wiki/GDELT_Project)
+   - The GDELT Project, or Global Database of Events, Language, and Tone, created by Kalev Leetaru of Yahoo! and Georgetown University, along with Philip Schrodt and others, describes itself as "an initiative to construct a catalog of human societal-scale behavior and beliefs across all countries of the world, connecting every person, organization, location, count, theme, news source, and event across the planet into a single massive network that captures what's happening around the world, what its context is and who's involved, and how the world is feeling about it, every single day." Early explorations leading up to the creation of GDELT were described by co-creator Philip Schrodt in a conference paper in January 2011. The dataset is available on Google Cloud Platform. [Wikipedia](https://en.wikipedia.org/wiki/GDELT_Project)
 
 2. How can we reach data and create web demo?
 
@@ -130,13 +141,10 @@ you can see more detail explanation at [here](https://towardsdatascience.com/eff
    
    ![technical_stack_architecture](./files/technical_stack_architecture.png) 
    
-3. We can get reasonable stock index from iShares!
+3. We can get reasonable stock index from iShares etf!
    - [Russell 1000 etf](https://www.ishares.com/us/products/239707/ishares-russell-1000-etf)
    - [MSCI UK etf](https://www.ishares.com/us/products/239690/ishares-msci-united-kingdom-etf)
    - [MSCI Canada etf](https://www.ishares.com/us/products/239615/ishares-msci-canada-etf)
    - [MSCI Australia etf](https://www.ishares.com/us/products/239607/ishares-msci-australia-etf)
    - You can get stock index whatever you want in ishares.com and just change url in DataCreation/python_get_data_wrapper
 <br></br>
-
-## Note
-I'm sorry for foreigners, the technical stack explanation slide is in Korean. But you can understand via images and icons!! :)
