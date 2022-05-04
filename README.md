@@ -93,9 +93,8 @@ Databricks develops a web-based platform for working with Spark, that provides a
 ### What method is used to form Portfolio?
 ***Node2Vec and Markowitz Portfolio Theory is used!***
 
-you can see more detail explanation about Node2Vec at [here](https://snap.stanford.edu/node2vec/)
-
-you can see more detail explanation about Markowitz Portfolio at [here](https://towardsdatascience.com/efficient-frontier-portfolio-optimisation-in-python-e7844051e7f)
+- you can see more detail explanation about Node2Vec at [here](https://snap.stanford.edu/node2vec/)
+- you can see more detail explanation about Markowitz Portfolio at [here](https://towardsdatascience.com/efficient-frontier-portfolio-optimisation-in-python-e7844051e7f)
 <br></br>
 
 
