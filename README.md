@@ -5,7 +5,7 @@ Winner: Best Environmental Impact & Best User Experience***
 <br></br>
 **Demonstrating the power of Streamlit.** [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/monouns/esg-ai-investment/main.py)  
 
-![visual_demo](https://user-images.githubusercontent.com/56622667/163711185-8fea43e6-0a1b-4145-95a4-b755cf915dbe.png)
+![visual_demo](./files/visual_demo.png)
 
 ## Project Flow
 ### This project's flow is,
