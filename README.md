@@ -4,7 +4,7 @@
 <br></br>
 **웹데모 열기** [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/monouns/esg-ai-investment/korean-ver/main.py)  
 
-![visual_demo](https://user-images.githubusercontent.com/56622667/163711185-8fea43e6-0a1b-4145-95a4-b755cf915dbe.png)
+![visual_demo](./files/visual_demo.png)
 
 ## Project Flow
 ### 이 프로젝트는,
@@ -123,11 +123,11 @@ you can see more detail explanation at [here](https://towardsdatascience.com/eff
 
 2. How can we reach data and create web demo?
 
-   ![technical_stack](https://user-images.githubusercontent.com/56622667/162120751-d62c3a62-bbce-4098-acc7-bbad93d6fd0c.png)
+   ![technical_stack](./files/technical_stack.png)
    
-   ![technical_stack2](https://user-images.githubusercontent.com/56622667/162120810-ec823d9e-745c-43c0-98e3-5890eeb5c60f.png)
+   ![technical_stack2](./files/technical_stack_detail.png)
    
-   ![technical_stack_detail](https://user-images.githubusercontent.com/56622667/162120824-b49f86a4-7d10-4917-9f4f-f55616095815.png) 
+   ![technical_stack_architecture](./files/technical_stack2.png) 
    
 3. We can get reasonable stock index from iShares!
    - [Russell 1000 etf](https://www.ishares.com/us/products/239707/ishares-russell-1000-etf)
@@ -136,6 +136,3 @@ you can see more detail explanation at [here](https://towardsdatascience.com/eff
    - [MSCI Australia etf](https://www.ishares.com/us/products/239607/ishares-msci-australia-etf)
    - You can get stock index whatever you want in ishares.com and just change url in DataCreation/python_get_data_wrapper
 <br></br>
-
-## Note
-I'm sorry for foreigners, the technical stack explanation slide is in Korean. But you can understand via images and icons!! :)
