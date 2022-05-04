@@ -124,11 +124,11 @@ you can see more detail explanation at [here](https://towardsdatascience.com/eff
 
 2. How can we reach data and create web demo?
 
-   ![technical_stack](https://user-images.githubusercontent.com/56622667/162120751-d62c3a62-bbce-4098-acc7-bbad93d6fd0c.png)
+   ![technical_stack](./files/technical_stack.png)
    
-   ![technical_stack2](https://user-images.githubusercontent.com/56622667/162120810-ec823d9e-745c-43c0-98e3-5890eeb5c60f.png)
+   ![technical_stack2](./files/technical_stack2.png)
    
-   ![technical_stack_detail](https://user-images.githubusercontent.com/56622667/162120824-b49f86a4-7d10-4917-9f4f-f55616095815.png) 
+   ![technical_stack_architecture](./files/technical_stack_architecture.png) 
    
 3. We can get reasonable stock index from iShares!
    - [Russell 1000 etf](https://www.ishares.com/us/products/239707/ishares-russell-1000-etf)
