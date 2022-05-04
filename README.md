@@ -15,6 +15,16 @@
 - At porfolio creation, Node2Vec and Markowitz portfolio theory are used. 
 <br></br>
 
+## What is difference between benchmark github?
+### Markowitz Portfolio
+- I added additional service for personal investor to get example portfolio based on modern portfolio theory.
+
+### Market Evaluation and Prediction
+- I added additioinal Chart with not only Gdelt but also twitter crawling.
+
+**With above services I added, user can reach more diverse information for ESG investment!**
+<br></br>
+
 ## Data Crawling & Creation with Databricks 
 Firstly, You have to sign up or sign in Databricks. You can use free trial for 14 days.
 In Databricks, you can use pyspark very easily which can makes data crawling really fast!
