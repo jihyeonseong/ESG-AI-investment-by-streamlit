@@ -92,9 +92,8 @@ Databricks는 자동화된 클러스터 관리 및 IPython 스타일 노트북�
 ### 포트폴리오 구성에는 어떤 기술이 사용되었나?
 ***Node2Vec과 Markowitz Portfolio Theory!***
 
-Node2Vec에 대한 자세한 설명은 [여기](https://snap.stanford.edu/node2vec/)를 참고하세요.
-
-Markowitz Portfolio 이론에 대한 자세한 설명은 [여기](https://towardsdatascience.com/efficient-frontier-portfolio-optimisation-in-python-e7844051e7f)를 참고하세요.
+- Node2Vec에 대한 자세한 설명은 [여기](https://snap.stanford.edu/node2vec/)를 참고하세요.
+- Markowitz Portfolio 이론에 대한 자세한 설명은 [여기](https://towardsdatascience.com/efficient-frontier-portfolio-optimisation-in-python-e7844051e7f)를 참고하세요.
 <br></br>
 
 
