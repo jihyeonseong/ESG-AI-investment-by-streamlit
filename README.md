@@ -1,4 +1,4 @@
-# ESG-investment with AI
+# ESG-investment with AI (KB 디지털 아이디어 공모전 rank 4 - 우수상)
 ***이 깃은 [Hack to the Future 2020](https://devpost.com/software/esg-ai) 대회에서 우승(Winner: Best Environmental Impact & Best User Experience)한 
 [ESG_AI](https://github.com/hannahawalsh/ESG_AI)를 reference로 하고 있습니다.***
 <br></br>
