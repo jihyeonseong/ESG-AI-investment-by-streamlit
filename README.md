@@ -5,7 +5,7 @@
 <br></br>
 **웹데모 열기** [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/monouns/esg-ai-investment/korean-ver/main.py)  
 
-![ESG-AI-보드](./files/ESG-AI-보드.
+![ESG-AI-보드](./files/ESG-AI-보드)
 
 ![visual_demo](./files/visual_demo.png)
 
