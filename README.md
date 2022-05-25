@@ -1,4 +1,5 @@
 # ESG-investment with AI
+***Winner of KB Digital Idea Market with 4th Rank***
 ***This repository is referenced by [ESG_AI](https://github.com/hannahawalsh/ESG_AI) 
 which is [Hack to the Future 2020](https://devpost.com/software/esg-ai) 
 Winner: Best Environmental Impact & Best User Experience***
