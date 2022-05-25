@@ -148,4 +148,4 @@ Databricks는 자동화된 클러스터 관리 및 IPython 스타일 노트북�
 
 
 ## Note
-MIT Liscence
+MIT Licence
