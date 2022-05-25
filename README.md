@@ -147,3 +147,6 @@ Databricks develops a web-based platform for working with Spark, that provides a
    - [MSCI Australia etf](https://www.ishares.com/us/products/239607/ishares-msci-australia-etf)
    - You can get stock index whatever you want in ishares.com and just change url in DataCreation/python_get_data_wrapper
 <br></br>
+
+## Note
+MIT Liscence
