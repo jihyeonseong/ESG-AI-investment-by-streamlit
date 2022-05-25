@@ -149,4 +149,4 @@ Databricks develops a web-based platform for working with Spark, that provides a
 <br></br>
 
 ## Note
-MIT Liscence
+MIT Licence
