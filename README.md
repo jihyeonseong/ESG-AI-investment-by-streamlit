@@ -24,10 +24,6 @@ Winner: Best Environmental Impact & Best User Experience***
 ### Markowitz Portfolio
 - I added additional service for personal investor to get example portfolio based on modern portfolio theory.
 
-### Market Evaluation and Prediction
-- I added additioinal Chart with not only Gdelt but also twitter crawling.
-
-
 **With above services I added, user can reach more diverse information for ESG investment!**
 <br></br>
 
