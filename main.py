@@ -176,8 +176,8 @@ def main(start_data, end_data):
 
 
     ###### DATE WIDGET ######
-    start = df_company.DATE_.min()
-    end = df_company.DATE_.max()
+    start = df_company.DATE.min()
+    end = df_company.DATE.max()
     selected_dates = date_place.date_input("Select Date",
         value=[start, end], min_value=start, max_value=end, key=None)
     time.sleep(0.8)  #Allow user some time to select the two dates -- hacky :D
