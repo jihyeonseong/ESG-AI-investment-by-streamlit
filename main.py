@@ -72,8 +72,11 @@ def get_melted_frame(data_dict, frame_names, keepcol=None, dropcol=None):
 
 
 def filter_on_date(df, start, end, date_col="DATE"):
-    df = df[(df[date_col] >= pd.to_datetime(start)) &
-            (df[date_col] <= pd.to_datetime(end))]
+    df["DATE_"] = df[date_col].apply(lambda x: pd.to_datetime(x).value // 10 ** 9)
+    start = pd.to_datetime(start).value // 10 ** 9
+    end = pd.to_datetime(end).value // 10 ** 9
+    df = df[df.DATE_.between(start, end)]
+    df.drop(columns=['DATE_'], inplace=True)
     return df
 
 
@@ -423,48 +426,13 @@ def main(start_data, end_data):
 
     st.markdown("---")
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
-    choose_graph = ["ESG Rader", "Tone Density", "Polarity Graph", "Company Distribution", "Similarity Company & Score"]
-    choose_graph = ["ESG 레이더 차트", "어조 밀도 차트", "단어 양극성 차트", "유사 기업 분포도", "유사도 점수 차트"]
+    choose_graph = ["어조 밀도 차트", "단어 양극성 차트", "유사 기업 분포도", "유사도 점수 차트"]
     if len(neighbors)==0:
-        choose_graph = ["ESG Rader", "Tone Density", "Polarity Graph"]
-        choose_graph = ["ESG 레이더 차트", "어조 밀도 차트", "단어 양극성 차트"]
+        choose_graph = ["어조 밀도 차트", "단어 양극성 차트"]
     graph_metric = st.radio("차트를 선택하세요", options=choose_graph)
     
     ###### CHART: ESG RADAR ######
-    if graph_metric == 'ESG 레이더 차트':
-        avg_esg = data["ESG"]
-        avg_esg.rename(columns={"Unnamed: 0": "Type"}, inplace=True)
-        avg_esg.replace({"T": "Overall", "E": "Environment",
-                         "S": "Social", "G": "Governance"}, inplace=True)
-        avg_esg["Industry Average"] = avg_esg.mean(axis=1)
-
-        radar_df = avg_esg[["Type", company, "Industry Average"]].melt("Type",
-            value_name="score", var_name="entity")
-
-        radar = px.line_polar(radar_df, r="score", theta="Type",
-            color="entity", line_close=True, hover_name="Type",
-            hover_data={"Type": True, "entity": True, "score": ":.2f"},
-            color_discrete_map={"Industry Average": fuchsia, company: violet})
-        radar.update_layout(template=None,
-                            polar={
-                                   "radialaxis": {"showticklabels": False,
-                                                  "ticks": ""},
-                                   "angularaxis": {"showticklabels": False,
-                                                   "ticks": ""},
-                                   },
-                            legend={"title": None, "yanchor": "middle",
-                                    "orientation": "h"},
-                            title={"text": "<b>ESG 레이터 차트</b>",
-                                   "x": 0.15, "y": 0.93,
-                                   "xanchor": "center",
-                                   "yanchor": "top",
-                                   "font": {"family": "Futura", "size": 23}},
-                            margin={"l": 5, "r": 5, "t": 0, "b": 0},
-                            )#0.8875
-        radar.update_layout(showlegend=False)
-        st.plotly_chart(radar, use_container_width=True)
-
-    elif graph_metric == '어조 밀도 차트':
+    if graph_metric == '어조 밀도 차트':
         ###### CHART: DOCUMENT TONE DISTRIBUTION #####
         # add overall average
         dist_chart = alt.Chart(df_company, title="선택한 ESG 경영 기업의 기사 밀도 차트", padding={"left": 1, "top": 10, "right": 25, "bottom": 1}
