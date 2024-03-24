@@ -408,7 +408,7 @@ def main(start_data, end_data):
     
     ###### CHART: ESG RADAR ######
     if graph_metric == 'ESG Rader':
-        avg_esg = data["ESG"].fillna(0)
+        avg_esg = pd.DataFrame(data["ESG"]).fillna(0)
         avg_esg.rename(columns={"Unnamed: 0": "Type"}, inplace=True)
         avg_esg.replace({"T": "Overall", "E": "Environment",
                          "S": "Social", "G": "Governance"}, inplace=True)
@@ -422,7 +422,7 @@ def main(start_data, end_data):
         #    hover_data={"Type": True, "entity": True, "score": ":.2f"},
         #    color_discrete_map={"Industry Average": fuchsia, company: violet})
 
-        radar = px.line_polar(list(radar_df.values), r=1, theta=0,
+        radar = px.line_polar(radar_df.values, r=1, theta=0,
             color=2, line_close=True, hover_name=0,
             color_discrete_map={"Industry Average": fuchsia, company: violet})
                               
