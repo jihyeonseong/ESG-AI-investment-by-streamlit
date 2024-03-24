@@ -73,7 +73,7 @@ def get_melted_frame(data_dict, frame_names, keepcol=None, dropcol=None):
 
 def filter_on_date(df, start, end, date_col="DATE"):
     #df = df[(df[date_col] >= pd.to_datetime(start)) & (df[date_col] <= pd.to_datetime(end))]
-    df = df.iloc[df.loc[df[date_col] == pd.to_datetime(start)].index : df.loc[df[date_col] == pd.to_datetime(end)].index]
+    df = df[df.DATE.between(start, end)]
     return df
 
 
