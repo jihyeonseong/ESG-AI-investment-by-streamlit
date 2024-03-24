@@ -417,10 +417,16 @@ def main(start_data, end_data):
         radar_df = avg_esg[["Type", company, "Industry Average"]].melt("Type",
             value_name="score", var_name="entity")
 
-        radar = px.line_polar(radar_df.to_dict(orient='list'), r="score", theta="Type",
-            color="entity", line_close=True, hover_name="Type",
-            hover_data={"Type": True, "entity": True, "score": ":.2f"},
+        #radar = px.line_polar(radar_df, r="score", theta="Type",
+        #    color="entity", line_close=True, hover_name="Type",
+        #    hover_data={"Type": True, "entity": True, "score": ":.2f"},
+        #    color_discrete_map={"Industry Average": fuchsia, company: violet})
+
+        radar = px.line_polar(radar_df.values, r=1, theta=0,
+            color=2, line_close=True, hover_name=0,
+            #hover_data={"Type": True, "entity": True, "score": ":.2f"},
             color_discrete_map={"Industry Average": fuchsia, company: violet})
+                              
         radar.update_layout(template=None,
                             polar={
                                    "radialaxis": {"showticklabels": False,
