@@ -401,51 +401,12 @@ def main(start_data, end_data):
 
     st.markdown("---")
     st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
-    choose_graph = ["ESG Rader", "Tone Density", "Polarity Graph", "Company Distribution", "Similarity Company & Score"]
+    choose_graph = ["Tone Density", "Polarity Graph", "Company Distribution", "Similarity Company & Score"]
     if len(neighbors)==0:
-        choose_graph = ["ESG Rader", "Tone Density", "Polarity Graph"]
+        choose_graph = ["Tone Density", "Polarity Graph"]
     graph_metric = st.radio("Please Select your Graph", options=choose_graph)
     
     ###### CHART: ESG RADAR ######
-    """
-    if graph_metric == 'ESG Rader':
-        avg_esg = pd.DataFrame(data["ESG"]).fillna(0)
-        avg_esg.rename(columns={"Unnamed: 0": "Type"}, inplace=True)
-        avg_esg.replace({"T": "Overall", "E": "Environment",
-                         "S": "Social", "G": "Governance"}, inplace=True)
-        avg_esg["Industry Average"] = avg_esg.drop(avg_esg.columns[0], axis=1).mean(axis=1)
-
-        radar_df = avg_esg[["Type", company, "Industry Average"]].melt("Type",
-            value_name="score", var_name="entity")
-        print(radar_df.to_dict('list'))
-        radar = px.line_polar(radar_df.to_dict('list'), r="score", theta="Type",
-            color="entity", line_close=True, hover_name="Type",
-            hover_data={"Type": True, "entity": True, "score": ":.2f"},
-            color_discrete_map={"Industry Average": fuchsia, company: violet})
-
-        #radar = px.line_polar(radar_df, r=1, theta=0,
-        #    color=2, line_close=True, hover_name=0,
-        #    color_discrete_map={"Industry Average": fuchsia, company: violet})
-                              
-        radar.update_layout(template=None,
-                            polar={
-                                   "radialaxis": {"showticklabels": False,
-                                                  "ticks": ""},
-                                   "angularaxis": {"showticklabels": False,
-                                                   "ticks": ""},
-                                   },
-                            legend={"title": None, "yanchor": "middle",
-                                    "orientation": "h"},
-                            title={"text": "<b>ESG Rader Chart</b>",
-                                   "x": 0.15, "y": 0.93,
-                                   "xanchor": "center",
-                                   "yanchor": "top",
-                                   "font": {"family": "Futura", "size": 23}},
-                            margin={"l": 5, "r": 5, "t": 0, "b": 0},
-                            )#0.8875
-        radar.update_layout(showlegend=False)
-        st.plotly_chart(radar, use_container_width=True)
-    """
     if graph_metric == 'Tone Density':
         ###### CHART: DOCUMENT TONE DISTRIBUTION #####
         # add overall average
