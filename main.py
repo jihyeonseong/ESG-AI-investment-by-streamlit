@@ -422,7 +422,7 @@ def main(start_data, end_data):
         #    hover_data={"Type": True, "entity": True, "score": ":.2f"},
         #    color_discrete_map={"Industry Average": fuchsia, company: violet})
 
-        radar = px.line_polar(radar_df.values.values, r=1, theta=0,
+        radar = px.line_polar(radar_df.values.to_list(), r=1, theta=0,
             color=2, line_close=True, hover_name=0,
             color_discrete_map={"Industry Average": fuchsia, company: violet})
                               
