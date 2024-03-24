@@ -408,7 +408,7 @@ def main(start_data, end_data):
     
     ###### CHART: ESG RADAR ######
     if graph_metric == 'ESG Rader':
-        avg_esg = data["ESG"]
+        avg_esg = data["ESG"].astype('str')
         avg_esg.rename(columns={"Unnamed: 0": "Type"}, inplace=True)
         avg_esg.replace({"T": "Overall", "E": "Environment",
                          "S": "Social", "G": "Governance"}, inplace=True)
