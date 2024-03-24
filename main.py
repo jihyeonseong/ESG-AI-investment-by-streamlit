@@ -80,7 +80,8 @@ def filter_on_date(df, start, end, date_col="DATE"):
     df["DATE_"] = df[date_col].apply(lambda x: pd.to_datetime(x).value // 10 ** 9)
     start = pd.to_datetime(start).value // 10 ** 9
     end = pd.to_datetime(end).value // 10 ** 9
-    df = df[df.DATE_.between(start, end)]
+    df = df[df.DATE_.between(start, end)]'
+    df.drop(columns=['DATE_'], inplace=True)
     return df
 
 
