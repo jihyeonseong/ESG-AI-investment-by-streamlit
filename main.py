@@ -76,7 +76,8 @@ def filter_on_date(df, start, end, date_col="DATE"):
     #df = df[(df[date_col] >= pd.to_datetime(start)) & (df[date_col] <= pd.to_datetime(end))]
     #print(start, end, df[date_col])
     #df[date_col] = pd.to_datetime(df[date_col], format="%m/%d/%Y").dt.date
-    df = df[pd.Timestamp(df.DATE).date().between(pd.Timestamp(start).date(), pd.Timestamp(end).date())]
+    df[date_col] = df.DATE.values.astype(np.int64) // 10 ** 9
+    df = df[df.DATE.between(pd.Timestamp(start), pd.Timestamp(end))]
     return df
 
 
