@@ -417,7 +417,7 @@ def main(start_data, end_data):
         radar_df = avg_esg[["Type", company, "Industry Average"]].melt("Type",
             value_name="score", var_name="entity")
 
-        radar = px.line_polar(radar_df, r="score", theta="Type",
+        radar = px.line_polar(radar_df.values, r="score", theta="Type",
             color="entity", line_close=True, hover_name="Type",
             hover_data={"Type": True, "entity": True, "score": ":.2f"},
             color_discrete_map={"Industry Average": fuchsia, company: violet})
