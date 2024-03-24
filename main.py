@@ -407,6 +407,7 @@ def main(start_data, end_data):
     graph_metric = st.radio("Please Select your Graph", options=choose_graph)
     
     ###### CHART: ESG RADAR ######
+    """
     if graph_metric == 'ESG Rader':
         avg_esg = pd.DataFrame(data["ESG"]).fillna(0)
         avg_esg.rename(columns={"Unnamed: 0": "Type"}, inplace=True)
@@ -444,8 +445,8 @@ def main(start_data, end_data):
                             )#0.8875
         radar.update_layout(showlegend=False)
         st.plotly_chart(radar, use_container_width=True)
-
-    elif graph_metric == 'Tone Density':
+    """
+    if graph_metric == 'Tone Density':
         ###### CHART: DOCUMENT TONE DISTRIBUTION #####
         # add overall average
         dist_chart = alt.Chart(df_company, title="All Publishers' ESG Tone Density Chart", padding={"left": 1, "top": 10, "right": 25, "bottom": 1}
