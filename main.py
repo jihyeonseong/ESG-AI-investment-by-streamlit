@@ -27,7 +27,12 @@ def filter_company_data(df_company, esg_categories, start, end):
     df_company = pd.concat(comps)
     # df_company = df_company[(df_company.DATE >= start) &
     #                         (df_company.DATE <= end)]
-    df_company = df_company[df_company.DATE.between(start, end)]
+    #df_company = df_company[df_company.DATE.between(start, end)]
+
+    df["DATE_"] = df[date_col].apply(lambda x: pd.to_datetime(x).value // 10 ** 9)
+    start = pd.to_datetime(start).value // 10 ** 9
+    end = pd.to_datetime(end).value // 10 ** 9
+    df = df[df.DATE_.between(start, end)]
     return df_company
 
 
