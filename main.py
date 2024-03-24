@@ -82,10 +82,10 @@ def filter_on_date(df, start, end, date_col="DATE"):
     #print(start, end, df[date_col])
     #df[date_col] = pd.to_datetime(df[date_col], format="%m/%d/%Y").dt.date
 
-    df["DATE_"] = df[date_col].apply(lambda x: pd.to_datetime(x).value // 10 ** 9)
+    df["DATE"] = df[date_col].apply(lambda x: pd.to_datetime(x).value // 10 ** 9)
     start = pd.to_datetime(start).value // 10 ** 9
     end = pd.to_datetime(end).value // 10 ** 9
-    df = df[df.DATE_.between(start, end)]
+    df = df[df.DATE.between(start, end)]
     return df
 
 
@@ -181,8 +181,8 @@ def main(start_data, end_data):
 
 
     ###### DATE WIDGET ######
-    start = df_company.DATE_.min()
-    end = df_company.DATE_.max()
+    start = df_company.DATE.min()
+    end = df_company.DATE.max()
     selected_dates = date_place.date_input("Select Date",
         value=[start, end], min_value=start, max_value=end, key=None)
     time.sleep(0.8)  #Allow user some time to select the two dates -- hacky :D
