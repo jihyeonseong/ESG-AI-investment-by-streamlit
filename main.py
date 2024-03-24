@@ -408,11 +408,11 @@ def main(start_data, end_data):
     
     ###### CHART: ESG RADAR ######
     if graph_metric == 'ESG Rader':
-        avg_esg = data["ESG"].fillna(0).astype('str')
+        avg_esg = data["ESG"].fillna(0)
         avg_esg.rename(columns={"Unnamed: 0": "Type"}, inplace=True)
         avg_esg.replace({"T": "Overall", "E": "Environment",
                          "S": "Social", "G": "Governance"}, inplace=True)
-        avg_esg["Industry Average"] = avg_esg.mean(axis=1)
+        avg_esg["Industry Average"] = avg_esg.astype('float64').mean(axis=1)
 
         radar_df = avg_esg[["Type", company, "Industry Average"]].melt("Type",
             value_name="score", var_name="entity")
